@@ -67,7 +67,7 @@ const featuredProjects: Project[] = [
     tags: ["Serverless", "Cost Opt", "AWS", "Nuxt", "DynamoDB"],
     oneLiner:
       "サーバーレスアーキテクチャへの移行により、インフラコストを年間$200kから$3kへ98.5%削減。開発速度の大幅な向上も実現。",
-    cta: "ケーススタディを見る",
+    // cta: "ケーススタディを見る",
     link: "/projects/wecall",
     metrics: [
       { label: "コスト", value: "$200k → $3k / 年" },
@@ -82,7 +82,7 @@ const featuredProjects: Project[] = [
     tags: ["High Load", "Queue", "LINE", "AWS", "BullMQ"],
     oneLiner:
       "1000req/sec超の同時アクセスに対応するLINEチケット販売システム。キューイング制御とオートスケーリングでゼロダウンタイムを実現。",
-    cta: "詳細を相談する",
+    // cta: "詳細を相談する",
     link: "/projects/weno",
     metrics: [
       { label: "同時購入", value: "1000+ req/sec" },
@@ -96,7 +96,7 @@ const featuredProjects: Project[] = [
     title: "SNAP — ブライダル向けフォトブース (B2B SaaS)",
     tags: ["SaaS", "B2B", "Full-Stack", "BizDev"],
     oneLiner: "結婚式場向けサブスクリプション型フォトブースサービス。タブレット1台で完結し、安定的な継続収益を実現。",
-    cta: "プロダクト概要を知る",
+    // cta: "プロダクト概要を知る",
     link: "/projects/snap",
     metrics: [
       { label: "料金モデル", value: "最大 ¥300k/月" },
@@ -111,7 +111,7 @@ const featuredProjects: Project[] = [
     tags: ["Scraping", "Analytics", "AWS", "Automation"],
     oneLiner:
       "代理店向け競合調査プラットフォーム。Instagramストーリーの自動アーカイブと分析により、マーケティング戦略立案を支援。",
-    cta: "UIデモを相談",
+    // cta: "UIデモを相談",
     link: "/projects/ongy",
     metrics: [
       { label: "用途", value: "競合調査・事例収集" },
@@ -126,7 +126,7 @@ const featuredProjects: Project[] = [
     tags: ["LINE", "Serverless", "GAS", "Personal"],
     oneLiner:
       "LINE MessagingとGoogle Sheetsを活用した個人向け家計簿アプリケーション。インフラコストゼロで継続的な利用が可能。",
-    cta: "仕組みを聞く",
+    // cta: "仕組みを聞く",
     link: "/projects/lulu",
     metrics: [
       { label: "コスト", value: "¥0" },
@@ -140,7 +140,7 @@ const featuredProjects: Project[] = [
     title: "meiso. — マインドフルネス企業サイト",
     tags: ["Design", "Branding", "Web Dev"],
     oneLiner: "マインドフルネス事業のブランドアイデンティティを視覚化したコーポレートサイト。カスタムイラストレーションにより独自性を表現。",
-    cta: "デザインプロセスを見る",
+    // cta: "デザインプロセスを見る",
     link: "/projects/meiso",
     metrics: [
       { label: "トーン", value: "落ち着き・親しみ" },
@@ -282,14 +282,11 @@ function FeaturedProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       ) : null}
-      <div className="space-y-1.5 text-sm text-slate-600 mb-5 pb-5 border-b border-slate-100">
+      <div className="space-y-1.5 text-sm text-slate-600 mb-5 pb-5">
         <p><span className="text-slate-400">Stack:</span> {project.stack}</p>
         <p><span className="text-slate-400">Role:</span> {project.role}</p>
       </div>
-      <div className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 group-hover:gap-2.5 transition-all">
-        {cta}
-        <span aria-hidden>→</span>
-      </div>
+
     </a>
   );
 }
@@ -390,7 +387,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="About"
             title="デザイン出身のフルスタックエンジニア"
-            description="5人スタートアップのインターンからCTOを経て、現在はGenerosityでアーキテクチャをリード。曖昧さの中で素早く形にし、使われるプロダクトに仕上げます。"
+            description="5人スタートアップのインターンからCTOを経て、Generosityでアーキテクチャをリード。曖昧さの中で素早く形にし、使われるプロダクトに仕上げます。"
           />
           <div className="grid gap-8 md:grid-cols-[300px_1fr]">
             <div className="flex flex-col gap-4">
