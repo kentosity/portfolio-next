@@ -216,7 +216,7 @@ function SectionHeader({ title, eyebrow, description }: { title: string; eyebrow
     <div className="flex flex-col gap-4">
       {eyebrow ? <Badge>{eyebrow}</Badge> : null}
       <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-      {description ? <p className="text-lg leading-relaxed text-slate-600 max-w-3xl">{description}</p> : null}
+      {description ? <p className="text-lg leading-relaxed text-slate-600">{description}</p> : null}
     </div>
   );
 }
@@ -376,7 +376,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="text-sm text-slate-500 mb-1">主要スタック</p>
-                <p className="text-lg font-semibold text-slate-900">React / Next / AWS</p>
+                <p className="text-lg font-semibold text-slate-900">Typescript / React / AWS</p>
               </div>
               <div>
                 <p className="text-sm text-slate-500 mb-1">専門領域</p>
