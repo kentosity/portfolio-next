@@ -349,7 +349,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white transition hover:bg-blue-700"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white! transition hover:bg-blue-700"
               >
                 プロジェクトを見る
                 <span aria-hidden>→</span>
