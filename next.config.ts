@@ -1,23 +1,23 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   headers: async () => {
     return [
       {
-        source: "/:path*",
+        source: '/:path*',
         headers: [
           {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow, noarchive, nocache",
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive, nocache'
           },
           {
-            key: "X-UA-Compatible",
-            value: "IE=edge",
-          },
-        ],
-      },
-    ];
-  },
-};
+            key: 'X-UA-Compatible',
+            value: 'IE=edge'
+          }
+        ]
+      }
+    ]
+  }
+}
 
-export default nextConfig;
+export default nextConfig

@@ -66,7 +66,7 @@ const featuredProjects: Project[] = [
     title: "WeCALL — イベント管理リアーキテクチャ",
     tags: ["Serverless", "Cost Opt", "AWS", "Nuxt", "DynamoDB"],
     oneLiner:
-      "インフラコストを98.5%削減($200k→$3k/年)し、開発期間を劇的に短縮したサーバーレスイベント基盤。",
+      "サーバーレスアーキテクチャへの移行により、インフラコストを年間$200kから$3kへ98.5%削減。開発速度の大幅な向上も実現。",
     cta: "ケーススタディを見る",
     link: "/projects/wecall",
     metrics: [
@@ -81,7 +81,7 @@ const featuredProjects: Project[] = [
     title: "WeNo — 高負荷チケット発券",
     tags: ["High Load", "Queue", "LINE", "AWS", "BullMQ"],
     oneLiner:
-      "数千人が一斉に購入するLINEチケット販売を、並行制御とAWS最適化で安定稼働。",
+      "1000req/sec超の同時アクセスに対応するLINEチケット販売システム。キューイング制御とオートスケーリングでゼロダウンタイムを実現。",
     cta: "詳細を相談する",
     link: "/projects/weno",
     metrics: [
@@ -95,7 +95,7 @@ const featuredProjects: Project[] = [
   {
     title: "SNAP — ブライダル向けフォトブース (B2B SaaS)",
     tags: ["SaaS", "B2B", "Full-Stack", "BizDev"],
-    oneLiner: "結婚式場向け、タブレット一つで完結するサブスク型フォトブースソリューション。",
+    oneLiner: "結婚式場向けサブスクリプション型フォトブースサービス。タブレット1台で完結し、安定的な継続収益を実現。",
     cta: "プロダクト概要を知る",
     link: "/projects/snap",
     metrics: [
@@ -110,7 +110,7 @@ const featuredProjects: Project[] = [
     title: "Ongy — Instagramストーリービューアー",
     tags: ["Scraping", "Analytics", "AWS", "Automation"],
     oneLiner:
-      "Instagramストーリーを自動アーカイブ・分析する、代理店向け競合調査プラットフォーム。",
+      "代理店向け競合調査プラットフォーム。Instagramストーリーの自動アーカイブと分析により、マーケティング戦略立案を支援。",
     cta: "UIデモを相談",
     link: "/projects/ongy",
     metrics: [
@@ -125,7 +125,7 @@ const featuredProjects: Project[] = [
     title: "Lulu — LINE家計簿ボット",
     tags: ["LINE", "Serverless", "GAS", "Personal"],
     oneLiner:
-      "LINEとGoogle Sheetsだけで完結する、完全無料の個人家計簿チャットボット。",
+      "LINE MessagingとGoogle Sheetsを活用した個人向け家計簿アプリケーション。インフラコストゼロで継続的な利用が可能。",
     cta: "仕組みを聞く",
     link: "/projects/lulu",
     metrics: [
@@ -139,7 +139,7 @@ const featuredProjects: Project[] = [
   {
     title: "meiso. — マインドフルネス企業サイト",
     tags: ["Design", "Branding", "Web Dev"],
-    oneLiner: "マインドフルネス事業のブランドを体現する、穏やかで親しみやすいコーポレートサイト。",
+    oneLiner: "マインドフルネス事業のブランドアイデンティティを視覚化したコーポレートサイト。カスタムイラストレーションにより独自性を表現。",
     cta: "デザインプロセスを見る",
     link: "/projects/meiso",
     metrics: [
@@ -153,27 +153,27 @@ const featuredProjects: Project[] = [
 ];
 
 const projectGrid: Project[] = [
-  { title: "WeCALL", tags: ["Serverless", "AWS"], oneLiner: "コスト98.5%減のイベント基盤。", stack: "Nuxt, Lambda, DynamoDB", role: "アーキ設計", category: "Featured", link: "/projects/wecall", cta: "詳しく" },
-  { title: "WeNo", tags: ["High Load", "LINE"], oneLiner: "高負荷対応のチケット発券システム。", stack: "Vue, Next.js, BullMQ", role: "リードエンジニア", category: "Featured", link: "/projects/weno", cta: "詳しく" },
-  { title: "WeFit", tags: ["EventTech", "LINE"], oneLiner: "LINE連携の試着予約システム。7000人を無停止対応。", stack: "NestJS, Vue, AWS, DDD", role: "PM / Full-Stack", link: "/projects/wefit", cta: "聞いてみる" },
-  { title: "WeCart", tags: ["Inventory", "Real-time"], oneLiner: "イベント在庫・注文管理。Socket.ioでリアルタイム同期。", stack: "Vue, NestJS, Socket.io", role: "フルスタック", link: "/projects/wecart", cta: "聞いてみる" },
-  { title: "SNAP", tags: ["SaaS", "B2B"], oneLiner: "継続収益型フォトブース。", stack: "React, AWS", role: "オーナー/エンジニア", link: "/projects/snap", cta: "概要" },
-  { title: "Ongy", tags: ["Scraping", "Analytics"], oneLiner: "Instagramストーリー調査ツール。", stack: "React, Puppeteer", role: "単独開発", link: "/projects/ongy" },
-  { title: "Inuinugram", tags: ["Growth", "Automation"], oneLiner: "犬特化メディア。自動化で3万フォロワー達成し売却。", stack: "Python, Puppeteer", role: "Growth Engineer", link: "/projects/inuinugram" },
-  { title: "Lulu", tags: ["LINE", "Serverless"], oneLiner: "無料のLINE家計簿ボット。", stack: "GAS, LIFF", role: "単独開発", link: "/projects/lulu" },
-  { title: "iPLUSi", tags: ["Web", "WordPress"], oneLiner: "建築事務所のポートフォリオ。モダンWP構成。", stack: "WordPress (Sage), PHP", role: "Full-Stack", link: "/projects/iplusi" },
-  { title: "INTD", tags: ["Corporate", "CMS"], oneLiner: "Introduction社HP刷新。カスタムWPテーマ。", stack: "WordPress, PHP, Figma", role: "Lead", link: "/projects/intd" },
-  { title: "meiso.", tags: ["Design", "Branding"], oneLiner: "マインドフルネス企業サイト。", stack: "HTML, CSS, JS", role: "デザイナー/開発", link: "/projects/meiso" },
-  { title: "Lounge Attendance", tags: ["B2B", "GAS"], oneLiner: "QRコード・GASのみで構築した来訪管理。", stack: "GAS, Sheets, QR", role: "Single Dev", link: "/projects/lounge-attendance" },
-  { title: "Life in Weeks", tags: ["Personal", "Visualization"], oneLiner: "人生を週単位グリッドで可視化。", stack: "Vue, Nuxt", role: "Solo Dev", link: "/projects/life-in-weeks" },
-  { title: "Sheer", tags: ["Media", "Management"], oneLiner: "若年層女性向けInstagramメディア運営。", stack: "Instagram, Figma", role: "Team Manager", link: "/projects/sheer" },
-  { title: "Miss Circle", tags: ["Scraping", "Automation"], oneLiner: "コンテスト参加者向けSNSフォロワー追跡。", stack: "Vue, Node, Puppeteer", role: "Full-Stack", link: "/projects/miss-circle" },
-  { title: "FACT", tags: ["Sales", "Reputation"], oneLiner: "企業向けレピュテーション管理SaaS。", stack: "Sales, Marketing", role: "Sales & Marketing Lead", link: "/projects/fact" },
-  { title: "Book Price", tags: ["Tooling", "Resale"], oneLiner: "メルカリ相場を即時分析する価格リサーチツール。", stack: "Vue, GAS, API", role: "Solo Dev", link: "/projects/book-price" },
-  { title: "Monoton", tags: ["BizDev", "Retail"], oneLiner: "セルフ写真スタジオ事業の立ち上げ・運営。", stack: "Business Dev, Ops", role: "Founder", link: "/projects/monoton" },
-  { title: "ACE", tags: ["PoC", "Affiliate"], oneLiner: "ASP成果横断アフィリエイトプラットフォーム。", stack: "RPA, JS, BizDev", role: "Product Owner", link: "/projects/ace" },
-  { title: "WAISEC", tags: ["Event", "Leadership"], oneLiner: "国際高校生シンポジウムWeb制作・運営リード。", stack: "HTML/CSS, Management", role: "Committee Lead", link: "/projects/waisec" },
-  { title: "Hana", tags: ["Presentation", "Global"], oneLiner: "国際シンポジウムでの英語プレゼンとスライドデザイン。", stack: "Presentation, Design", role: "Presenter", link: "/projects/hana" },
+  { title: "WeCALL", tags: ["Serverless", "AWS"], oneLiner: "インフラコスト98.5%削減を実現したサーバーレスイベント基盤", stack: "Nuxt, Lambda, DynamoDB", role: "アーキ設計", category: "Featured", link: "/projects/wecall", cta: "詳しく" },
+  { title: "WeNo", tags: ["High Load", "LINE"], oneLiner: "1000+req/secの高負荷に対応するチケット発券システム", stack: "Vue, Next.js, BullMQ", role: "リードエンジニア", category: "Featured", link: "/projects/weno", cta: "詳しく" },
+  { title: "WeFit", tags: ["EventTech", "LINE"], oneLiner: "7000人規模のイベントに対応するLINE連携試着予約システム", stack: "NestJS, Vue, AWS, DDD", role: "PM / Full-Stack", link: "/projects/wefit", cta: "聞いてみる" },
+  { title: "WeCart", tags: ["Inventory", "Real-time"], oneLiner: "Socket.ioによるリアルタイム在庫・注文管理システム", stack: "Vue, NestJS, Socket.io", role: "フルスタック", link: "/projects/wecart", cta: "聞いてみる" },
+  { title: "SNAP", tags: ["SaaS", "B2B"], oneLiner: "結婚式場向けサブスクリプション型フォトブースSaaS", stack: "React, AWS", role: "オーナー/エンジニア", link: "/projects/snap", cta: "概要" },
+  { title: "Ongy", tags: ["Scraping", "Analytics"], oneLiner: "代理店向けInstagramストーリー競合調査プラットフォーム", stack: "React, Puppeteer", role: "単独開発", link: "/projects/ongy" },
+  { title: "Inuinugram", tags: ["Growth", "Automation"], oneLiner: "自動化とグロースハックにより3万フォロワーを獲得し売却に成功した犬特化型メディア", stack: "Python, Puppeteer", role: "Growth Engineer", link: "/projects/inuinugram" },
+  { title: "Lulu", tags: ["LINE", "Serverless"], oneLiner: "Google Apps Scriptを活用したコストゼロのLINE家計簿アプリケーション", stack: "GAS, LIFF", role: "単独開発", link: "/projects/lulu" },
+  { title: "iPLUSi", tags: ["Web", "WordPress"], oneLiner: "モダンなWordPress構成による建築事務所ポートフォリオサイト", stack: "WordPress (Sage), PHP", role: "Full-Stack", link: "/projects/iplusi" },
+  { title: "INTD", tags: ["Corporate", "CMS"], oneLiner: "カスタムWordPressテーマによるコーポレートサイトリニューアル", stack: "WordPress, PHP, Figma", role: "Lead", link: "/projects/intd" },
+  { title: "meiso.", tags: ["Design", "Branding"], oneLiner: "ブランドアイデンティティを体現するマインドフルネス企業コーポレートサイト", stack: "HTML, CSS, JS", role: "デザイナー/開発", link: "/projects/meiso" },
+  { title: "Lounge Attendance", tags: ["B2B", "GAS"], oneLiner: "QRコードとGoogle Apps Scriptによるコスト効率的な来訪管理システム", stack: "GAS, Sheets, QR", role: "Single Dev", link: "/projects/lounge-attendance" },
+  { title: "Life in Weeks", tags: ["Personal", "Visualization"], oneLiner: "人生を週単位グリッドでビジュアライズする時間管理ツール", stack: "Vue, Nuxt", role: "Solo Dev", link: "/projects/life-in-weeks" },
+  { title: "Sheer", tags: ["Media", "Management"], oneLiner: "若年層女性をターゲットとしたInstagramメディアの運営管理", stack: "Instagram, Figma", role: "Team Manager", link: "/projects/sheer" },
+  { title: "Miss Circle", tags: ["Scraping", "Automation"], oneLiner: "コンテスト参加者向けSNSエンゲージメント分析ツール", stack: "Vue, Node, Puppeteer", role: "Full-Stack", link: "/projects/miss-circle" },
+  { title: "FACT", tags: ["Sales", "Reputation"], oneLiner: "企業向けレピュテーション管理・分析SaaSプラットフォーム", stack: "Sales, Marketing", role: "Sales & Marketing Lead", link: "/projects/fact" },
+  { title: "Book Price", tags: ["Tooling", "Resale"], oneLiner: "メルカリ市場データを活用した書籍価格分析ツール", stack: "Vue, GAS, API", role: "Solo Dev", link: "/projects/book-price" },
+  { title: "Monoton", tags: ["BizDev", "Retail"], oneLiner: "セルフ写真スタジオ事業の創業から運営までを担当", stack: "Business Dev, Ops", role: "Founder", link: "/projects/monoton" },
+  { title: "ACE", tags: ["PoC", "Affiliate"], oneLiner: "複数ASPを統合したアフィリエイト成果管理プラットフォーム", stack: "RPA, JS, BizDev", role: "Product Owner", link: "/projects/ace" },
+  { title: "WAISEC", tags: ["Event", "Leadership"], oneLiner: "国際高校生シンポジウムのWebサイト制作および運営統括", stack: "HTML/CSS, Management", role: "Committee Lead", link: "/projects/waisec" },
+  { title: "Hana", tags: ["Presentation", "Global"], oneLiner: "国際シンポジウムにおける英語プレゼンテーションとビジュアルデザイン", stack: "Presentation, Design", role: "Presenter", link: "/projects/hana" },
 ];
 
 const skills: SkillGroup[] = [
@@ -183,14 +183,6 @@ const skills: SkillGroup[] = [
   { title: "クラウド・DevOps", items: ["AWS Lambda", "ECS (Fargate)", "CloudFront", "S3", "Docker", "CI/CD"] },
   { title: "デザイン・プロダクト", items: ["Figma", "UI/UX", "Design Systems", "Illustration", "Product Strategy"] },
   { title: "ツール・手法", items: ["GitHub", "Agile", "Zod", "BullMQ", "Google Apps Script"] },
-];
-
-const navLinks = [
-  { href: "#about", label: "プロフィール" },
-  { href: "#experience", label: "職務経歴" },
-  { href: "#projects", label: "プロジェクト" },
-  { href: "#skills", label: "スキル" },
-  { href: "#contact", label: "連絡先" },
 ];
 
 const emails = ["kento.iizuka@icloud.com"];
@@ -224,7 +216,7 @@ function SectionHeader({ title, eyebrow, description }: { title: string; eyebrow
     <div className="flex flex-col gap-3">
       {eyebrow ? <Badge>✨ {eyebrow}</Badge> : null}
       <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-blue-600 to-slate-900 bg-clip-text text-transparent sm:text-5xl">{title}</h2>
-      {description ? <p className="max-w-3xl text-base leading-relaxed text-slate-700">{description}</p> : null}
+      {description ? <p className="text-base leading-relaxed text-slate-700">{description}</p> : null}
     </div>
   );
 }
@@ -354,35 +346,14 @@ export default function Home() {
   return (
     <div className="relative isolate min-h-screen w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.15),transparent_25%),radial-gradient(circle_at_80%_0%,rgba(251,113,133,0.12),transparent_30%)]" />
-      <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">KI</span>
-            <span>飯塚健杜</span>
-          </div>
-          <nav className="hidden items-center gap-4 text-sm text-slate-600 sm:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="rounded-full px-3 py-2 transition hover:bg-slate-100 hover:text-slate-900 hover:-translate-y-0.5">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          <a
-            href="#contact"
-            className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-accent hover:text-accent hover:-translate-y-0.5"
-          >
-            Resume
-          </a>
-        </div>
-      </header>
 
       <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-24 px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
         <section className="grid items-center gap-12 rounded-3xl border border-border bg-linear-to-br from-white via-slate-50 to-slate-100 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-8 lg:grid-cols-2" id="home">
-          <div className="flex flex-col items-center gap-6 lg:order-2">
+          <div className="flex flex-col items-center gap-2 order-2 lg:order-1">
             <div className="relative w-full max-w-60 lg:max-w-xs">
               <div className="absolute -left-8 -top-8 h-48 w-48 rounded-full bg-accent/12 blur-3xl" />
               <div className="absolute -bottom-8 -right-6 h-40 w-40 rounded-full bg-accent-2/12 blur-3xl" />
-              <div className="relative overflow-hidden rounded-3xl border-4 border-white shadow-[0_20px_60px_rgba(37,99,235,0.15)]">
+              <div className="relative overflow-hidden rounded-3xl border-4 border-white shadow-[0_20px_60px_rgba(37,99,235,0.15)] mb-2">
                 <Image
                   src="/profile.jpg"
                   alt="飯塚健杜"
@@ -392,6 +363,8 @@ export default function Home() {
                   priority
                 />
               </div>
+              <h2 className="text-2xl font-bold text-slate-900 text-center">飯塚健杜</h2>
+              <p className="text-sm text-slate-600 text-center">Full-Stack Engineer</p>
             </div>
             <div className="w-full max-w-xs rounded-2xl border border-border bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
               <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Snapshot</p>
@@ -405,8 +378,8 @@ export default function Home() {
                   <strong className="font-bold text-slate-900 text-right">React / Next / AWS</strong>
                 </div>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-slate-600">最大成果</span>
-                  <strong className="font-bold text-slate-900 text-right">98.5% コスト削減</strong>
+                  <span className="text-slate-600">専門領域</span>
+                  <strong className="font-bold text-slate-900 text-right">Full-Stack / SaaS</strong>
                 </div>
               </div>
             </div>
@@ -416,12 +389,12 @@ export default function Home() {
             <div className="space-y-2">
               <Badge>Full-Stack Engineer ・ Product Developer</Badge>
               <h1 className="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
-                アイデアから<br className="hidden sm:block" />プロダクトへ。<br className="hidden sm:block" />早く、ちゃんと。
+                技術で、<br className="hidden sm:block" />プロダクトを<br className="hidden sm:block" />前に進める。
               </h1>
             </div>
             <p className="text-lg leading-relaxed text-slate-700 max-w-md">
-              デザイン思考でスタートアップを支えるエンジニア。
-              React/Next から AWS まで、コスト効率と開発速度を両立します。
+              スタートアップの成長を支えるフルスタックエンジニア。
+              React/Next から AWS まで、実装と改善のサイクルを高速で回します。
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-4">
               <a
@@ -581,10 +554,10 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="space-y-3 rounded-2xl border border-border bg-white p-4 text-sm text-slate-700">
-              <p className="text-sm uppercase tracking-wide text-slate-500">Downloads</p>
-              <p className="text-slate-700">PDFリンクはアップロード後に差し替え予定です。</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+              <p className="text-sm uppercase tracking-wide text-slate-400">Downloads</p>
+              <p className="text-slate-600">履歴書・職務経歴書は準備中です。詳細は<a href="mailto:kento.iizuka@icloud.com" className="font-semibold text-accent hover:underline">メール</a>でお気軽にお問い合わせください。</p>
+              <div className="flex flex-wrap gap-2 opacity-50">
                 <Tag label="英語レジュメ" />
                 <Tag label="日本語履歴書" />
                 <Tag label="職務経歴書" />
