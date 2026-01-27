@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "アイデアから現実へ。React / Next.js / AWS を駆使して、スタートアップの成長を支えるエンジニア。インフラコスト 98.5% 削減の実績あり。ポートフォリオサイト。",
   keywords: ["フルスタックエンジニア", "Next.js", "React", "AWS", "スタートアップ", "ポートフォリオ"],
+  robots: "noindex, nofollow",
   openGraph: {
     title: "飯塚健杜 | デザイン思考のフルスタックエンジニア",
     description: "アイデアから現実へ。React / Next.js / AWS を駆使してプロダクトを成長させます。",
@@ -30,6 +31,11 @@ export const metadata: Metadata = {
         alt: "飯塚健杜",
       },
     ],
+  },
+  other: {
+    "X-Robots-Tag": "noindex, nofollow, noarchive, nocache",
+    "googlebot": "noindex",
+    "bingbot": "noindex",
   },
 };
 
