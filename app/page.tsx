@@ -189,7 +189,7 @@ const emails = ["kento.iizuka@icloud.com"];
 
 function Badge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full bg-gradient-to-r from-accent/10 to-pink-200/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent border border-accent/30">
+    <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-blue-700">
       {children}
     </span>
   );
@@ -197,15 +197,15 @@ function Badge({ children }: { children: ReactNode }) {
 
 function Tag({ label }: { label: string }) {
   const colors = [
-    "from-blue-50 to-blue-100 text-blue-700 border-blue-200",
-    "from-purple-50 to-purple-100 text-purple-700 border-purple-200",
-    "from-pink-50 to-pink-100 text-pink-700 border-pink-200",
-    "from-cyan-50 to-cyan-100 text-cyan-700 border-cyan-200",
-    "from-emerald-50 to-emerald-100 text-emerald-700 border-emerald-200",
+    "bg-blue-50 text-blue-700",
+    "bg-purple-50 text-purple-700",
+    "bg-pink-50 text-pink-700",
+    "bg-cyan-50 text-cyan-700",
+    "bg-emerald-50 text-emerald-700",
   ];
   const color = colors[label.charCodeAt(0) % colors.length];
   return (
-    <span className={`rounded-full border bg-gradient-to-r px-3 py-1 text-xs font-medium transition hover:scale-110 ${color}`}>
+    <span className={`rounded-md px-2.5 py-1 text-xs font-medium ${color}`}>
       {label}
     </span>
   );
@@ -213,34 +213,33 @@ function Tag({ label }: { label: string }) {
 
 function SectionHeader({ title, eyebrow, description }: { title: string; eyebrow?: string; description?: string }) {
   return (
-    <div className="flex flex-col gap-3">
-      {eyebrow ? <Badge>✨ {eyebrow}</Badge> : null}
-      <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-blue-600 to-slate-900 bg-clip-text text-transparent sm:text-5xl">{title}</h2>
-      {description ? <p className="text-base leading-relaxed text-slate-700">{description}</p> : null}
+    <div className="flex flex-col gap-4">
+      {eyebrow ? <Badge>{eyebrow}</Badge> : null}
+      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+      {description ? <p className="text-lg leading-relaxed text-slate-600 max-w-3xl">{description}</p> : null}
     </div>
   );
 }
 
 function ExperienceCard({ item }: { item: Experience }) {
   return (
-    <div className="group relative rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-slate-50 p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] hover:-translate-y-1">
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/0 to-purple-400/0 opacity-0 group-hover:opacity-5 transition duration-300" />
-      <div className="relative flex flex-wrap items-center justify-between gap-3">
+    <div className="group relative rounded-xl bg-white p-8 shadow-sm border border-slate-100 transition hover:shadow-md hover:border-slate-200">
+      <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
         <div>
-          <p className="text-sm uppercase tracking-widest font-semibold text-blue-600">{item.company}</p>
-          <h3 className="text-2xl font-bold text-slate-900 mt-1">{item.role}</h3>
+          <p className="text-sm font-semibold text-blue-600 mb-1">{item.company}</p>
+          <h3 className="text-xl font-semibold text-slate-900">{item.role}</h3>
         </div>
-        <div className="text-right text-sm text-slate-600 font-medium">
-          <p className="font-semibold text-slate-700">{item.period}</p>
+        <div className="text-right text-sm text-slate-500">
+          <p className="font-medium">{item.period}</p>
           <p>{item.location}</p>
         </div>
       </div>
-      <p className="mt-4 text-slate-700 font-medium leading-relaxed">{item.summary}</p>
-      <ul className="mt-4 space-y-3 text-sm text-slate-700">
+      <p className="text-slate-600 leading-relaxed mb-4">{item.summary}</p>
+      <ul className="space-y-2.5 text-sm text-slate-600">
         {item.highlights.map((hl) => (
-          <li key={hl} className="flex items-start gap-3 pl-1">
-            <span className="mt-1.5 h-2 w-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0"></span>
-            <span className="leading-snug">{hl}</span>
+          <li key={hl} className="flex items-start gap-2.5">
+            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+            <span>{hl}</span>
           </li>
         ))}
       </ul>
@@ -260,41 +259,36 @@ function FeaturedProjectCard({ project }: { project: Project }) {
   };
   const projectSlug = projectSlugs[project.title] || project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const href = project.link ?? `/projects/${projectSlug}`;
-  const cta = project.cta ?? "詳しく話す";
+  const cta = project.cta ?? "詳しく見る";
   return (
     <a
       href={href}
-      className="group relative block overflow-hidden rounded-2xl border border-border bg-linear-to-br from-white via-slate-50 to-slate-100 p-0.5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-accent"
+      className="group relative block rounded-xl bg-white p-6 shadow-sm border border-slate-100 transition hover:shadow-md hover:border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
-      <div className="relative h-full rounded-[18px] bg-card p-6">
-        <div className="flex flex-wrap items-center gap-3">
-          <Badge>📋 Case Study</Badge>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Tag key={tag} label={tag} />
-            ))}
-          </div>
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        {project.tags.map((tag) => (
+          <Tag key={tag} label={tag} />
+        ))}
+      </div>
+      <h3 className="text-2xl font-semibold text-slate-900 mb-3">{project.title}</h3>
+      <p className="text-slate-600 leading-relaxed mb-4">{project.oneLiner}</p>
+      {project.metrics ? (
+        <div className="grid grid-cols-3 gap-3 mb-5">
+          {project.metrics.map((metric) => (
+            <div key={metric.label} className="">
+              <p className="text-xs text-slate-500 mb-1">{metric.label}</p>
+              <p className="text-sm font-semibold text-slate-900">{metric.value}</p>
+            </div>
+          ))}
         </div>
-        <h3 className="mt-4 text-3xl font-semibold text-slate-900">{project.title}</h3>
-        <p className="mt-2 text-slate-700">{project.oneLiner}</p>
-        {project.metrics ? (
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-            {project.metrics.map((metric) => (
-              <div key={metric.label} className="rounded-xl border border-border bg-slate-50 px-4 py-3">
-                <p className="text-xs uppercase tracking-wide text-slate-500">{metric.label}</p>
-                <p className="text-sm font-bold text-slate-900">{metric.value}</p>
-              </div>
-            ))}
-          </div>
-        ) : null}
-        <div className="mt-4 space-y-1 text-sm text-slate-700">
-          <p><span className="text-slate-500">Stack:</span> {project.stack}</p>
-          <p><span className="text-slate-500">担当:</span> {project.role}</p>
-        </div>
-        <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
-          {cta}
-          <span aria-hidden>→</span>
-        </div>
+      ) : null}
+      <div className="space-y-1.5 text-sm text-slate-600 mb-5 pb-5 border-b border-slate-100">
+        <p><span className="text-slate-400">Stack:</span> {project.stack}</p>
+        <p><span className="text-slate-400">Role:</span> {project.role}</p>
+      </div>
+      <div className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 group-hover:gap-2.5 transition-all">
+        {cta}
+        <span aria-hidden>→</span>
       </div>
     </a>
   );
@@ -307,33 +301,28 @@ function ProjectGridCard({ project }: { project: Project }) {
   return (
     <Container
       {...containerProps}
-      className="flex flex-col gap-3 rounded-xl border border-border bg-white p-4 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-accent"
+      className="flex flex-col gap-3 rounded-lg border border-slate-100 bg-white p-5 transition hover:shadow-sm hover:border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <h4 className="text-lg font-semibold text-slate-900">{project.title}</h4>
-          <p className="text-sm text-slate-700">{project.oneLiner}</p>
-        </div>
-        <span className="text-[10px] uppercase tracking-wide text-slate-500">{project.category ?? "Project"}</span>
-        {!hasLink ? <Badge>Coming Soon</Badge> : null}
+        <h4 className="text-base font-semibold text-slate-900">{project.title}</h4>
+        {!hasLink ? <span className="text-xs text-slate-400 flex-shrink-0">Soon</span> : null}
       </div>
-      <div className="flex flex-wrap gap-2">
+      <p className="text-sm text-slate-600 leading-relaxed">{project.oneLiner}</p>
+      <div className="flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
           <Tag key={tag} label={tag} />
         ))}
       </div>
-      <p className="text-xs text-slate-500">Stack: {project.stack}</p>
-      <p className="text-xs text-slate-500">担当: {project.role}</p>
-      {hasLink ? <span className="text-sm font-semibold text-accent">{project.cta ?? "詳細・相談"} →</span> : null}
+      {hasLink ? <span className="text-sm font-medium text-blue-600 mt-1">{project.cta ?? "詳細"} →</span> : null}
     </Container>
   );
 }
 
 function SkillCard({ group }: { group: SkillGroup }) {
   return (
-    <div className="flex h-full flex-col gap-3 rounded-xl border border-border bg-white p-4">
-      <p className="text-sm uppercase tracking-wide text-accent">{group.title}</p>
-      <div className="flex flex-wrap gap-2">
+    <div className="flex h-full flex-col gap-3 rounded-lg border border-slate-100 bg-white p-5">
+      <p className="text-sm font-semibold text-slate-700">{group.title}</p>
+      <div className="flex flex-wrap gap-1.5">
         {group.items.map((item) => (
           <Tag key={item} label={item} />
         ))}
@@ -344,118 +333,110 @@ function SkillCard({ group }: { group: SkillGroup }) {
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen w-full overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.15),transparent_25%),radial-gradient(circle_at_80%_0%,rgba(251,113,133,0.12),transparent_30%)]" />
-
-      <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-24 px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
-        <section className="grid items-center gap-12 rounded-3xl border border-border bg-linear-to-br from-white via-slate-50 to-slate-100 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-8 lg:grid-cols-2" id="home">
-          <div className="flex flex-col items-center gap-2 order-2 lg:order-1">
-            <div className="relative w-full max-w-60 lg:max-w-xs">
-              <div className="absolute -left-8 -top-8 h-48 w-48 rounded-full bg-accent/12 blur-3xl" />
-              <div className="absolute -bottom-8 -right-6 h-40 w-40 rounded-full bg-accent-2/12 blur-3xl" />
-              <div className="relative overflow-hidden rounded-3xl border-4 border-white shadow-[0_20px_60px_rgba(37,99,235,0.15)] mb-2">
-                <Image
-                  src="/profile.jpg"
-                  alt="飯塚健杜"
-                  width={320}
-                  height={400}
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 text-center">飯塚健杜</h2>
-              <p className="text-sm text-slate-600 text-center">Full-Stack Engineer</p>
-            </div>
-            <div className="w-full max-w-xs rounded-2xl border border-border bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Snapshot</p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-slate-600">開発歴</span>
-                  <strong className="font-bold text-slate-900">6 年</strong>
-                </div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-slate-600">得意スタック</span>
-                  <strong className="font-bold text-slate-900 text-right">React / Next / AWS</strong>
-                </div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-slate-600">専門領域</span>
-                  <strong className="font-bold text-slate-900 text-right">Full-Stack / SaaS</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-8 lg:order-1">
-            <div className="space-y-2">
-              <Badge>Full-Stack Engineer ・ Product Developer</Badge>
-              <h1 className="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
-                技術で、<br className="hidden sm:block" />プロダクトを<br className="hidden sm:block" />前に進める。
+    <div className="relative isolate min-h-screen w-full overflow-hidden bg-white">
+      <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-32 px-4 pb-24 pt-16 sm:px-6 sm:pt-24">
+        <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 to-white p-8 sm:p-16" id="home">
+          <div className="relative z-10 mx-auto max-w-4xl">
+            <div className="space-y-6 mb-12">
+              <Badge>Full-Stack Engineer</Badge>
+              <h1 className="text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                技術で、<br />プロダクトを<br />前に進める
               </h1>
+              <p className="text-xl leading-relaxed text-slate-600 max-w-2xl">
+                スタートアップの成長を支えるフルスタックエンジニア。React/Next から AWS まで、実装と改善のサイクルを高速で回します。
+              </p>
             </div>
-            <p className="text-lg leading-relaxed text-slate-700 max-w-md">
-              スタートアップの成長を支えるフルスタックエンジニア。
-              React/Next から AWS まで、実装と改善のサイクルを高速で回します。
-            </p>
-            <div className="flex flex-wrap items-center gap-3 pt-4">
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(37,99,235,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(37,99,235,0.3)]"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white transition hover:bg-blue-700"
               >
                 プロジェクトを見る
                 <span aria-hidden>→</span>
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-accent hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 text-base font-medium text-slate-900 transition hover:border-slate-300 hover:bg-slate-50"
               >
-                気軽に相談する
+                連絡する
               </a>
               <a
                 href="https://github.com/kentosity"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-slate-600 transition hover:text-accent hover:underline"
+                className="inline-flex items-center gap-2 text-base text-slate-600 transition hover:text-slate-900"
               >
                 GitHub ↗
               </a>
+            </div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+              <div>
+                <p className="text-sm text-slate-500 mb-1">開発歴</p>
+                <p className="text-2xl font-semibold text-slate-900">6年</p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 mb-1">主要スタック</p>
+                <p className="text-lg font-semibold text-slate-900">React / Next / AWS</p>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 mb-1">専門領域</p>
+                <p className="text-lg font-semibold text-slate-900">Full-Stack / SaaS</p>
+              </div>
             </div>
           </div>
         </section>
 
         <section id="about" className="flex flex-col gap-8">
           <SectionHeader
-            eyebrow="プロフィール"
-            title="デザイン出身のセルフスタートエンジニア"
-            description="東京拠点。5人スタートアップのインターンからCTOを経て、Generosityでアーキテクチャをリード。曖昧さの中で素早く形にし、使われるプロダクトに仕上げます。"
+            eyebrow="About"
+            title="デザイン出身のフルスタックエンジニア"
+            description="5人スタートアップのインターンからCTOを経て、現在はGenerosityでアーキテクチャをリード。曖昧さの中で素早く形にし、使われるプロダクトに仕上げます。"
           />
-          <div className="grid gap-6 lg:grid-cols-[1.2fr,0.8fr]">
-            <div className="space-y-4 rounded-2xl border border-border bg-white p-6">
-              <p className="text-slate-700">直近で
+          <div className="grid gap-8 md:grid-cols-[300px_1fr]">
+            <div className="flex flex-col gap-4">
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/profile.jpg"
+                  alt="飯塚健杜"
+                  width={300}
+                  height={375}
+                  className="object-cover w-full"
+                  priority
+                />
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-slate-900">飯塚健杜</h3>
+                <p className="text-sm text-slate-600">Kento Iizuka</p>
+                <p className="text-sm text-slate-500 mt-1">Full-Stack Engineer</p>
+              </div>
+            </div>
+            <div className="rounded-xl bg-white p-8 border border-slate-100">
+              <p className="text-lg text-slate-600 leading-relaxed mb-6">
                 自分のデザインを形にしたくてコードを学び、気づけばフロントからAPI、インフラまで一気通貫で担うように。コストを抑えつつ拡張しやすい構成をつくるのが得意です。
               </p>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2 mb-8">
                 {[
-                  "React/NextからAWSまでをカバーするフルスタック",
+                  "React/NextからAWSまでカバーするフルスタック",
                   "デザイン→実装→検証まで回すプロダクト思考",
-                  "負荷・障害時のボトルネック解消と再発防止策の設計",
+                  "負荷・障害時のボトルネック解消と再発防止",
                   "小さく速く出し、学びながら磨くスタートアップ流",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-2 rounded-xl border border-border bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-accent"></span>
+                  <div key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="space-y-3 rounded-2xl border border-border bg-white p-6">
-              <p className="text-sm uppercase tracking-wide text-slate-500">Timeline</p>
-              <div className="space-y-3 text-sm text-slate-700">
-                {["2019 → インターン開始 (Introduction)", "2020 → Lulu / Ongy / meiso を開発", "2021 → SNAP を開発", "2024 → Generosityへジョイン", "2024-2025 → WeCALL再構築・WeNo開発をリード"].map((line) => (
-                  <div key={line} className="flex items-center gap-3 rounded-xl border border-border bg-slate-50 px-4 py-3">
-                    <span className="h-2 w-2 rounded-full bg-accent"></span>
-                    <span>{line}</span>
-                  </div>
-                ))}
+              <div className="pt-6 border-t border-slate-100">
+                <p className="text-sm font-semibold text-slate-400 mb-4">Timeline</p>
+                <div className="space-y-2.5 text-sm text-slate-600">
+                  {["2019 — インターン開始 (Introduction)", "2020 — Lulu / Ongy / meiso を開発", "2021 — SNAP を開発", "2024 — Generosityへジョイン", "2024-2025 — WeCALL再構築・WeNo開発をリード"].map((line) => (
+                    <div key={line} className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                      <span>{line}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -463,9 +444,9 @@ export default function Home() {
 
         <section id="experience" className="flex flex-col gap-8">
           <SectionHeader
-            eyebrow="職務経歴"
+            eyebrow="Experience"
             title="アーキテクチャとスピードで成果を出す"
-            description="ケーススタディに展開可能な主要トピックを抜粋。"
+            description="主要な職務経験とインパクト"
           />
           <div className="grid gap-6">
             {experiences.map((exp) => (
@@ -476,9 +457,9 @@ export default function Home() {
 
         <section id="projects" className="flex flex-col gap-10">
           <SectionHeader
-            eyebrow="プロジェクト"
-            title="注力した6つのケーススタディ"
-            description="アーキテクチャの判断、数値インパクト、エンドツーエンドの推進力を示す事例。"
+            eyebrow="Projects"
+            title="主要プロジェクト"
+            description="アーキテクチャの判断、数値インパクト、エンドツーエンドの推進力を示す事例"
           />
           <div className="grid gap-8 lg:grid-cols-2">
             {featuredProjects.map((project) => (
@@ -504,9 +485,9 @@ export default function Home() {
 
         <section id="skills" className="flex flex-col gap-8">
           <SectionHeader
-            eyebrow="スキル"
+            eyebrow="Skills"
             title="フロント・バック・クラウドを横断"
-            description="デザインの感性と本番運用を見据えたエンジニアリング。"
+            description="デザインの感性と本番運用を見据えたエンジニアリング"
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {skills.map((group) => (
@@ -515,52 +496,41 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="flex flex-col gap-6 rounded-3xl border border-border bg-linear-to-br from-white via-slate-50 to-slate-100 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
+        <section id="contact" className="flex flex-col gap-8 rounded-xl bg-slate-50 p-8 sm:p-12">
           <SectionHeader
-            eyebrow="連絡先"
+            eyebrow="Contact"
             title="一緒に面白いものをつくりませんか"
-            description="新しい機会、協業、技術的に骨のある課題の相談を歓迎します。"
+            description="新しい機会、協業、技術的に骨のある課題の相談を歓迎します"
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="space-y-2">
-              <p className="text-sm uppercase tracking-wide text-slate-500">Email</p>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold text-slate-400 mb-3">Email</p>
               {emails.map((email) => (
                 <a
                   key={email}
                   href={`mailto:${email}`}
-                  className="block rounded-xl border border-border bg-white px-4 py-3 text-slate-900 transition hover:border-accent hover:text-accent"
+                  className="inline-flex items-center gap-2 text-lg font-medium text-blue-600 hover:text-blue-700 transition"
                 >
                   {email}
+                  <span aria-hidden className="text-sm">→</span>
                 </a>
               ))}
             </div>
-            <div className="space-y-2">
-              <p className="text-sm uppercase tracking-wide text-slate-500">Social</p>
-              <div className="grid gap-2 text-slate-700">
-                <a className="transition hover:text-accent hover:underline" href="https://github.com/kentosity" target="_blank" rel="noreferrer">
-                  GitHub (new) ↗
+            <div>
+              <p className="text-sm font-semibold text-slate-400 mb-3">Links</p>
+              <div className="space-y-2 text-slate-600">
+                <a className="block hover:text-slate-900 transition" href="https://github.com/kentosity" target="_blank" rel="noreferrer">
+                  GitHub ↗
                 </a>
-                <a className="transition hover:text-accent hover:underline" href="https://github.com/kentozuka" target="_blank" rel="noreferrer">
-                  GitHub (old) ↗
-                </a>
-                <a className="transition hover:text-accent hover:underline" href="https://www.linkedin.com/in/kento-iizuka-a79289273/" target="_blank" rel="noreferrer">
+                <a className="block hover:text-slate-900 transition" href="https://www.linkedin.com/in/kento-iizuka-a79289273/" target="_blank" rel="noreferrer">
                   LinkedIn ↗
                 </a>
-                <a className="transition hover:text-accent hover:underline" href="https://www.wantedly.com/id/kentoiizuka" target="_blank" rel="noreferrer">
+                <a className="block hover:text-slate-900 transition" href="https://www.wantedly.com/id/kentoiizuka" target="_blank" rel="noreferrer">
                   Wantedly ↗
                 </a>
-                <a className="transition hover:text-accent hover:underline" href="https://lapras.com/public/RVEPJY7" target="_blank" rel="noreferrer">
+                <a className="block hover:text-slate-900 transition" href="https://lapras.com/public/RVEPJY7" target="_blank" rel="noreferrer">
                   Lapras ↗
                 </a>
-              </div>
-            </div>
-            <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-              <p className="text-sm uppercase tracking-wide text-slate-400">Downloads</p>
-              <p className="text-slate-600">履歴書・職務経歴書は準備中です。詳細は<a href="mailto:kento.iizuka@icloud.com" className="font-semibold text-accent hover:underline">メール</a>でお気軽にお問い合わせください。</p>
-              <div className="flex flex-wrap gap-2 opacity-50">
-                <Tag label="英語レジュメ" />
-                <Tag label="日本語履歴書" />
-                <Tag label="職務経歴書" />
               </div>
             </div>
           </div>
