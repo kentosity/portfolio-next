@@ -41,8 +41,8 @@ const experiences: Experience[] = [
     summary:
       "急成長中のエクスペリエンスエージェンシーでイベント管理ソリューションを開発。信頼性とコスト最適化、開発スピードを重視。",
     highlights: [
-      "WeCALL: アーキテクチャ刷新でインフラ費98.5%削減（$200k→$3k/年）",
-      "WeNo: 数千同時アクセスのチケット発行を安定稼働",
+      "イベント管理基盤: アーキテクチャ刷新でインフラ費98.5%削減（$200k→$3k/年）",
+      "チケット発券システム: 数千同時アクセスのチケット発行を安定稼働",
       "全社の障害対応・アーキテクチャ判断をリード",
     ],
   },
@@ -63,7 +63,7 @@ const experiences: Experience[] = [
 
 const featuredProjects: Project[] = [
   {
-    title: "WeCALL — イベント管理リアーキテクチャ",
+    title: "イベント管理リアーキテクチャ",
     tags: ["Serverless", "Cost Opt", "AWS", "Nuxt", "DynamoDB"],
     oneLiner:
       "サーバーレスアーキテクチャへの移行により、インフラコストを年間$200kから$3kへ98.5%削減。開発速度の大幅な向上も実現。",
@@ -78,7 +78,7 @@ const featuredProjects: Project[] = [
     role: "フロント再設計とモジュール設計、サーバーレス基盤構築を主導",
   },
   {
-    title: "WeNo — 高負荷チケット発券",
+    title: "高負荷チケット発券システム",
     tags: ["High Load", "Queue", "LINE", "AWS", "BullMQ"],
     oneLiner:
       "1000req/sec超の同時アクセスに対応するLINEチケット販売システム。キューイング制御とオートスケーリングでゼロダウンタイムを実現。",
@@ -153,10 +153,10 @@ const featuredProjects: Project[] = [
 ];
 
 const projectGrid: Project[] = [
-  { title: "WeCALL", tags: ["Serverless", "AWS"], oneLiner: "インフラコスト98.5%削減を実現したサーバーレスイベント基盤", stack: "Nuxt, Lambda, DynamoDB", role: "アーキ設計", category: "Featured", link: "/projects/wecall", cta: "詳しく" },
-  { title: "WeNo", tags: ["High Load", "LINE"], oneLiner: "1000+req/secの高負荷に対応するチケット発券システム", stack: "Vue, Next.js, BullMQ", role: "リードエンジニア", category: "Featured", link: "/projects/weno", cta: "詳しく" },
-  { title: "WeFit", tags: ["EventTech", "LINE"], oneLiner: "7000人規模のイベントに対応するLINE連携試着予約システム", stack: "NestJS, Vue, AWS, DDD", role: "PM / Full-Stack", link: "/projects/wefit", cta: "聞いてみる" },
-  { title: "WeCart", tags: ["Inventory", "Real-time"], oneLiner: "Socket.ioによるリアルタイム在庫・注文管理システム", stack: "Vue, NestJS, Socket.io", role: "フルスタック", link: "/projects/wecart", cta: "聞いてみる" },
+  { title: "イベント管理基盤", tags: ["Serverless", "AWS"], oneLiner: "インフラコスト98.5%削減を実現したサーバーレスイベント基盤", stack: "Nuxt, Lambda, DynamoDB", role: "アーキ設計", category: "Featured", link: "/projects/wecall", cta: "詳しく" },
+  { title: "チケット発券システム", tags: ["High Load", "LINE"], oneLiner: "1000+req/secの高負荷に対応するチケット発券システム", stack: "Vue, Next.js, BullMQ", role: "リードエンジニア", category: "Featured", link: "/projects/weno", cta: "詳しく" },
+  { title: "試着予約システム", tags: ["EventTech", "LINE"], oneLiner: "7000人規模のイベントに対応するLINE連携試着予約システム", stack: "NestJS, Vue, AWS, DDD", role: "PM / Full-Stack", link: "/projects/wefit", cta: "聞いてみる" },
+  { title: "在庫・注文管理システム", tags: ["Inventory", "Real-time"], oneLiner: "Socket.ioによるリアルタイム在庫・注文管理システム", stack: "Vue, NestJS, Socket.io", role: "フルスタック", link: "/projects/wecart", cta: "聞いてみる" },
   { title: "SNAP", tags: ["SaaS", "B2B"], oneLiner: "結婚式場向けサブスクリプション型フォトブースSaaS", stack: "React, AWS", role: "オーナー/エンジニア", link: "/projects/snap", cta: "概要" },
   { title: "Ongy", tags: ["Scraping", "Analytics"], oneLiner: "代理店向けInstagramストーリー競合調査プラットフォーム", stack: "React, Puppeteer", role: "単独開発", link: "/projects/ongy" },
   { title: "Inuinugram", tags: ["Growth", "Automation"], oneLiner: "自動化とグロースハックにより3万フォロワーを獲得し売却に成功した犬特化型メディア", stack: "Python, Puppeteer", role: "Growth Engineer", link: "/projects/inuinugram" },
@@ -250,8 +250,8 @@ function ExperienceCard({ item }: { item: Experience }) {
 function FeaturedProjectCard({ project }: { project: Project }) {
   // Map project titles to file slugs
   const projectSlugs: { [key: string]: string } = {
-    "WeCALL — イベント管理リアーキテクチャ": "wecall",
-    "WeNo — 高負荷チケット発券": "weno",
+    "イベント管理リアーキテクチャ": "wecall",
+    "高負荷チケット発券システム": "weno",
     "SNAP — ブライダル向けフォトブース (B2B SaaS)": "snap",
     "Ongy — Instagramストーリービューアー": "ongy",
     "Lulu — LINE家計簿ボット": "lulu",
@@ -427,7 +427,7 @@ export default function Home() {
               <div className="pt-6 border-t border-slate-100">
                 <p className="text-sm font-semibold text-slate-400 mb-4">Timeline</p>
                 <div className="space-y-2.5 text-sm text-slate-600">
-                  {["2019 — インターン開始 (Introduction)", "2020 — Lulu / Ongy / meiso を開発", "2021 — SNAP を開発", "2024 — Generosityへジョイン", "2024-2025 — WeCALL再構築・WeNo開発をリード"].map((line) => (
+                  {["2019 — インターン開始 (Introduction)", "2020 — Lulu / Ongy / meiso を開発", "2021 — SNAP を開発", "2024 — Generosityへジョイン", "2024-2025 — イベント管理基盤の再構築・チケット発券開発をリード"].map((line) => (
                     <div key={line} className="flex items-center gap-3">
                       <span className="h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
                       <span>{line}</span>
