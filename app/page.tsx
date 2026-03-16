@@ -132,55 +132,10 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}>
 
-      {/* ── Navbar ── */}
-      <nav
-        className="sticky top-0 z-50 border-b"
-        style={{ backgroundColor: "#0a0a14", borderColor: "rgba(255,255,255,0.08)" }}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="/" className="flex items-center gap-3 group">
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold"
-              style={{ backgroundColor: "#f97316", color: "#fff" }}
-            >
-              K
-            </span>
-            <span className="text-sm font-semibold" style={{ color: "#f8f8f8" }}>
-              飯塚健杜
-            </span>
-          </a>
-
-          <div className="hidden items-center gap-8 sm:flex">
-            {[
-              { label: "サービス", href: "#services" },
-              { label: "進め方", href: "#process" },
-              { label: "実績", href: "#results" },
-              { label: "ポートフォリオ", href: "/portfolio" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-white/55 transition hover:text-white/90"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="#contact"
-            className="rounded-lg px-5 py-2 text-sm font-semibold transition"
-            style={{ backgroundColor: "#f97316", color: "#fff" }}
-          >
-            相談する
-          </a>
-        </div>
-      </nav>
-
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: "#0a0a14", minHeight: "92vh" }}
+        style={{ backgroundColor: "#0a0a14", minHeight: "100vh" }}
         id="home"
       >
         {/* Ambient glow */}
@@ -244,9 +199,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-4 lg:w-80 lg:flex-shrink-0 lg:grid-cols-1">
             {[
               { value: "6年+", label: "開発経験" },
-              { value: "20+", label: "プロジェクト" },
-              { value: "¥0", label: "ダウンタイム" },
-              { value: "98.5%", label: "コスト削減実績" },
+              { value: "20+", label: "プロジェクト実績" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -541,7 +494,7 @@ export default function Home() {
 
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
             <a
-              href="mailto:kento.iizuka@icloud.com"
+              href="#"
               className="inline-flex items-center gap-3 rounded-xl px-8 py-4 text-lg font-bold text-white transition"
               style={{ backgroundColor: "#0a0a14" }}
             >
@@ -549,7 +502,7 @@ export default function Home() {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
-              kento.iizuka@icloud.com
+              お問い合わせ
             </a>
             <a
               href="/portfolio"
@@ -565,7 +518,7 @@ export default function Home() {
             style={{ backgroundColor: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}
           >
             <p className="text-sm font-semibold text-slate-700 mb-1">屋号・事業者名</p>
-            <p className="text-xl font-bold text-slate-900">飯塚健杜（個人事業主）</p>
+            <p className="text-xl font-bold text-slate-900">iplusi（個人事業主）</p>
             <p className="mt-3 text-sm text-slate-600">
               フリーランスエンジニアとして Web・アプリ開発、技術コンサルティング、MVP 開発を提供しています。<br />
               業務委託契約・準委任契約・請負契約に対応。NDA 締結可。
@@ -587,7 +540,7 @@ export default function Home() {
             {[
               { label: "ポートフォリオ", href: "/portfolio" },
               { label: "GitHub", href: "https://github.com/kentosity" },
-              { label: "メール", href: "mailto:kento.iizuka@icloud.com" },
+              { label: "お問い合わせ", href: "#contact" },
             ].map((link) => (
               <a
                 key={link.label}
