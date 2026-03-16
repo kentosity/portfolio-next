@@ -3,14 +3,12 @@ import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-// Get all project slugs
 function getProjectSlugs() {
   const projectsDir = path.join(process.cwd(), "public", "projects");
   const files = fs.readdirSync(projectsDir);
   return files.filter((file) => file.endsWith(".md")).map((file) => file.replace(".md", ""));
 }
 
-// Get project content
 function getProjectContent(slug: string) {
   const filePath = path.join(process.cwd(), "public", "projects", `${slug}.md`);
   if (!fs.existsSync(filePath)) {
@@ -19,13 +17,11 @@ function getProjectContent(slug: string) {
   return fs.readFileSync(filePath, "utf-8");
 }
 
-// Generate static params for all projects
 export function generateStaticParams() {
   const slugs = getProjectSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
-// Markdown component
 function MarkdownContent({ content }: { content: string }) {
   return (
     <div className="prose prose-sm md:prose-base max-w-none text-slate-700 prose-headings:text-slate-900 prose-headings:font-semibold prose-a:text-[var(--accent)] prose-a:no-underline hover:prose-a:underline prose-code:bg-slate-100 prose-code:text-slate-900 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm break-words [&>*]:break-words">
