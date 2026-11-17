@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import careerProfile from "./content/career-profile.json";
 
 export const metadata: Metadata = {
-  title: "飯塚健杜 | フリーランス フルスタックエンジニア",
-  description:
-    "フリーランス フルスタックエンジニア 飯塚健杜。React / Next.js / AWS を活用したWebアプリ開発・技術コンサルティング・MVP開発を提供しています。",
+  title: `${careerProfile.name} | FalconeX・フルスタックエンジニア`,
+  description: careerProfile.hero_summary,
   keywords: [
     "フリーランスエンジニア",
     "フルスタックエンジニア",
@@ -97,36 +97,8 @@ const processSteps = [
   },
 ];
 
-const results = [
-  { value: "98.5%", label: "インフラコスト削減率", sub: "年間 $200k → $3k" },
-  { value: "1,000+", label: "req/sec 処理", sub: "ゼロダウンタイム達成" },
-  { value: "6年+", label: "開発経験", sub: "スタートアップ〜上場企業" },
-  { value: "20+", label: "プロジェクト実績", sub: "設計〜リリースまで" },
-];
-
-const caseStudies = [
-  {
-    tag: "イベントテック",
-    title: "イベント管理基盤 リアーキテクチャ",
-    desc: "サーバーレスへの移行で年間インフラコストを $200k から $3k へ 98.5% 削減。開発サイクルも 2 週間から 2〜3 日に短縮。",
-    stack: "Nuxt.js · Lambda · DynamoDB · CloudFront",
-    link: "/portfolio/projects/wecall",
-  },
-  {
-    tag: "高負荷システム",
-    title: "高負荷チケット発券システム",
-    desc: "1,000 req/sec 超の同時アクセスに対応するチケット販売基盤を構築。BullMQ キューイングでゼロダウンタイムを実現。",
-    stack: "Vue · Next.js · BullMQ · Redis · ECS",
-    link: "/portfolio/projects/weno",
-  },
-  {
-    tag: "B2B SaaS",
-    title: "SNAP — ブライダル向けフォトブース",
-    desc: "結婚式場向けサブスクリプション型フォトブース SaaS を設計・開発・営業まで一人で担当。最大 ¥300k/月の継続収益を創出。",
-    stack: "React · Node.js · AWS",
-    link: "/portfolio/projects/snap",
-  },
-];
+const results = careerProfile.results;
+const caseStudies = careerProfile.caseStudies;
 
 export default function Home() {
   return (
@@ -158,7 +130,7 @@ export default function Home() {
               style={{ borderColor: "rgba(249,115,22,0.3)", backgroundColor: "rgba(249,115,22,0.07)" }}>
               <span className="h-2 w-2 rounded-full" style={{ backgroundColor: "#f97316" }} />
               <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#f97316" }}>
-                フリーランス · フルスタックエンジニア
+                {careerProfile.hero_label}
               </span>
             </div>
 
@@ -172,8 +144,7 @@ export default function Home() {
             </h1>
 
             <p className="max-w-xl text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-              React / Next.js から AWS まで、フロントエンド・バックエンド・インフラを一気通貫で担うフリーランスエンジニアです。
-              スタートアップの開発支援から技術コンサルティング・MVP 開発まで対応します。
+              {careerProfile.hero_summary}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -197,10 +168,7 @@ export default function Home() {
 
           {/* Stats */}
           <div className="grid grid-cols-2 gap-4 lg:w-80 lg:flex-shrink-0 lg:grid-cols-1">
-            {[
-              { value: "6年+", label: "開発経験" },
-              { value: "20+", label: "プロジェクト実績" },
-            ].map((stat) => (
+            {careerProfile.hero_facts.map((stat) => (
               <div
                 key={stat.label}
                 className="rounded-xl p-5"
@@ -337,7 +305,7 @@ export default function Home() {
               RESULTS / 実績
             </p>
             <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              数字で見る成果
+              開発で取り組む領域
             </h2>
           </div>
 
@@ -412,15 +380,13 @@ export default function Home() {
                 飯塚健杜
               </h2>
               <p className="text-base font-medium" style={{ color: "rgba(255,255,255,0.45)" }}>
-                Kento Iizuka — Freelance Full-Stack Engineer
+                {careerProfile.hero_label}
               </p>
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                デザインを形にしたくてコードを学び、気づけばフロントからAPI、インフラまで一気通貫で担うように。
-                5人スタートアップのインターンから CTO を経て、エンタープライズ向けのイベント管理基盤の再設計・高負荷システムの構築をリード。
+                {careerProfile.about[1]}
               </p>
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                現在はフリーランスとして、スタートアップや中小企業の開発支援・コンサルティングを行っています。
-                技術選定からリリースまで、プロダクトの成長に伴走します。
+                {careerProfile.about[0]}
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-4">
@@ -517,10 +483,10 @@ export default function Home() {
             className="mt-16 rounded-2xl p-8"
             style={{ backgroundColor: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}
           >
-            <p className="text-sm font-semibold text-slate-700 mb-1">屋号・事業者名</p>
-            <p className="text-xl font-bold text-slate-900">iplusi（個人事業主）</p>
+            <p className="text-sm font-semibold text-slate-700 mb-1">事業・活動名</p>
+            <p className="text-xl font-bold text-slate-900">{careerProfile.footer_name}</p>
             <p className="mt-3 text-sm text-slate-600">
-              フリーランスエンジニアとして Web・アプリ開発、技術コンサルティング、MVP 開発を提供しています。<br />
+              {careerProfile.footer_summary}<br />
               業務委託契約・準委任契約・請負契約に対応。NDA 締結可。
             </p>
           </div>

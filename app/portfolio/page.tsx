@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
+import careerProfile from "../content/career-profile.json";
 
 export const metadata: Metadata = {
   title: "ポートフォリオ | 飯塚健杜",
-  description: "フルスタックエンジニア 飯塚健杜のポートフォリオ。React / Next.js / AWS を活用した開発実績。",
+  description: careerProfile.hero_summary,
 };
 
 type Highlight = {
@@ -38,152 +40,10 @@ type SkillGroup = {
   items: string[];
 };
 
-const experiences: Experience[] = [
-  {
-    company: "Generosity Inc.",
-    role: "フルスタックエンジニア",
-    period: "2024年5月 - 2026年1月",
-    location: "東京",
-    summary:
-      "急成長中のエクスペリエンスエージェンシーでイベント管理ソリューションを開発。信頼性とコスト最適化、開発スピードを重視。",
-    highlights: [
-      "イベント管理基盤: アーキテクチャ刷新でインフラ費98.5%削減（$200k→$3k/年）",
-      "チケット発券システム: 数千同時アクセスのチケット発行を安定稼働",
-      "全社の障害対応・アーキテクチャ判断をリード",
-    ],
-  },
-  {
-    company: "Introduction Inc.",
-    role: "CTO / リードエンジニア",
-    period: "2019年 - 2024年4月",
-    location: "東京",
-    summary:
-      "5人スタートアップで技術全般をリード。エンジニアリングからデザイン、営業、PMまで一気通貫でプロダクトを成長させた。",
-    highlights: [
-      "SNAP: ブライダル向けB2B SaaSフォトブースを立ち上げ、継続収益を創出",
-      "Ongy: 競合調査用Instagramストーリービューアーを開発",
-      "役割横断で顧客開拓・企画・開発・運用を担当",
-    ],
-  },
-];
-
-const featuredProjects: Project[] = [
-  {
-    title: "イベント管理リアーキテクチャ",
-    tags: ["Serverless", "Cost Opt", "AWS", "Nuxt", "DynamoDB"],
-    oneLiner:
-      "サーバーレスアーキテクチャへの移行により、インフラコストを年間$200kから$3kへ98.5%削減。開発速度の大幅な向上も実現。",
-    link: "/portfolio/projects/wecall",
-    metrics: [
-      { label: "コスト", value: "$200k → $3k / 年" },
-      { label: "開発速度", value: "2週間 → 2-3日" },
-      { label: "構成", value: "Lambda + DynamoDB" },
-    ],
-    stack: "Nuxt.js (TS), Lambda, DynamoDB, Cognito, CloudFront, Zod, Kinesis",
-    role: "フロント再設計とモジュール設計、サーバーレス基盤構築を主導",
-  },
-  {
-    title: "高負荷チケット発券システム",
-    tags: ["High Load", "Queue", "LINE", "AWS", "BullMQ"],
-    oneLiner:
-      "1000req/sec超の同時アクセスに対応するLINEチケット販売システム。キューイング制御とオートスケーリングでゼロダウンタイムを実現。",
-    link: "/portfolio/projects/weno",
-    metrics: [
-      { label: "同時購入", value: "1000+ req/sec" },
-      { label: "稼働", value: "ゼロダウンタイム" },
-      { label: "制御", value: "BullMQ Queueing" },
-    ],
-    stack: "Vite + Vue, Next.js, BullMQ, PostgreSQL, Redis, ECS, CloudFront, LINE API",
-    role: "全面リプレイスをリードし、レースコンディションを解消・オートスケール設計",
-  },
-  {
-    title: "SNAP — ブライダル向けフォトブース (B2B SaaS)",
-    tags: ["SaaS", "B2B", "Full-Stack", "BizDev"],
-    oneLiner: "結婚式場向けサブスクリプション型フォトブースサービス。タブレット1台で完結し、安定的な継続収益を実現。",
-    link: "/portfolio/projects/snap",
-    metrics: [
-      { label: "料金モデル", value: "最大 ¥300k/月" },
-      { label: "回収", value: "約10式で損益分岐" },
-      { label: "担当", value: "設計→販売→サポート" },
-    ],
-    stack: "React, Node.js, AWS, Salsa API",
-    role: "事業オーナー兼エンジニアとして設計・開発・営業・オンボーディングを担当",
-  },
-  {
-    title: "Ongy — Instagramストーリービューアー",
-    tags: ["Scraping", "Analytics", "AWS", "Automation"],
-    oneLiner:
-      "代理店向け競合調査プラットフォーム。Instagramストーリーの自動アーカイブと分析により、マーケティング戦略立案を支援。",
-    link: "/portfolio/projects/ongy",
-    metrics: [
-      { label: "用途", value: "競合調査・事例収集" },
-      { label: "体験", value: "アニメーション付きSPA" },
-      { label: "技術", value: "Puppeteer + AWS" },
-    ],
-    stack: "React, Node.js, Instagram Graph API, AWS, Puppeteer",
-    role: "デザインからフロント・バック・デプロイまで単独開発",
-  },
-  {
-    title: "Lulu — LINE家計簿ボット",
-    tags: ["LINE", "Serverless", "GAS", "Personal"],
-    oneLiner:
-      "LINE MessagingとGoogle Sheetsを活用した個人向け家計簿アプリケーション。インフラコストゼロで継続的な利用が可能。",
-    link: "/portfolio/projects/lulu",
-    metrics: [
-      { label: "コスト", value: "¥0" },
-      { label: "継続", value: "Chat-based Logging" },
-      { label: "機能", value: "カレンダー表示" },
-    ],
-    stack: "LINE Messaging API, LIFF, Google Apps Script, Sheets, JavaScript",
-    role: "チャット体験設計・バックエンド・データ設計を単独で担当",
-  },
-  {
-    title: "meiso. — マインドフルネス企業サイト",
-    tags: ["Design", "Branding", "Web Dev"],
-    oneLiner: "マインドフルネス事業のブランドアイデンティティを視覚化したコーポレートサイト。カスタムイラストレーションにより独自性を表現。",
-    link: "/portfolio/projects/meiso",
-    metrics: [
-      { label: "トーン", value: "落ち着き・親しみ" },
-      { label: "範囲", value: "Design to Deploy" },
-      { label: "特徴", value: "Custom Illustrations" },
-    ],
-    stack: "HTML, CSS, JavaScript, custom illustrations",
-    role: "デザイン・イラスト制作・フロント実装を一貫担当",
-  },
-];
-
-const projectGrid: Project[] = [
-  { title: "イベント管理基盤", tags: ["Serverless", "AWS"], oneLiner: "インフラコスト98.5%削減を実現したサーバーレスイベント基盤", stack: "Nuxt, Lambda, DynamoDB", role: "アーキ設計", category: "Featured", link: "/portfolio/projects/wecall", cta: "詳しく" },
-  { title: "チケット発券システム", tags: ["High Load", "LINE"], oneLiner: "1000+req/secの高負荷に対応するチケット発券システム", stack: "Vue, Next.js, BullMQ", role: "リードエンジニア", category: "Featured", link: "/portfolio/projects/weno", cta: "詳しく" },
-  { title: "試着予約システム", tags: ["EventTech", "LINE"], oneLiner: "7000人規模のイベントに対応するLINE連携試着予約システム", stack: "NestJS, Vue, AWS, DDD", role: "PM / Full-Stack", link: "/portfolio/projects/wefit", cta: "聞いてみる" },
-  { title: "在庫・注文管理システム", tags: ["Inventory", "Real-time"], oneLiner: "Socket.ioによるリアルタイム在庫・注文管理システム", stack: "Vue, NestJS, Socket.io", role: "フルスタック", link: "/portfolio/projects/wecart", cta: "聞いてみる" },
-  { title: "SNAP", tags: ["SaaS", "B2B"], oneLiner: "結婚式場向けサブスクリプション型フォトブースSaaS", stack: "React, AWS", role: "オーナー/エンジニア", link: "/portfolio/projects/snap", cta: "概要" },
-  { title: "Ongy", tags: ["Scraping", "Analytics"], oneLiner: "代理店向けInstagramストーリー競合調査プラットフォーム", stack: "React, Puppeteer", role: "単独開発", link: "/portfolio/projects/ongy" },
-  { title: "Inuinugram", tags: ["Growth", "Automation"], oneLiner: "自動化とグロースハックにより3万フォロワーを獲得し売却に成功した犬特化型メディア", stack: "Python, Puppeteer", role: "Growth Engineer", link: "/portfolio/projects/inuinugram" },
-  { title: "Lulu", tags: ["LINE", "Serverless"], oneLiner: "Google Apps Scriptを活用したコストゼロのLINE家計簿アプリケーション", stack: "GAS, LIFF", role: "単独開発", link: "/portfolio/projects/lulu" },
-  { title: "iPLUSi", tags: ["Web", "WordPress"], oneLiner: "モダンなWordPress構成による建築事務所ポートフォリオサイト", stack: "WordPress (Sage), PHP", role: "Full-Stack", link: "/portfolio/projects/iplusi" },
-  { title: "INTD", tags: ["Corporate", "CMS"], oneLiner: "カスタムWordPressテーマによるコーポレートサイトリニューアル", stack: "WordPress, PHP, Figma", role: "Lead", link: "/portfolio/projects/intd" },
-  { title: "meiso.", tags: ["Design", "Branding"], oneLiner: "ブランドアイデンティティを体現するマインドフルネス企業コーポレートサイト", stack: "HTML, CSS, JS", role: "デザイナー/開発", link: "/portfolio/projects/meiso" },
-  { title: "Lounge Attendance", tags: ["B2B", "GAS"], oneLiner: "QRコードとGoogle Apps Scriptによるコスト効率的な来訪管理システム", stack: "GAS, Sheets, QR", role: "Single Dev", link: "/portfolio/projects/lounge-attendance" },
-  { title: "Life in Weeks", tags: ["Personal", "Visualization"], oneLiner: "人生を週単位グリッドでビジュアライズする時間管理ツール", stack: "Vue, Nuxt", role: "Solo Dev", link: "/portfolio/projects/life-in-weeks" },
-  { title: "Sheer", tags: ["Media", "Management"], oneLiner: "若年層女性をターゲットとしたInstagramメディアの運営管理", stack: "Instagram, Figma", role: "Team Manager", link: "/portfolio/projects/sheer" },
-  { title: "Miss Circle", tags: ["Scraping", "Automation"], oneLiner: "コンテスト参加者向けSNSエンゲージメント分析ツール", stack: "Vue, Node, Puppeteer", role: "Full-Stack", link: "/portfolio/projects/miss-circle" },
-  { title: "FACT", tags: ["Sales", "Reputation"], oneLiner: "企業向けレピュテーション管理・分析SaaSプラットフォーム", stack: "Sales, Marketing", role: "Sales & Marketing Lead", link: "/portfolio/projects/fact" },
-  { title: "Book Price", tags: ["Tooling", "Resale"], oneLiner: "メルカリ市場データを活用した書籍価格分析ツール", stack: "Vue, GAS, API", role: "Solo Dev", link: "/portfolio/projects/book-price" },
-  { title: "Monoton", tags: ["BizDev", "Retail"], oneLiner: "セルフ写真スタジオ事業の創業から運営までを担当", stack: "Business Dev, Ops", role: "Founder", link: "/portfolio/projects/monoton" },
-  { title: "ACE", tags: ["PoC", "Affiliate"], oneLiner: "複数ASPを統合したアフィリエイト成果管理プラットフォーム", stack: "RPA, JS, BizDev", role: "Product Owner", link: "/portfolio/projects/ace" },
-  { title: "WAISEC", tags: ["Event", "Leadership"], oneLiner: "国際高校生シンポジウムのWebサイト制作および運営統括", stack: "HTML/CSS, Management", role: "Committee Lead", link: "/portfolio/projects/waisec" },
-  { title: "Hana", tags: ["Presentation", "Global"], oneLiner: "国際シンポジウムにおける英語プレゼンテーションとビジュアルデザイン", stack: "Presentation, Design", role: "Presenter", link: "/portfolio/projects/hana" },
-];
-
-const skills: SkillGroup[] = [
-  { title: "フロントエンド", items: ["React", "Next.js", "Vue", "Nuxt", "TypeScript", "Tailwind", "Animations"] },
-  { title: "バックエンド・API", items: ["Node.js", "NestJS", "Express", "REST", "GraphQL", "Webhooks", "OAuth"] },
-  { title: "データ・インフラ", items: ["PostgreSQL", "MySQL", "Redis", "DynamoDB", "MongoDB", "Firebase"] },
-  { title: "クラウド・DevOps", items: ["AWS Lambda", "ECS (Fargate)", "CloudFront", "S3", "Docker", "CI/CD"] },
-  { title: "デザイン・プロダクト", items: ["Figma", "UI/UX", "Design Systems", "Illustration", "Product Strategy"] },
-  { title: "ツール・手法", items: ["GitHub", "Agile", "Zod", "BullMQ", "Google Apps Script"] },
-];
+const experiences: Experience[] = careerProfile.experiences;
+const featuredProjects: Project[] = careerProfile.featuredProjects;
+const projectGrid: Project[] = careerProfile.projectGrid;
+const skills: SkillGroup[] = careerProfile.skills;
 
 const emails = ["kento.iizuka@icloud.com"];
 
@@ -283,7 +143,7 @@ function FeaturedProjectCard({ project }: { project: Project }) {
 
 function ProjectGridCard({ project }: { project: Project }) {
   const hasLink = Boolean(project.link);
-  const Container: any = hasLink ? "a" : "div";
+  const Container = hasLink ? "a" : "div";
   const containerProps = hasLink ? { href: project.link } : {};
   return (
     <Container
@@ -323,9 +183,9 @@ export default function PortfolioPage() {
     <div className="relative isolate min-h-screen w-full overflow-hidden bg-white">
       <header className="sticky top-0 z-20 border-b border-slate-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="/" className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+          <Link href="/" className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
             ← ホームへ
-          </a>
+          </Link>
           <a href="#contact" className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700">
             相談する
           </a>
@@ -341,7 +201,7 @@ export default function PortfolioPage() {
                 技術で、<br />プロダクトを<br />前に進める
               </h1>
               <p className="text-xl leading-relaxed text-slate-600 max-w-2xl">
-                スタートアップの成長を支えるフルスタックエンジニア。React/Next から AWS まで、実装と改善のサイクルを高速で回します。
+                {careerProfile.hero_summary}
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-4">
@@ -369,8 +229,8 @@ export default function PortfolioPage() {
             </div>
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
               <div>
-                <p className="text-sm text-slate-500 mb-1">開発歴</p>
-                <p className="text-2xl font-semibold text-slate-900">6年</p>
+                <p className="text-sm text-slate-500 mb-1">現在の活動</p>
+                <p className="text-2xl font-semibold text-slate-900">FalconeX</p>
               </div>
               <div>
                 <p className="text-sm text-slate-500 mb-1">主要スタック</p>
@@ -388,7 +248,7 @@ export default function PortfolioPage() {
           <SectionHeader
             eyebrow="About"
             title="デザイン出身のフルスタックエンジニア"
-            description="5人スタートアップのインターンからCTOを経て、Generosityでアーキテクチャをリード。曖昧さの中で素早く形にし、使われるプロダクトに仕上げます。"
+            description={careerProfile.about_short}
           />
           <div className="grid gap-8 md:grid-cols-[300px_1fr]">
             <div className="flex flex-col gap-4">
@@ -410,7 +270,7 @@ export default function PortfolioPage() {
             </div>
             <div className="rounded-xl bg-white p-8 border border-slate-100">
               <p className="text-lg text-slate-600 leading-relaxed mb-6">
-                自分のデザインを形にしたくてコードを学び、気づけばフロントからAPI、インフラまで一気通貫で担うように。コストを抑えつつ拡張しやすい構成をつくるのが得意です。
+                {careerProfile.about[0]}
               </p>
               <div className="grid gap-3 sm:grid-cols-2 mb-8">
                 {[
@@ -428,7 +288,7 @@ export default function PortfolioPage() {
               <div className="pt-6 border-t border-slate-100">
                 <p className="text-sm font-semibold text-slate-400 mb-4">Timeline</p>
                 <div className="space-y-2.5 text-sm text-slate-600">
-                  {["2019 — インターン開始 (Introduction)", "2020 — Lulu / Ongy / meiso を開発", "2021 — SNAP を開発", "2024 — Generosityへジョイン", "2024-2025 — イベント管理基盤の再構築・チケット発券開発をリード"].map((line) => (
+                  {careerProfile.timeline.map((line) => (
                     <div key={line} className="flex items-center gap-3">
                       <span className="h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
                       <span>{line}</span>
