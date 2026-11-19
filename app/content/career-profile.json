@@ -1,10 +1,10 @@
 {
-  "generated_from": "kentosity/resume profile.json, reviewed 2026-11-18",
+  "generated_from": "kentosity/resume profile.json, reviewed 2026-11-19",
   "name": "飯塚健杜",
-  "headline": "FalconeX Founder / Operator | フルスタックエンジニア | AI・業務自動化・クラウド設計",
+  "headline": "FalconeX ソフトウェアエンジニア | フルスタック開発・AI・業務自動化・クラウド設計",
   "about": [
-    "FalconeXを立ち上げ、開発と事業運営に取り組んでいます。TXTO・TELAなどのクライアントに対し、Webアプリケーション、データ基盤、業務自動化、AIを活用したワークフローの設計・実装を支援しています。",
-    "デザインを形にするためにコードを学び、フロントエンドからAPI、クラウド、運用まで担当するようになりました。Introductionではインターンから技術リードへと役割を広げ、SNAPなどのプロダクトで開発・デザイン・営業・顧客対応を経験。GenerosityではLINEと連携するイベント管理基盤やチケット発券システムの開発、サーバーレス構成への再設計に携わりました。",
+    "FalconeXに勤務するソフトウェアエンジニアです。小売業のクライアントや美容室チェーン向けに、Webアプリケーション、データ基盤、業務自動化、AIを活用したワークフローの設計・実装に取り組んでいます。",
+    "デザインを形にするためにコードを学び、フロントエンドからAPI、クラウド、運用まで担当するようになりました。Introductionでは在学中にインターン・アルバイトとして働き、2023年3月の大学卒業後、同年4月から正社員のCTOを務めました。SNAPなどで開発・デザイン・営業・顧客対応を経験し、GenerosityではLINE連携のイベント基盤やチケット発券システムの開発、サーバーレス構成への再設計に携わりました。",
     "得意なのは、業務の課題を整理し、必要な仕組みをつくり、運用しながら改善することです。主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloud、AI支援開発の運用ツールにも取り組んでいます。",
     "設計と実装だけでなく、使う人や事業の状況まで理解して取り組める開発・協業に関心があります。"
   ],
@@ -16,13 +16,13 @@
     "github": "https://github.com/kentosity",
     "lapras": "https://lapras.com/public/RVEPJY7"
   },
-  "hero_label": "FalconeX Founder / Operator · Full-Stack Engineer",
-  "hero_summary": "FalconeXを立ち上げ、Web開発・業務自動化・データ連携を支援しています。課題整理から設計、実装、運用改善まで取り組みます。",
-  "about_short": "Introductionでの技術リード、Generosityでのイベント基盤開発を経て、現在はFalconeXの開発と事業運営に取り組んでいます。",
+  "hero_label": "FalconeX · Software Engineer",
+  "hero_summary": "FalconeXの社員として、Web開発・業務自動化・データ連携に取り組んでいます。課題整理から設計、実装、運用改善まで担当します。",
+  "about_short": "Introductionでは在学中にインターン・アルバイトとして働き、2023年3月の卒業後、同年4月からCTOを担当。Generosityでのイベント基盤開発を経て、現在はFalconeXのエンジニアとしてクライアント業務に取り組んでいます。",
   "timeline": [
-    "Introduction — インターンから技術リードへ",
+    "Introduction — 在学中はインターン・アルバイト、2023年4月からCTO",
     "Generosity — LINE連携・イベント基盤の開発",
-    "現在 — FalconeXで開発と事業運営"
+    "現在 — FalconeXに勤務、開発・業務自動化を担当"
   ],
   "hero_facts": [
     {
@@ -39,13 +39,13 @@
   "experiences": [
     {
       "company": "FalconeX",
-      "role": "Founder / Operator・フルスタックエンジニア",
+      "role": "ソフトウェアエンジニア",
       "period": "現在",
       "location": "東京",
-      "summary": "開発と事業運営を担い、クライアントの業務課題をソフトウェアと継続して使える仕組みに落とし込む。",
+      "summary": "FalconeXの社員として、クライアントの業務課題をソフトウェアと継続して使える仕組みに落とし込む。",
       "highlights": [
         "クライアントの課題整理、システム設計、実装、運用改善を担当。",
-        "FalconeXの業務として、TXTOのセキュリティ製品・AI／データ活用の検討支援、TELAのPOSデータ連携・レポート・業務自動化に取り組む。",
+        "FalconeXの業務として、小売業のクライアントのセキュリティ製品・AI／データ活用の検討支援、美容室チェーンのPOSデータ連携・レポート・業務自動化に取り組む。",
         "Webアプリケーションやデータ連携を開発・保守。必要に応じてAI支援開発を活用。"
       ]
     },
@@ -56,17 +56,17 @@
       "location": "東京",
       "summary": "LINEと連携するイベント基盤を開発。フロントエンド、API、クラウド基盤、運用時の課題に取り組む。",
       "highlights": [
-        "イベント予約基盤の機能を分離し、AWS Lambda / DynamoDBによるサーバーレス構成への再設計を担当。",
+        "イベント予約基盤の機能を分離し、AWS Lambda / DynamoDBによるサーバーレス構成への再設計を担当。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減。",
         "チケット発券処理を再構築し、同時発券の競合に対応するBullMQのキュー制御を導入。",
         "LINEと連携する予約・注文管理や、スタッフ向けの操作画面とリアルタイム更新を開発。"
       ]
     },
     {
       "company": "Introduction Inc.",
-      "role": "エンジニア → CTO / テクニカルリード",
-      "period": "2019年 – 2024年4月",
+      "role": "インターン・アルバイト → CTO（2023年4月〜）",
+      "period": "2019年4月〜2023年3月：インターン・アルバイト／2023年4月〜2024年4月：正社員・CTO",
       "location": "東京",
-      "summary": "インターンとして参画し、技術リードへ役割を拡大。開発、プロダクトデザイン、営業、顧客対応を横断して担当。",
+      "summary": "在学中はインターン・アルバイトとして開発に従事。2023年3月の大学卒業後、同年4月から2024年4月まで正社員のCTOを担当。開発、プロダクトデザイン、営業、顧客対応に取り組みました。",
       "highlights": [
         "結婚式場向けB2Bフォトブース「SNAP」で、企画・デザイン・開発・営業・導入支援・サポートを担当。",
         "Instagramストーリー閲覧ツール「Ongy」をデザイン、フロントエンド、バックエンドまで開発。",
@@ -76,15 +76,15 @@
   ],
   "featuredProjects": [
     {
-      "title": "TELAのデータ連携・レポート基盤",
+      "title": "美容室チェーン向けデータ連携・レポート基盤",
       "tags": [
         "Data",
         "Automation"
       ],
-      "oneLiner": "FalconeXのクライアント業務として、TELAのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
+      "oneLiner": "FalconeXのクライアント業務として、美容室チェーンのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
       "stack": "TypeScript, Python, React, Fastify, BigQuery, Google Cloud Storage, Parquet",
       "role": "データ連携・アプリ開発・自動化",
-      "link": "/portfolio/projects/tela-data-platform"
+      "link": "/portfolio/projects/salon-data-platform"
     },
     {
       "title": "エージェントのタスク管理基盤",
@@ -103,7 +103,7 @@
         "Serverless",
         "AWS"
       ],
-      "oneLiner": "LINEと連携する予約基盤を、AWS LambdaとDynamoDBによる構成へ再設計。入力・予約・チェックインの機能を分離し、共通のバリデーションと分析用データ連携に取り組みました。",
+      "oneLiner": "LINEと連携する予約基盤を、AWS LambdaとDynamoDBによる構成へ再設計。入力・予約・チェックインの機能を分離し、共通のバリデーションと分析用データ連携に取り組みました。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
       "stack": "Nuxt.js, TypeScript, AWS Lambda, DynamoDB, Zod, CloudFront",
       "role": "アーキテクチャ設計・フルスタック開発",
       "link": "/portfolio/projects/event-platform"
@@ -171,8 +171,8 @@
         "B2B SaaS",
         "Product"
       ],
-      "oneLiner": "結婚式場向けのB2Bフォトブースサービスを開発。UI設計、実装、外部フォトサービスとの連携に加え、営業、導入支援、顧客サポートまで担当しました。",
-      "stack": "JavaScript, React, Salsa API",
+      "oneLiner": "結婚式場向けのB2Bフォトブースサービスで、イベント管理、ゲスト向けアルバム、会場スクリーンを開発。確認したソースはNext.js、React、TypeScript、FirebaseとSalsa API連携を使用しています。UI設計、実装、営業、導入支援、サポートまで担当しました。確認できた開発履歴は2022年12月〜2024年10月で、公開・提供期間や在籍期間を示すものではありません。",
+      "stack": "TypeScript, React, Next.js, Firebase, Mantine, Salsa API",
       "role": "プロダクト開発・営業・サポート",
       "link": "/portfolio/projects/snap-photobooth"
     },
@@ -257,10 +257,10 @@
   "caseStudies": [
     {
       "tag": "Data",
-      "title": "TELAのデータ連携・レポート基盤",
-      "desc": "FalconeXのクライアント業務として、TELAのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
+      "title": "美容室チェーン向けデータ連携・レポート基盤",
+      "desc": "FalconeXのクライアント業務として、美容室チェーンのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
       "stack": "TypeScript · Python · React · Fastify · BigQuery · Google Cloud Storage · Parquet",
-      "link": "/portfolio/projects/tela-data-platform"
+      "link": "/portfolio/projects/salon-data-platform"
     },
     {
       "tag": "Agents",
