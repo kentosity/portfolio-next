@@ -1,12 +1,14 @@
 {
   "generated_from": "kentosity/resume profile.json, reviewed 2026-11-19",
   "name": "飯塚健杜",
-  "headline": "FalconeX ソフトウェアエンジニア | フルスタック開発・AI・業務自動化・クラウド設計",
+  "headline": "FalconeX AIエンジニア | Webプロダクト開発・データ連携・業務自動化",
   "about": [
-    "FalconeXに勤務するソフトウェアエンジニアです。小売業のクライアントや美容室チェーン向けに、Webアプリケーション、データ基盤、業務自動化、AIを活用したワークフローの設計・実装に取り組んでいます。",
-    "デザインを形にするためにコードを学び、フロントエンドからAPI、クラウド、運用まで担当するようになりました。Introductionでは在学中にインターン・アルバイトとして働き、2023年3月の大学卒業後、同年4月から正社員のCTOを務めました。SNAPなどで開発・デザイン・営業・顧客対応を経験し、GenerosityではLINE連携のイベント基盤やチケット発券システムの開発、サーバーレス構成への再設計に携わりました。",
-    "得意なのは、業務の課題を整理し、必要な仕組みをつくり、運用しながら改善することです。主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloud、AI支援開発の運用ツールにも取り組んでいます。",
-    "設計と実装だけでなく、使う人や事業の状況まで理解して取り組める開発・協業に関心があります。"
+    "FalconeXのAIエンジニアです。Webプロダクト、データ連携、業務自動化を中心に、課題整理、UI設計、フルスタック開発、運用改善に取り組んでいます。",
+    "2026年2月頃からFalconeXに勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
+    "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
+    "Introductionでは在学中にインターン・アルバイトとして働き、早稲田大学国際教養学部を2023年3月に卒業後、同年4月から2024年4月まで正社員のCTOを務めました。SNAPのイベント管理、ゲスト向けアルバム、会場表示の開発に加え、デザインや顧客対応にも携わりました。",
+    "主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloudを使った開発や、個人環境に導入するローカル音声合成・macOS再生ツールにも取り組んでいます。",
+    "エンジニア採用のお話と、Web開発・データ連携・AIを活用した業務改善のご相談をお待ちしています。使う人の業務を理解し、必要な仕組みをつくり、運用しながら改善する仕事に関心があります。"
   ],
   "links": {
     "linkedin": "https://jp.linkedin.com/in/kento-iizuka-a79289273",
@@ -16,13 +18,13 @@
     "github": "https://github.com/kentosity",
     "lapras": "https://lapras.com/public/RVEPJY7"
   },
-  "hero_label": "FalconeX · Software Engineer",
-  "hero_summary": "FalconeXの社員として、Web開発・業務自動化・データ連携に取り組んでいます。課題整理から設計、実装、運用改善まで担当します。",
-  "about_short": "Introductionでは在学中にインターン・アルバイトとして働き、2023年3月の卒業後、同年4月からCTOを担当。Generosityでのイベント基盤開発を経て、現在はFalconeXのエンジニアとしてクライアント業務に取り組んでいます。",
+  "hero_label": "FalconeX · AI Engineer",
+  "hero_summary": "FalconeXのAIエンジニアとして、Webプロダクト開発・データ連携・業務自動化に取り組んでいます。エンジニア採用や開発のご相談をお待ちしています。",
+  "about_short": "早稲田大学国際教養学部を2023年3月に卒業。在学中のインターン・アルバイトを経て、Introductionで同年4月から2024年4月までCTOを担当しました。Generosityには2024年5月〜2026年1月に在籍。2026年2月頃からFalconeXの社員として、クライアント向けの開発・業務自動化に取り組んでいます。",
   "timeline": [
-    "Introduction — 在学中はインターン・アルバイト、2023年4月からCTO",
-    "Generosity — LINE連携・イベント基盤の開発",
-    "現在 — FalconeXに勤務、開発・業務自動化を担当"
+    "Introduction — 在学中はインターン・アルバイト、2023年4月〜2024年4月は正社員・CTO",
+    "Generosity — 2024年5月〜2026年1月、LINE連携・イベント基盤の開発",
+    "FalconeX — 2026年2月頃〜、AIエンジニアとして開発・データ連携・業務自動化"
   ],
   "hero_facts": [
     {
@@ -39,14 +41,15 @@
   "experiences": [
     {
       "company": "FalconeX",
-      "role": "ソフトウェアエンジニア",
-      "period": "現在",
+      "role": "AIエンジニア",
+      "period": "2026年2月頃 – 現在",
       "location": "東京",
-      "summary": "FalconeXの社員として、クライアントの業務課題をソフトウェアと継続して使える仕組みに落とし込む。",
+      "summary": "FalconeXの社員として、クライアントの業務に合わせたソフトウェアと自動化を開発。",
       "highlights": [
-        "クライアントの課題整理、システム設計、実装、運用改善を担当。",
-        "FalconeXの業務として、小売業のクライアントのセキュリティ製品・AI／データ活用の検討支援、美容室チェーンのPOSデータ連携・レポート・業務自動化に取り組む。",
-        "Webアプリケーションやデータ連携を開発・保守。必要に応じてAI支援開発を活用。"
+        "美容室チェーン向けにPOSデータをBigQueryへ連携する仕組みを開発。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みに対応。",
+        "集計処理とReactのダッシュボードを開発し、入力の欠落や重複を検証。PythonによるWindows POSの定期帳票出力と失敗時の処理も実装。",
+        "小売業のクライアント向けに、セキュリティ製品の比較、技術説明、AI・データ活用の検討資料を作成。",
+        "要件整理、設計、実装、保守に取り組み、必要に応じてAI支援開発を活用。"
       ]
     },
     {
@@ -68,7 +71,7 @@
       "location": "東京",
       "summary": "在学中はインターン・アルバイトとして開発に従事。2023年3月の大学卒業後、同年4月から2024年4月まで正社員のCTOを担当。開発、プロダクトデザイン、営業、顧客対応に取り組みました。",
       "highlights": [
-        "結婚式場向けB2Bフォトブース「SNAP」で、企画・デザイン・開発・営業・導入支援・サポートを担当。",
+        "結婚式場向けフォトブース「SNAP」のイベント管理、ゲスト向けアルバム、会場表示を開発。デザインや顧客対応にも携わる。",
         "Instagramストーリー閲覧ツール「Ongy」をデザイン、フロントエンド、バックエンドまで開発。",
         "Figmaでのデザインと実装を組み合わせ、WebサイトやCMSの制作に取り組む。"
       ]
@@ -81,21 +84,21 @@
         "Data",
         "Automation"
       ],
-      "oneLiner": "FalconeXのクライアント業務として、美容室チェーンのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
+      "oneLiner": "FalconeXのクライアント業務として、美容室チェーンのPOSデータをBigQueryへ連携する仕組み、集計処理、Reactのダッシュボードを開発しました。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みと入力の欠落・重複の検証に対応。PythonによるWindows POSの定期帳票出力や失敗時の処理も実装しています。",
       "stack": "TypeScript, Python, React, Fastify, BigQuery, Google Cloud Storage, Parquet",
       "role": "データ連携・アプリ開発・自動化",
       "link": "/portfolio/projects/salon-data-platform"
     },
     {
-      "title": "エージェントのタスク管理基盤",
+      "title": "ローカル音声合成・macOS再生ツール",
       "tags": [
-        "Agents",
-        "Developer Tools"
+        "macOS",
+        "Speech"
       ],
-      "oneLiner": "エージェントのセッションをまたいで、タスク・実行履歴・引き継ぎを保持するGoのサービスとCLI。トランザクションによる保存、同じ要求の重複処理を防ぐ仕組み、結果が不明な実行の復旧処理を実装しています。",
-      "stack": "Go, SQLite, HTTP/JSON, Unix sockets",
-      "role": "開発",
-      "link": "/portfolio/projects/agent-coordination"
+      "oneLiner": "個人環境で使う、ローカル音声合成とmacOS再生アプリをAI支援で開発・導入。MLX / Kokoroによるストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。Herdr本体と音声モデルは既存の技術を利用しています。",
+      "stack": "Python, Swift, SwiftUI, AppKit, AVFoundation, MLX, Kokoro",
+      "role": "AI支援によるツール開発",
+      "link": "/portfolio/projects/local-speech"
     },
     {
       "title": "イベント管理基盤の再設計",
@@ -133,15 +136,15 @@
       "link": "/portfolio/projects/falconex-site"
     },
     {
-      "title": "ローカル音声合成・macOS再生ツール",
+      "title": "エージェントのタスク管理基盤",
       "tags": [
-        "macOS",
-        "Speech"
+        "Agents",
+        "Developer Tools"
       ],
-      "oneLiner": "ローカルのMLX / Kokoro音声合成と、macOSのネイティブ再生アプリを組み合わせた、AI支援開発による音声ツール。ストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。",
-      "stack": "Python, Swift, SwiftUI, AppKit, AVFoundation, MLX, Kokoro",
-      "role": "AI支援によるツール開発",
-      "link": "/portfolio/projects/local-speech"
+      "oneLiner": "エージェントのセッションをまたいで、タスク・実行履歴・引き継ぎを保持するGoのサービスとCLIを開発。保存処理のトランザクション、重複要求の処理、結果が不明な実行の復旧に対応しています。実環境との連携は検証段階のローカル開発プロジェクトです。",
+      "stack": "Go, SQLite, HTTP/JSON, Unix sockets",
+      "role": "開発",
+      "link": "/portfolio/projects/agent-coordination"
     },
     {
       "title": "補助金検索アシスタントのプロトタイプ",
@@ -168,12 +171,12 @@
     {
       "title": "SNAP — 結婚式場向けフォトブース",
       "tags": [
-        "B2B SaaS",
-        "Product"
+        "Photobooth",
+        "Product Development"
       ],
-      "oneLiner": "結婚式場向けのB2Bフォトブースサービスで、イベント管理、ゲスト向けアルバム、会場スクリーンを開発。確認したソースはNext.js、React、TypeScript、FirebaseとSalsa API連携を使用しています。UI設計、実装、営業、導入支援、サポートまで担当しました。確認できた開発履歴は2022年12月〜2024年10月で、公開・提供期間や在籍期間を示すものではありません。",
+      "oneLiner": "Introductionで、結婚式場向けフォトブースのイベント管理、ゲスト向けアルバム、会場表示を開発しました。確認したソースはNext.js、React、TypeScript、FirebaseとSalsa API連携を使用しています。開発履歴は2022年12月〜2024年10月ですが、2024年4月の退職後のコミットを在籍やサービス公開の根拠にはしていません。",
       "stack": "TypeScript, React, Next.js, Firebase, Mantine, Salsa API",
-      "role": "プロダクト開発・営業・サポート",
+      "role": "アプリ開発・UI設計",
       "link": "/portfolio/projects/snap-photobooth"
     },
     {
@@ -258,16 +261,16 @@
     {
       "tag": "Data",
       "title": "美容室チェーン向けデータ連携・レポート基盤",
-      "desc": "FalconeXのクライアント業務として、美容室チェーンのPOSデータを分析基盤へ連携する仕組みとレポートアプリに取り組みました。データの抽出・加工・取り込みを分離し、集計値の検証や、Windows上の帳票取得の自動化を実装しています。",
+      "desc": "FalconeXのクライアント業務として、美容室チェーンのPOSデータをBigQueryへ連携する仕組み、集計処理、Reactのダッシュボードを開発しました。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みと入力の欠落・重複の検証に対応。PythonによるWindows POSの定期帳票出力や失敗時の処理も実装しています。",
       "stack": "TypeScript · Python · React · Fastify · BigQuery · Google Cloud Storage · Parquet",
       "link": "/portfolio/projects/salon-data-platform"
     },
     {
-      "tag": "Agents",
-      "title": "エージェントのタスク管理基盤",
-      "desc": "エージェントのセッションをまたいで、タスク・実行履歴・引き継ぎを保持するGoのサービスとCLI。トランザクションによる保存、同じ要求の重複処理を防ぐ仕組み、結果が不明な実行の復旧処理を実装しています。",
-      "stack": "Go · SQLite · HTTP/JSON · Unix sockets",
-      "link": "/portfolio/projects/agent-coordination"
+      "tag": "macOS",
+      "title": "ローカル音声合成・macOS再生ツール",
+      "desc": "個人環境で使う、ローカル音声合成とmacOS再生アプリをAI支援で開発・導入。MLX / Kokoroによるストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。Herdr本体と音声モデルは既存の技術を利用しています。",
+      "stack": "Python · Swift · SwiftUI · AppKit · AVFoundation · MLX · Kokoro",
+      "link": "/portfolio/projects/local-speech"
     },
     {
       "tag": "Web",
