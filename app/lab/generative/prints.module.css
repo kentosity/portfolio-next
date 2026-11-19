@@ -1,0 +1,747 @@
+.archive {
+  --wall: #e7e9e4;
+  --ink: #242722;
+  --quiet: #64695f;
+  min-height: 100vh;
+  background: var(--wall);
+  color: var(--ink);
+  font-family:
+    var(--font-geist-sans), "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.archive button,
+.archive a {
+  -webkit-tap-highlight-color: transparent;
+}
+.archive button {
+  font: inherit;
+  cursor: pointer;
+}
+.archive a {
+  text-decoration: none;
+}
+.archive :is(a, button):focus-visible {
+  outline: 2px solid #3448b5;
+  outline-offset: 6px;
+}
+.archive button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.archive ::selection {
+  background: #d2d99b;
+  color: var(--ink);
+}
+.skipLink {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  padding: 12px;
+  background: white;
+  z-index: 10;
+}
+.skipLink:focus {
+  top: 12px;
+}
+
+.header {
+  margin: 0 5%;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #cbd0c5;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.35px;
+}
+.identitySubtitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--quiet);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 37px;
+  font-size: 12px;
+}
+.currentLink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.currentLink > span {
+  background: #d5dacd;
+  font-size: 10px;
+  min-width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 19px;
+}
+.languages {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.languages > span {
+  color: #8c9285;
+}
+.languages button {
+  border: 0;
+  padding: 8px 3px;
+  min-width: 32px;
+  min-height: 36px;
+  background: none;
+  font-size: 11px;
+  color: var(--quiet);
+}
+.languages button[aria-pressed="true"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.introduction {
+  margin: 0 5%;
+  padding: 36px 0 43px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.collectionNote {
+  font-size: 11px;
+  margin: 0 0 16px;
+  color: var(--quiet);
+}
+.headlineBlock h1 {
+  font-family: var(--font-print-display), sans-serif;
+  font-size: clamp(58px, 6.6vw, 110px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -6px;
+  margin: 0;
+}
+.introCopy {
+  max-width: 280px;
+  margin-bottom: 3px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.introCopy p {
+  margin: 0 0 15px;
+}
+.introCopy a {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 11px;
+}
+.introCopy a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 0.96fr 1fr;
+  gap: 6.5%;
+  margin: 0 5%;
+  padding: 0 0 63px;
+  scroll-margin-top: 25px;
+}
+.project {
+  min-width: 0;
+}
+.frameButton {
+  display: block;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  background: transparent;
+  width: 100%;
+  position: relative;
+}
+.frame {
+  padding: 9px;
+  background: #33362f;
+  box-shadow:
+    inset 0 0 0 1px #50554b,
+    inset 0 0 0 3px #282c24,
+    2px 4px 5px #343c2929,
+    9px 17px 21px #343c2921,
+    20px 30px 40px #343c290e;
+}
+.paper {
+  background: #faf9f2;
+  padding: 23px 24px 17px;
+  box-shadow: inset 0 0 8px #2427221a;
+}
+.artwork {
+  width: 100%;
+  line-height: 0;
+}
+.artwork svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.printSignature {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 11px;
+  font-size: 6px;
+  color: #66695f;
+  letter-spacing: 0.15px;
+  line-height: 1.3;
+}
+.voice {
+  padding-top: 34px;
+}
+.voice .paper {
+  padding: 21px 17px 15px;
+}
+.routes .paper {
+  padding: 35px 29px 19px;
+}
+.inspectHint {
+  display: flex;
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  background: #edf0b5;
+  color: #242722;
+  align-items: center;
+  justify-content: space-between;
+  gap: 23px;
+  white-space: nowrap;
+  padding: 9px 14px;
+  font-size: 11px;
+  opacity: 0;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  box-shadow: 0 2px 10px #24272215;
+}
+.inspectHint > span {
+  font-size: 18px;
+  line-height: 1;
+}
+.frameButton:hover .inspectHint,
+.frameButton:focus-visible .inspectHint {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.caption {
+  margin-top: 24px;
+}
+.captionHeading {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.accession {
+  color: var(--quiet);
+  font-size: 10px;
+}
+.caption h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.4px;
+  flex: 1;
+}
+.caption h2 a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.caption h2 svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+.caption h2 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.caption > p {
+  margin: 11px 0 19px 26px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #50574b;
+  max-width: 310px;
+}
+.edition {
+  border-top: 1px solid #cbd0c5;
+  padding-top: 10px;
+  margin-left: 26px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--quiet);
+}
+
+.colophon {
+  margin: 0 5%;
+  border-top: 1px solid #bfc6b7;
+  padding: 37px 0 44px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9%;
+  scroll-margin-top: 30px;
+}
+.colophonTitle {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.seedMark {
+  font-size: 44px;
+  line-height: 1;
+}
+.colophon h2 {
+  font-family: var(--font-print-display), sans-serif;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+.colophon > p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 445px;
+  color: #565e50;
+}
+.footer {
+  border-top: 1px solid #cbd0c5;
+  margin: 0 5%;
+  padding: 22px 0 28px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 10px;
+  color: var(--quiet);
+}
+.footer a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.footer svg {
+  width: 13px;
+  height: 13px;
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(1050px, calc(100% - 48px));
+  height: fit-content;
+  max-height: calc(100dvh - 48px);
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  background: #eef0e9;
+  overscroll-behavior: contain;
+}
+.dialog::backdrop {
+  background: #242722b8;
+  backdrop-filter: blur(5px);
+}
+.dialog[open] {
+  animation: open-print 200ms ease-out;
+}
+.inspection {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+}
+.inspectionArt {
+  padding: 40px;
+  align-self: center;
+}
+.inspectionArt .artwork {
+  box-shadow: 4px 10px 24px #24272218;
+}
+.inspectionCopy {
+  padding: 48px 45px 40px 20px;
+  position: relative;
+}
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: none;
+  border: 0;
+  font-size: 30px !important;
+  font-weight: 300;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+}
+.inspectionTopline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 14px;
+  gap: 10px;
+}
+.inspectionTopline .collectionNote {
+  margin: 0;
+}
+.inspectionCopy h2 {
+  font-family: var(--font-print-display), sans-serif;
+  font-size: 36px;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin: 10px 0 21px;
+}
+.inspectionCopy > p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.seedReadout {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0 8px;
+  border-top: 1px solid #bfc6b7;
+  padding-top: 13px;
+  font-size: 12px;
+}
+.seedReadout output {
+  font-variant-numeric: tabular-nums;
+}
+.inspectionCopy .sourceNote {
+  font-size: 10px;
+  color: var(--quiet);
+}
+.studyControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 22px 0;
+}
+.studyControls button {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #8d9584;
+  padding: 4px 0;
+  font-size: 10px;
+}
+.studyControls button[aria-pressed="true"] {
+  color: #3448b5;
+  border-color: #3448b5;
+}
+.downloadButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 12px 16px;
+  background: #dde49e;
+  border: 1px solid #c8d17d;
+  font-size: 12px !important;
+}
+.downloadButton:hover {
+  background: #d2dc87;
+}
+.projectDetails {
+  padding-top: 25px;
+}
+.projectDetails h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+.projectDetails p {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #565e50;
+}
+.projectDetails .stack {
+  font-size: 10px;
+  margin: 12px 0 20px;
+}
+.projectDetails a {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.projectDetails svg {
+  width: 14px;
+  height: 14px;
+}
+
+.archive [lang="ja"] .headlineBlock h1 {
+  font-family: var(--font-geist-sans), "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: clamp(38px, 4.3vw, 70px);
+  letter-spacing: -3px;
+  line-height: 1.25;
+}
+.archive [lang="ja"] .caption h2 {
+  font-size: 14px;
+}
+.archive [lang="ja"] .colophon h2 {
+  font-family: inherit;
+  font-size: 21px;
+}
+@keyframes open-print {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1600px) {
+  .archive > div {
+    max-width: 1680px;
+    margin: auto;
+  }
+}
+@media (max-width: 1000px) {
+  .headlineBlock h1 {
+    font-size: 7vw;
+    letter-spacing: -4px;
+  }
+  .introduction {
+    gap: 30px;
+  }
+  .introCopy {
+    max-width: 240px;
+    font-size: 12px;
+  }
+  .gallery {
+    gap: 3%;
+  }
+  .paper,
+  .routes .paper {
+    padding: 20px 15px 13px;
+  }
+  .captionHeading {
+    gap: 7px;
+  }
+  .caption > p,
+  .edition {
+    margin-left: 21px;
+  }
+  .caption h2 {
+    font-size: 14px;
+  }
+  .inspectionArt {
+    padding: 30px;
+  }
+  .inspectionCopy {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .header {
+    height: 85px;
+    margin: 0 6%;
+  }
+  .identity {
+    gap: 9px;
+    font-size: 13px;
+  }
+  .identity > svg {
+    width: 28px;
+    height: 28px;
+  }
+  .identitySubtitle {
+    font-size: 9px;
+  }
+  .navigation {
+    gap: 20px;
+  }
+  .currentLink,
+  .aboutLink {
+    display: none;
+  }
+  .introduction {
+    margin: 0 6%;
+    padding: 35px 0 35px;
+    display: block;
+  }
+  .collectionNote {
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+  .headlineBlock h1 {
+    font-size: clamp(44px, 11.1vw, 72px);
+    letter-spacing: -2.7px;
+    line-height: 1.1;
+  }
+  .introCopy {
+    margin-top: 20px;
+    max-width: 290px;
+    font-size: 12px;
+  }
+  .introCopy p {
+    margin-bottom: 13px;
+  }
+  .introCopy a {
+    font-size: 10px;
+    gap: 13px;
+  }
+  .gallery {
+    display: block;
+    margin: 0 10%;
+    padding-bottom: 44px;
+  }
+  .project {
+    margin-bottom: 43px;
+  }
+  .project:last-child {
+    margin-bottom: 0;
+  }
+  .frame {
+    padding: 7px;
+    box-shadow:
+      inset 0 0 0 1px #50554b,
+      inset 0 0 0 3px #282c24,
+      2px 4px 5px #343c2929,
+      8px 15px 23px #343c2926;
+  }
+  .paper,
+  .routes .paper {
+    padding: 21px 20px 13px;
+  }
+  .voice {
+    padding-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .voice .paper {
+    padding: 20px 16px 13px;
+  }
+  .caption {
+    margin-top: 22px;
+  }
+  .caption h2 {
+    font-size: 16px;
+  }
+  .captionHeading {
+    gap: 12px;
+  }
+  .caption > p {
+    font-size: 12px;
+    margin-left: 26px;
+    margin-bottom: 15px;
+  }
+  .edition {
+    margin-left: 26px;
+    font-size: 9px;
+  }
+  .printSignature {
+    margin-top: 10px;
+    font-size: 5px;
+  }
+  .inspectHint {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    bottom: 18px;
+    padding: 7px 11px;
+    gap: 18px;
+    font-size: 9px;
+  }
+  .colophon {
+    margin: 0 6%;
+    padding: 27px 0;
+    display: block;
+  }
+  .colophonTitle {
+    gap: 12px;
+    margin-bottom: 19px;
+  }
+  .colophon h2 {
+    font-size: 20px;
+    letter-spacing: -0.7px;
+  }
+  .seedMark {
+    font-size: 33px;
+  }
+  .colophon > p {
+    font-size: 11px;
+  }
+  .footer {
+    margin: 0 6%;
+    font-size: 9px;
+    flex-wrap: wrap;
+    row-gap: 14px;
+  }
+  .footer > span:nth-child(2) {
+    order: 3;
+    width: 100%;
+  }
+  .dialog {
+    width: calc(100% - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+  .inspection {
+    display: flex;
+    flex-direction: column;
+  }
+  .inspectionArt {
+    padding: 28px 48px 12px;
+    width: 100%;
+  }
+  .inspectionCopy {
+    padding: 25px;
+    position: static;
+  }
+  .inspectionCopy h2 {
+    font-size: 30px;
+  }
+  .studyControls button {
+    min-height: 44px;
+  }
+  .closeButton {
+    position: fixed;
+    background: #eef0e9;
+    top: 18px;
+    right: 20px;
+  }
+  .archive [lang="ja"] .headlineBlock h1 {
+    font-size: 8vw;
+    letter-spacing: -1.7px;
+  }
+  .archive [lang="ja"] .colophon h2 {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive *,
+  .archive *::before,
+  .archive *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
