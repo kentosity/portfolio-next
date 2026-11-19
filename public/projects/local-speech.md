@@ -1,4 +1,4 @@
-# ローカル音声合成・macOS再生ツール
+# ローカルAI音声合成・macOS再生ツール
 
 **所属・関係:** 個人の開発プロジェクト
 
@@ -6,8 +6,18 @@
 
 ## 概要
 
-個人環境で使う、ローカル音声合成とmacOS再生アプリをAI支援で開発・導入。MLX / Kokoroによるストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。Herdr本体と音声モデルは既存の技術を利用しています。
+AIエージェントの応答を音声で聞くため、既存のHerdrとMLX／Kokoro音声モデルを利用した個人用ツールをAI支援で開発。Pythonのストリーミング音声合成とSwiftのmacOSプレーヤーを組み合わせ、単語に同期する字幕、キャンセル、再生の引き継ぎを実装しました。個人のMacへの導入・構成確認を記録しており、外部利用の実績は未確認です。
 
-## 技術
+## Overview
+
+Local AI speech and macOS playback
+
+**Context:** Independent project
+
+**Role:** Owner-directed, AI-assisted speech and macOS tool development
+
+Built personal tools for listening to AI-agent responses, using existing Herdr and MLX/Kokoro speech models. With AI assistance, developed a Python streaming speech service and a Swift macOS player with word-timed captions, cancellation and playback handover. Repository rollout records document installation and component checks on personal Macs; external adoption has not been verified.
+
+## 技術 / Stack
 
 Python, Swift, SwiftUI, AppKit, AVFoundation, MLX, Kokoro

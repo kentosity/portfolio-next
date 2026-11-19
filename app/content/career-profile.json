@@ -84,18 +84,18 @@
         "Data",
         "Automation"
       ],
-      "oneLiner": "FalconeXのクライアント業務として、美容室チェーンのPOSデータをBigQueryへ連携する仕組み、集計処理、Reactのダッシュボードを開発しました。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みと入力の欠落・重複の検証に対応。PythonによるWindows POSの定期帳票出力や失敗時の処理も実装しています。",
+      "oneLiner": "美容室チェーンのPOSデータを集計・分析につなぐため、FalconeXでTypeScript／PythonによるBigQueryへの取り込み、集計処理、React／Fastifyのダッシュボードを開発。全件・期間指定の取り込み、Parquet形式での受け渡し、Windows POSの定期帳票出力と失敗時の処理に対応しました。集計では入力の欠落・重複を検出し、推測値で補完しない構成にしています。",
       "stack": "TypeScript, Python, React, Fastify, BigQuery, Google Cloud Storage, Parquet",
       "role": "データ連携・アプリ開発・自動化",
       "link": "/portfolio/projects/salon-data-platform"
     },
     {
-      "title": "ローカル音声合成・macOS再生ツール",
+      "title": "ローカルAI音声合成・macOS再生ツール",
       "tags": [
         "macOS",
         "Speech"
       ],
-      "oneLiner": "個人環境で使う、ローカル音声合成とmacOS再生アプリをAI支援で開発・導入。MLX / Kokoroによるストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。Herdr本体と音声モデルは既存の技術を利用しています。",
+      "oneLiner": "AIエージェントの応答を音声で聞くため、既存のHerdrとMLX／Kokoro音声モデルを利用した個人用ツールをAI支援で開発。Pythonのストリーミング音声合成とSwiftのmacOSプレーヤーを組み合わせ、単語に同期する字幕、キャンセル、再生の引き継ぎを実装しました。個人のMacへの導入・構成確認を記録しており、外部利用の実績は未確認です。",
       "stack": "Python, Swift, SwiftUI, AppKit, AVFoundation, MLX, Kokoro",
       "role": "AI支援によるツール開発",
       "link": "/portfolio/projects/local-speech"
@@ -106,10 +106,34 @@
         "Serverless",
         "AWS"
       ],
-      "oneLiner": "LINEと連携する予約基盤を、AWS LambdaとDynamoDBによる構成へ再設計。入力・予約・チェックインの機能を分離し、共通のバリデーションと分析用データ連携に取り組みました。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
+      "oneLiner": "イベントごとに再利用できる構成とインフラ費の削減を目指し、LINE連携の予約基盤を再設計。Nuxt、TypeScript、AWS Lambda、DynamoDBで予約・チェックイン機能を分離し、共通バリデーションと分析用データ連携を整備しました。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
       "stack": "Nuxt.js, TypeScript, AWS Lambda, DynamoDB, Zod, CloudFront",
       "role": "アーキテクチャ設計・フルスタック開発",
       "link": "/portfolio/projects/event-platform"
+    },
+    {
+      "title": "補助金検索AIアシスタントのプロトタイプ",
+      "tags": [
+        "AI",
+        "Prototype"
+      ],
+      "oneLiner": "事業者の資金ニーズから補助金の検索条件を整理し、候補と出典を示すローカルAIプロトタイプを開発。TypeScript／Reactの画面、言語モデルとの対話処理、Playwrightの検索キューを接続しました。サーバー側で検索条件、候補ID、出典の抜粋を検証。限定的なローカル検索の確認記録があり、本番運用の準備状況は未確認です。",
+      "stack": "TypeScript, Node.js, React, Playwright",
+      "role": "プロトタイプ開発",
+      "link": "/portfolio/projects/subsidy-search-pilot"
+    }
+  ],
+  "projectGrid": [
+    {
+      "title": "AIエージェントのタスク・引き継ぎ管理",
+      "tags": [
+        "Agents",
+        "Developer Tools"
+      ],
+      "oneLiner": "AIエージェントの担当やセッションが変わっても、タスク・判断・引き継ぎを保持するGo／SQLiteのローカルサービスとCLIを開発。トランザクション、要求の重複処理、バージョン検証で状態を管理します。再起動時に実行結果が不明な処理は自動で再実行せず、確認待ちにします。確認した版はローカルでの検証段階で、実環境との連携は無効です。",
+      "stack": "Go, SQLite, HTTP/JSON, Unix sockets",
+      "role": "開発",
+      "link": "/portfolio/projects/agent-coordination"
     },
     {
       "title": "LINE連携チケット発券",
@@ -117,56 +141,10 @@
         "Queueing",
         "LINE"
       ],
-      "oneLiner": "イベント向けのチケット発券処理をフロントエンドとバックエンドから再構築。同時発券の競合に対応するBullMQのキュー制御、インフラのスケーリング、LINE通知に取り組みました。",
-      "stack": "Vue.js, Next.js, BullMQ, Redis, PostgreSQL, AWS ECS",
+      "oneLiner": "チケット公開時に集中する発券要求に対応するため、イベント向けの発券処理を再構築。Vueの画面とNestJSのバックエンドを開発し、BullMQ／Redisのキュー、Prisma／MySQLでの保存、LINE通知を組み合わせました。確認した実装では発券要求の受付とワーカー処理を分離しています。",
+      "stack": "TypeScript, Vue.js, NestJS, BullMQ, Redis, Prisma, MySQL",
       "role": "フルスタック開発",
       "link": "/portfolio/projects/event-ticketing"
-    }
-  ],
-  "projectGrid": [
-    {
-      "title": "FalconeXコーポレートサイト",
-      "tags": [
-        "Web",
-        "CMS"
-      ],
-      "oneLiner": "構造化したMarkdownコンテンツを読み込むWordPressテーマを開発。コンテンツのメタデータ検証や、入力エラーとフォーカス移動に配慮した問い合わせフォームを実装しています。",
-      "stack": "WordPress, PHP, JavaScript, Markdown",
-      "role": "Webサイト開発・保守",
-      "link": "/portfolio/projects/falconex-site"
-    },
-    {
-      "title": "エージェントのタスク管理基盤",
-      "tags": [
-        "Agents",
-        "Developer Tools"
-      ],
-      "oneLiner": "エージェントのセッションをまたいで、タスク・実行履歴・引き継ぎを保持するGoのサービスとCLIを開発。保存処理のトランザクション、重複要求の処理、結果が不明な実行の復旧に対応しています。実環境との連携は検証段階のローカル開発プロジェクトです。",
-      "stack": "Go, SQLite, HTTP/JSON, Unix sockets",
-      "role": "開発",
-      "link": "/portfolio/projects/agent-coordination"
-    },
-    {
-      "title": "補助金検索アシスタントのプロトタイプ",
-      "tags": [
-        "AI",
-        "Prototype"
-      ],
-      "oneLiner": "事業者向け補助金検索を対話形式で支援するローカルプロトタイプ。会話入力の検証、候補ごとの説明、出典の抜粋、検索ワーカーを分けて実装しています。",
-      "stack": "TypeScript, Node.js, React, Playwright",
-      "role": "プロトタイプ開発",
-      "link": "/portfolio/projects/subsidy-search-pilot"
-    },
-    {
-      "title": "有効期限付きMarkdown共有ツール",
-      "tags": [
-        "Web",
-        "Developer Tools"
-      ],
-      "oneLiner": "Cloudflare Workers向けのMarkdown共有アプリ。有効期限、重複検出、サイズ制限、リクエスト制御と、サーバー側でのMarkdown描画を実装しています。",
-      "stack": "TypeScript, Cloudflare Workers, Hono, R2, D1, markdown-it",
-      "role": "Webアプリ開発",
-      "link": "/portfolio/projects/markdown-sharing"
     },
     {
       "title": "SNAP — 結婚式場向けフォトブース",
@@ -174,21 +152,10 @@
         "Photobooth",
         "Product Development"
       ],
-      "oneLiner": "Introductionで、結婚式場向けフォトブースのイベント管理、ゲスト向けアルバム、会場表示を開発しました。確認したソースはNext.js、React、TypeScript、FirebaseとSalsa API連携を使用しています。開発履歴は2022年12月〜2024年10月ですが、2024年4月の退職後のコミットを在籍やサービス公開の根拠にはしていません。",
+      "oneLiner": "Introductionで、式場スタッフのイベント管理とゲストの写真閲覧をつなぐフォトブース用アプリを開発。Next.js、TypeScript、Firebase、Salsa APIでイベント設定、ゲスト向けアルバム、会場表示を実装しました。管理側・ゲスト側の両方をソースで確認しており、サービス公開や事業成果は未確認です。",
       "stack": "TypeScript, React, Next.js, Firebase, Mantine, Salsa API",
       "role": "アプリ開発・UI設計",
       "link": "/portfolio/projects/snap-photobooth"
-    },
-    {
-      "title": "Ongy — Instagramストーリー閲覧ツール",
-      "tags": [
-        "Web App",
-        "Design"
-      ],
-      "oneLiner": "企業の調査業務に使うInstagramストーリー閲覧アプリを開発。UIデザインからフロントエンド、バックエンド、デプロイまで担当しました。",
-      "stack": "React, Node.js, AWS",
-      "role": "デザイン・フルスタック開発",
-      "link": "/portfolio/projects/ongy-viewer"
     },
     {
       "title": "i+i — 建築事務所ポートフォリオ",
@@ -196,10 +163,43 @@
         "WordPress",
         "CMS"
       ],
-      "oneLiner": "建築事例を探しやすく見せるため、WordPressのテーマとコンテンツ構造を整備。情報設計、デザイン、CMSの実装に取り組みました。",
-      "stack": "WordPress, Sage, PHP, JavaScript",
+      "oneLiner": "建築事例の紹介と継続的な更新を両立するため、WordPress／Sageのテーマを開発。PHP／BladeとJavaScriptで編集用のカスタムブロックを実装しました。見学会は開催予定がない場合に直近の事例を表示。問い合わせ時のフォーカス移動や、動きを減らす設定に対応した一時停止可能なヒーロー表示も整備しました。",
+      "stack": "WordPress, Sage, PHP, Blade, JavaScript, Tailwind CSS, Vite",
       "role": "Webデザイン・開発",
       "link": "/portfolio/projects/architecture-portfolio"
+    },
+    {
+      "title": "FalconeXコーポレートサイト",
+      "tags": [
+        "Web",
+        "CMS"
+      ],
+      "oneLiner": "会社情報の更新と問い合わせ対応を共通の構成で管理するため、WordPress／PHPの独自テーマを開発。Markdownからのページ生成、メタデータ検証、JavaScriptによるフォームエラー表示とフォーカス移動を実装しました。不正・重複するページ情報を検出し、問い合わせ時には修正が必要な入力項目へ案内します。",
+      "stack": "WordPress, PHP, JavaScript, Markdown",
+      "role": "Webサイト開発・保守",
+      "link": "/portfolio/projects/falconex-site"
+    },
+    {
+      "title": "有効期限付きMarkdown共有ツール",
+      "tags": [
+        "Web",
+        "Developer Tools"
+      ],
+      "oneLiner": "Markdownを有効期限付きの閲覧リンクで共有するCloudflare Workers／Honoアプリを開発。R2に文書を保存し、D1で公開メタデータを管理します。サイズ・リクエスト数の制限、重複検出、期限切れリンクの拒否を実装しました。確認したソースの機能であり、公開版との一致は未確認です。",
+      "stack": "TypeScript, Cloudflare Workers, Hono, R2, D1, markdown-it",
+      "role": "Webアプリ開発",
+      "link": "/portfolio/projects/markdown-sharing"
+    },
+    {
+      "title": "Ongy — Instagram調査用プロトタイプ",
+      "tags": [
+        "Prototype",
+        "Web App"
+      ],
+      "oneLiner": "Introductionで、企業の調査業務に向けたInstagramストーリー閲覧プロトタイプを開発。UIデザイン、フロントエンド、バックエンド、AWSへのデプロイまで担当しました。過去のプロジェクト資料には、ストーリーの閲覧・整理に使うプロトタイプの完成が記録されています。サービス公開の記録はありません。",
+      "stack": "AWS",
+      "role": "在学中のインターン・アルバイト：デザイン・フルスタック開発",
+      "link": "/portfolio/projects/ongy-viewer"
     }
   ],
   "skills": [
@@ -261,23 +261,23 @@
     {
       "tag": "Data",
       "title": "美容室チェーン向けデータ連携・レポート基盤",
-      "desc": "FalconeXのクライアント業務として、美容室チェーンのPOSデータをBigQueryへ連携する仕組み、集計処理、Reactのダッシュボードを開発しました。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みと入力の欠落・重複の検証に対応。PythonによるWindows POSの定期帳票出力や失敗時の処理も実装しています。",
+      "desc": "美容室チェーンのPOSデータを集計・分析につなぐため、FalconeXでTypeScript／PythonによるBigQueryへの取り込み、集計処理、React／Fastifyのダッシュボードを開発。全件・期間指定の取り込み、Parquet形式での受け渡し、Windows POSの定期帳票出力と失敗時の処理に対応しました。集計では入力の欠落・重複を検出し、推測値で補完しない構成にしています。",
       "stack": "TypeScript · Python · React · Fastify · BigQuery · Google Cloud Storage · Parquet",
       "link": "/portfolio/projects/salon-data-platform"
     },
     {
       "tag": "macOS",
-      "title": "ローカル音声合成・macOS再生ツール",
-      "desc": "個人環境で使う、ローカル音声合成とmacOS再生アプリをAI支援で開発・導入。MLX / Kokoroによるストリーミング音声、単語単位のタイミング、キャンセル、字幕表示、再生状態の管理を実装しています。Herdr本体と音声モデルは既存の技術を利用しています。",
+      "title": "ローカルAI音声合成・macOS再生ツール",
+      "desc": "AIエージェントの応答を音声で聞くため、既存のHerdrとMLX／Kokoro音声モデルを利用した個人用ツールをAI支援で開発。Pythonのストリーミング音声合成とSwiftのmacOSプレーヤーを組み合わせ、単語に同期する字幕、キャンセル、再生の引き継ぎを実装しました。個人のMacへの導入・構成確認を記録しており、外部利用の実績は未確認です。",
       "stack": "Python · Swift · SwiftUI · AppKit · AVFoundation · MLX · Kokoro",
       "link": "/portfolio/projects/local-speech"
     },
     {
-      "tag": "Web",
-      "title": "有効期限付きMarkdown共有ツール",
-      "desc": "Cloudflare Workers向けのMarkdown共有アプリ。有効期限、重複検出、サイズ制限、リクエスト制御と、サーバー側でのMarkdown描画を実装しています。",
-      "stack": "TypeScript · Cloudflare Workers · Hono · R2 · D1 · markdown-it",
-      "link": "/portfolio/projects/markdown-sharing"
+      "tag": "Serverless",
+      "title": "イベント管理基盤の再設計",
+      "desc": "イベントごとに再利用できる構成とインフラ費の削減を目指し、LINE連携の予約基盤を再設計。Nuxt、TypeScript、AWS Lambda、DynamoDBで予約・チェックイン機能を分離し、共通バリデーションと分析用データ連携を整備しました。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
+      "stack": "Nuxt.js · TypeScript · AWS Lambda · DynamoDB · Zod · CloudFront",
+      "link": "/portfolio/projects/event-platform"
     }
   ],
   "results": [
