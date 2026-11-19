@@ -6,7 +6,7 @@
 
 ## 概要
 
-AIエージェントの応答を音声で聞くため、既存のHerdrとMLX／Kokoro音声モデルを利用した個人用ツールをAI支援で開発。Pythonのストリーミング音声合成とSwiftのmacOSプレーヤーを組み合わせ、単語に同期する字幕、キャンセル、再生の引き継ぎを実装しました。個人のMacへの導入・構成確認を記録しており、外部利用の実績は未確認です。
+AIエージェントの応答を音声で聞くため、既存のHerdrとMLX／Kokoro音声モデルを利用した個人用ツールをAI支援で開発。Pythonのストリーミング音声合成とSwiftのmacOSプレーヤーを組み合わせ、単語に同期する字幕、キャンセル、再生の引き継ぎを実装しました。
 
 ## Overview
 
@@ -16,7 +16,7 @@ Local AI speech and macOS playback
 
 **Role:** Owner-directed, AI-assisted speech and macOS tool development
 
-Built personal tools for listening to AI-agent responses, using existing Herdr and MLX/Kokoro speech models. With AI assistance, developed a Python streaming speech service and a Swift macOS player with word-timed captions, cancellation and playback handover. Repository rollout records document installation and component checks on personal Macs; external adoption has not been verified.
+Built personal tools for listening to AI-agent responses, using existing Herdr and MLX/Kokoro speech models. With AI assistance, developed a Python streaming speech service and a Swift macOS player with word-timed captions, cancellation and playback handover.
 
 ## 技術 / Stack
 
