@@ -6,7 +6,7 @@
 
 ## 概要
 
-Introductionで、企業の調査業務に向けたInstagramストーリー閲覧プロトタイプを開発。UIデザイン、フロントエンド、バックエンド、AWSへのデプロイまで担当しました。過去のプロジェクト資料には、ストーリーの閲覧・整理に使うプロトタイプの完成が記録されています。サービス公開の記録はありません。
+Introductionで、企業の調査業務に向けたInstagramストーリー閲覧プロトタイプを開発。UIデザイン、フロントエンド、バックエンド、AWSへのデプロイまで担当しました。ストーリーの閲覧・整理に対応しています。
 
 ## Overview
 
@@ -16,7 +16,7 @@ Ongy — Instagram research prototype
 
 **Role:** Student intern/part-time: design and full-stack development
 
-Designed and developed an Instagram story-viewing prototype for business research at Introduction, covering the interface, frontend, backend and AWS deployment. Historical project materials describe a completed prototype for browsing and organizing stories. The work reached the prototype stage, with no public launch recorded.
+Designed and developed an Instagram story-viewing prototype for business research at Introduction, covering the interface, frontend, backend and AWS deployment. The prototype supports browsing and organizing stories.
 
 ## 技術 / Stack
 
