@@ -1,0 +1,930 @@
+@font-face {
+  font-family: NotebookHand;
+  src: url("/lab/notebook/fonts/caveat-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: NotebookSerif;
+  src: url("/lab/notebook/fonts/newsreader-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+.field-notebook {
+  --paper: #fafbf7;
+  --ink: #313b35;
+  --pencil: #788077;
+  --red: #bc4938;
+  --line: #d6dcd3;
+  position: relative;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  padding: 0 4.2%;
+  isolation: isolate;
+}
+.field-notebook::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(#7c927315 1px, transparent 1px),
+    linear-gradient(90deg, #7c927315 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.42;
+}
+.field-notebook :where(button, a, summary) {
+  -webkit-tap-highlight-color: transparent;
+}
+.field-notebook :where(a, button, summary):focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 6px;
+}
+.field-notebook button {
+  font: inherit;
+  cursor: pointer;
+}
+.field-notebook a {
+  text-decoration: none;
+}
+.field-notebook button,
+.field-notebook a,
+.field-notebook summary {
+  touch-action: manipulation;
+}
+.field-notebook ::selection {
+  background: #bc49382e;
+  color: var(--ink);
+}
+.diagram-definitions {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.notebook-header {
+  max-width: 1440px;
+  margin: auto;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--ink);
+}
+.notebook-brand {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.brand-mark {
+  font:
+    500 49px/0.8 NotebookHand,
+    cursive;
+  letter-spacing: -3px;
+  transform: rotate(-9deg);
+  border: 1px solid var(--ink);
+  border-radius: 50% 44% 50% 43%;
+  padding: 5px 12px 13px 9px;
+}
+.brand-japanese {
+  display: block;
+  color: #7a8075;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  margin-top: 3px;
+}
+.header-middle {
+  font:
+    500 24px NotebookHand,
+    cursive;
+  color: #6b7369;
+  transform: rotate(-2deg);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  font-size: 13px;
+}
+.header-actions > a {
+  border-bottom: 1px solid var(--pencil);
+}
+.language-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8c9188;
+}
+.language-control button {
+  border: 0;
+  background: none;
+  padding: 9px 3px;
+  color: #6f776d;
+  font-size: 13px;
+}
+.language-control button[aria-pressed="true"] {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+.notebook-layout {
+  max-width: 1440px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 183px minmax(0, 1fr);
+}
+.notebook-index {
+  padding: 47px 24px 0 0;
+  border-right: 1px solid #bc493856;
+}
+.index-sticky {
+  position: sticky;
+  top: 35px;
+}
+.index-label {
+  font-size: 12px;
+  color: #767d71;
+  margin: 0 0 22px;
+}
+.notebook-index nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.notebook-index nav a {
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #6e776b;
+  min-height: 30px;
+}
+.notebook-index nav a.is-current {
+  color: var(--ink);
+}
+.index-dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #9ba491;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.is-current .index-dot {
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px #bc49380d;
+}
+.index-scribble {
+  margin-top: 66px;
+  padding: 0 10px;
+  color: #71796d;
+  transform: rotate(-5deg);
+}
+.index-scribble svg {
+  width: 67px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+}
+.index-scribble span {
+  display: block;
+  font:
+    500 20px/1.15 NotebookHand,
+    cursive;
+  max-width: 110px;
+  margin-top: 10px;
+}
+.index-bottom {
+  display: inline-block;
+  margin-top: 62px;
+  font-size: 12px;
+  border-bottom: 1px solid #a5ad9e;
+  color: #6e776b;
+}
+.notebook-layout main {
+  min-width: 0;
+  padding-left: 43px;
+}
+.notebook-intro {
+  min-height: 250px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 30px;
+  padding: 28px 0 20px;
+}
+.intro-copy {
+  position: relative;
+}
+.intro-eyebrow {
+  font-size: 13px;
+  margin: 0 0 18px;
+  color: #6c7566;
+}
+.notebook-intro h1 {
+  font:
+    400 clamp(47px, 4.2vw, 70px) / 0.98 NotebookSerif,
+    Georgia,
+    serif;
+  letter-spacing: -1.9px;
+  margin: 0;
+}
+.intro-underline {
+  width: 83%;
+  max-width: 450px;
+  height: 20px;
+  margin-top: 9px;
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 1.4;
+  transform: rotate(-1deg);
+}
+.intro-note {
+  max-width: 272px;
+  padding-top: 47px;
+  justify-self: center;
+}
+.handwritten {
+  font:
+    500 27px/1.15 NotebookHand,
+    "Hiragino Kaku Gothic ProN",
+    cursive;
+  color: var(--red);
+}
+.intro-note .handwritten {
+  font-size: 19px;
+  display: inline-block;
+  transform: rotate(-5deg);
+  letter-spacing: 0.04em;
+}
+.intro-note p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 18px 0 0;
+  color: #64705f;
+}
+.intro-note svg {
+  width: 128px;
+  height: 49px;
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 1.4;
+  margin: 8px 0 -10px 58px;
+}
+.notebook-study {
+  border-top: 1px solid var(--ink);
+  scroll-margin-top: 25px;
+  padding: 28px 0 0;
+  margin-bottom: 57px;
+}
+.study-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.study-subject {
+  font-size: 12px;
+  color: #6a7363;
+  margin: 0 0 8px;
+}
+.study-heading h2 {
+  font:
+    400 39px/1.14 NotebookSerif,
+    Georgia,
+    serif;
+  letter-spacing: -0.7px;
+  margin: 0;
+}
+.study-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 26px;
+  padding-top: 17px;
+}
+.drawing-area {
+  min-width: 0;
+  align-self: start;
+}
+.notebook-diagram {
+  width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+  height: auto;
+  display: block;
+  overflow: visible;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.notebook-diagram text {
+  stroke: none;
+  fill: #59624f;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.notebook-diagram .sketch-note {
+  font:
+    500 23px NotebookHand,
+    "Hiragino Kaku Gothic ProN",
+    cursive;
+  fill: var(--red);
+}
+.notebook-diagram .drawing-caption {
+  font-size: 11px;
+  fill: #7c8473;
+  letter-spacing: 0.04em;
+}
+.notebook-diagram .player-caption {
+  font-size: 13px;
+  fill: #59624f;
+}
+.construction-lines {
+  stroke: #a5afa0;
+  stroke-width: 0.8;
+  stroke-dasharray: 5 6;
+  opacity: 0.62;
+  fill: none;
+}
+.paper-fill {
+  fill: var(--paper);
+}
+.hatch-fill {
+  fill: url(#notebook-hatch);
+  stroke: none;
+  opacity: 0.6;
+}
+.flow-line,
+.annotation-line {
+  stroke: var(--red);
+  color: var(--red);
+  stroke-width: 1.5;
+  fill: none;
+}
+.diagram-part {
+  transition: filter 0.3s ease;
+}
+.diagram-part.is-inspected {
+  filter: drop-shadow(0 3px 0 #b8c0ae29);
+}
+.diagram-part.is-inspected > .paper-fill {
+  fill: #edf0e3;
+  stroke: var(--red);
+}
+.stage-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0;
+  padding: 12px 0 22px;
+  flex-wrap: wrap;
+}
+.stage-prompt {
+  font:
+    500 20px NotebookHand,
+    cursive;
+  color: #6f7966;
+  margin-right: 12px;
+  transform: rotate(-3deg);
+}
+.stage-controls button {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 7px 8px;
+  color: #68725f;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+}
+.stage-controls button > span {
+  font-size: 11px;
+  border: 1px solid #a6ae9c;
+  border-radius: 50%;
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+.stage-controls button[aria-pressed="true"] {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+.stage-controls button[aria-pressed="true"] > span {
+  border-color: var(--red);
+  background: #bc49380a;
+}
+.stage-controls button:hover {
+  background: #e4e8db70;
+}
+.study-notes {
+  border-left: 1px solid var(--line);
+  padding: 14px 0 10px 23px;
+  margin-top: 7px;
+  align-self: start;
+}
+.project-summary {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 24px;
+}
+.stage-detail {
+  min-height: 115px;
+}
+.stage-detail h3 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--red);
+  margin: 0 0 7px;
+}
+.stage-detail p {
+  font-size: 14px;
+  color: #66705e;
+  line-height: 1.75;
+  margin: 0;
+}
+.margin-note {
+  font:
+    500 23px/1.18 NotebookHand,
+    "Hiragino Kaku Gothic ProN",
+    cursive;
+  color: var(--red);
+  transform: rotate(-3deg);
+  margin: 22px 0 26px;
+  padding-left: 3px;
+}
+.project-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.link-book {
+  font-size: 22px;
+  line-height: 1;
+  color: #68725f;
+}
+.technical-note {
+  margin-top: 16px;
+  color: #727b68;
+  font-size: 12px;
+}
+.technical-note summary {
+  cursor: pointer;
+  padding: 4px 0;
+  min-height: 32px;
+}
+.technical-note p {
+  overflow-wrap: anywhere;
+  line-height: 1.8;
+  margin-top: 12px;
+}
+.study-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: #7b8371;
+  padding: 13px 0;
+  gap: 24px;
+  margin-top: 19px;
+}
+.notebook-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 0 50px;
+}
+.notebook-end > a {
+  font-size: 13px;
+  border-bottom: 1px solid var(--ink);
+}
+.end-signature {
+  font:
+    500 37px NotebookHand,
+    cursive;
+  transform: rotate(-8deg);
+}
+.notebook-skip {
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  transform: translateY(-200%);
+  padding: 12px 20px;
+  background: var(--paper);
+  z-index: 20;
+  border: 1px solid var(--red);
+}
+.notebook-skip:focus {
+  transform: none;
+}
+.field-notebook[lang="ja"] .notebook-intro h1 {
+  font-family: NotebookSerif, "Yu Mincho", serif;
+  line-height: 1.25;
+  font-size: 52px;
+  letter-spacing: -1px;
+}
+.field-notebook[lang="ja"] .study-heading h2 {
+  font-family: "Yu Mincho", serif;
+  font-size: 29px;
+}
+.field-notebook[lang="ja"] .margin-note {
+  font-size: 17px;
+  line-height: 1.8;
+}
+.field-notebook[lang="ja"] .notebook-diagram .sketch-note {
+  font-size: 16px;
+}
+@media (min-width: 1600px) {
+  .study-body {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+  .notebook-intro {
+    min-height: 370px;
+  }
+}
+@media (max-width: 1100px) {
+  .field-notebook {
+    padding: 0 3%;
+  }
+  .notebook-layout {
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+  .notebook-layout main {
+    padding-left: 28px;
+  }
+  .study-body {
+    grid-template-columns: minmax(0, 1fr) 195px;
+    gap: 15px;
+  }
+  .study-notes {
+    padding-left: 17px;
+  }
+  .header-middle {
+    font-size: 21px;
+  }
+  .notebook-index {
+    padding-right: 13px;
+  }
+  .notebook-intro h1 {
+    font-size: 53px;
+  }
+  .intro-note {
+    max-width: 220px;
+  }
+  .study-heading h2 {
+    font-size: 35px;
+  }
+  .stage-prompt {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+  .stage-controls {
+    gap: 0;
+  }
+  .stage-controls button {
+    padding: 6px;
+  }
+  .study-footer {
+    font-size: 10px;
+  }
+}
+@media (max-width: 800px) {
+  .notebook-header {
+    min-height: 90px;
+  }
+  .header-middle {
+    display: none;
+  }
+  .notebook-layout {
+    grid-template-columns: 1fr;
+  }
+  .notebook-index {
+    border-right: 0;
+    border-bottom: 1px solid #bc493856;
+    padding: 17px 0;
+  }
+  .index-sticky {
+    position: static;
+  }
+  .index-label,
+  .index-scribble,
+  .index-bottom {
+    display: none;
+  }
+  .notebook-index nav {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .notebook-index nav a {
+    font-size: 12px;
+  }
+  .notebook-layout main {
+    padding-left: 0;
+  }
+  .notebook-intro {
+    min-height: 310px;
+    grid-template-columns: 1.4fr 1fr;
+    padding: 35px 0 30px;
+  }
+  .notebook-intro h1 {
+    font-size: 58px;
+  }
+  .study-body {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 15px;
+  }
+  .study-heading h2 {
+    font-size: 37px;
+  }
+  .stage-detail {
+    min-height: 120px;
+  }
+  .stage-controls button {
+    font-size: 11px;
+  }
+}
+@media (max-width: 600px) {
+  .field-notebook {
+    padding: 0 23px;
+  }
+  .notebook-header {
+    min-height: 83px;
+    gap: 10px;
+  }
+  .notebook-brand {
+    font-size: 12px;
+    gap: 10px;
+  }
+  .brand-mark {
+    font-size: 36px;
+    padding: 4px 10px 10px 7px;
+  }
+  .brand-japanese {
+    font-size: 10px;
+  }
+  .header-actions {
+    gap: 18px;
+    font-size: 11px;
+  }
+  .header-actions > a {
+    display: none;
+  }
+  .language-control {
+    gap: 5px;
+  }
+  .language-control button {
+    font-size: 12px;
+    padding: 12px 3px;
+  }
+  .notebook-index {
+    padding: 13px 0;
+  }
+  .notebook-index nav {
+    gap: 8px;
+  }
+  .notebook-index nav a {
+    font-size: 11px;
+    gap: 6px;
+  }
+  .index-dot {
+    width: 5px;
+    height: 5px;
+  }
+  .notebook-intro {
+    display: block;
+    min-height: 0;
+    padding: 36px 0 20px;
+  }
+  .intro-eyebrow {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+  .notebook-intro h1 {
+    font-size: 43px;
+    line-height: 1.03;
+    letter-spacing: -1.5px;
+  }
+  .intro-underline {
+    width: 90%;
+    height: 17px;
+    margin-top: 4px;
+  }
+  .intro-note {
+    max-width: none;
+    padding-top: 13px;
+    position: relative;
+  }
+  .intro-note .handwritten {
+    font-size: 15px;
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    transform: rotate(-5deg);
+  }
+  .intro-note p {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 290px;
+    margin: 24px 0 15px;
+  }
+  .intro-note svg {
+    display: none;
+  }
+  .notebook-study {
+    padding-top: 23px;
+    margin-bottom: 40px;
+    scroll-margin-top: 15px;
+  }
+  .study-subject {
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+  .study-heading h2 {
+    font-size: 32px;
+    letter-spacing: -0.6px;
+  }
+  .study-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 19px;
+  }
+  .notebook-diagram {
+    width: calc(100% + 14px);
+    margin-left: -7px;
+  }
+  .notebook-diagram text {
+    font-size: 22px;
+  }
+  .notebook-diagram .sketch-note {
+    font-size: 25px;
+  }
+  .notebook-diagram .drawing-caption {
+    font-size: 12px;
+  }
+  .stage-controls {
+    flex-wrap: nowrap;
+    padding: 13px 0 10px;
+    gap: 3px;
+    justify-content: space-between;
+  }
+  .stage-prompt {
+    font-size: 17px;
+    width: auto;
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+  .stage-controls button {
+    font-size: 12px;
+    padding: 5px 2px;
+    gap: 4px;
+  }
+  .stage-controls button > span {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+  .study-notes {
+    border-left: 0;
+    border-top: 1px dashed var(--line);
+    padding: 20px 0 5px;
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+  .project-summary {
+    grid-column: 1/-1;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 34ch;
+  }
+  .stage-detail {
+    min-height: 135px;
+    grid-column: 1/-1;
+  }
+  .stage-detail h3 {
+    font-size: 12px;
+  }
+  .stage-detail p {
+    font-size: 14px;
+    max-width: 38ch;
+  }
+  .margin-note {
+    grid-column: 1/-1;
+    font-size: 24px;
+    margin: 4px 0 20px;
+    max-width: 260px;
+  }
+  .project-link {
+    grid-column: 1/-1;
+    font-size: 13px;
+  }
+  .technical-note {
+    grid-column: 1/-1;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .study-footer {
+    font-size: 9px;
+    gap: 12px;
+    margin-top: 11px;
+    padding: 12px 0;
+  }
+  .study-footer > span:last-child {
+    max-width: 116px;
+    text-align: right;
+  }
+  .notebook-end {
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-bottom: 35px;
+  }
+  .notebook-end > .handwritten {
+    font-size: 25px;
+    width: 100%;
+  }
+  .notebook-end > a {
+    font-size: 12px;
+  }
+  .end-signature {
+    margin-left: auto;
+  }
+  .field-notebook[lang="ja"] .notebook-intro h1 {
+    font-size: 44px;
+  }
+  .field-notebook[lang="ja"] .study-heading h2 {
+    font-size: 25px;
+  }
+  .field-notebook[lang="ja"] .stage-prompt {
+    font-size: 12px;
+  }
+  .field-notebook[lang="ja"] .notebook-index nav a {
+    font-size: 9px;
+  }
+  .field-notebook[lang="ja"] .notebook-diagram .sketch-note {
+    font-size: 18px;
+  }
+}
+@media (max-width: 359px) {
+  .notebook-intro h1 {
+    font-size: 36px;
+  }
+  .notebook-index nav a {
+    font-size: 9px;
+  }
+  .study-heading h2 {
+    font-size: 28px;
+  }
+  .stage-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stage-prompt {
+    width: 100%;
+    text-align: left;
+  }
+  .stage-controls button {
+    flex: 1;
+    justify-content: center;
+  }
+  .field-notebook[lang="ja"] .notebook-intro h1 {
+    font-size: 36px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-notebook * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+  .notebook-diagram [data-draw] {
+    stroke-dashoffset: 0 !important;
+  }
+  .hero-underline {
+    stroke-dashoffset: 0 !important;
+  }
+}
