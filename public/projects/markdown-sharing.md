@@ -6,8 +6,18 @@
 
 ## 概要
 
-Cloudflare Workers向けのMarkdown共有アプリ。有効期限、重複検出、サイズ制限、リクエスト制御と、サーバー側でのMarkdown描画を実装しています。
+Markdownを有効期限付きの閲覧リンクで共有するCloudflare Workers／Honoアプリを開発。R2に文書を保存し、D1で公開メタデータを管理します。サイズ・リクエスト数の制限、重複検出、期限切れリンクの拒否を実装しました。確認したソースの機能であり、公開版との一致は未確認です。
 
-## 技術
+## Overview
+
+Expiring Markdown sharing tool
+
+**Context:** Independent project
+
+**Role:** Markdown sharing application development
+
+Built a Cloudflare Workers/Hono application for sharing rendered Markdown through expiring links. R2 stores documents and D1 tracks publication metadata; the implementation enforces size and rate limits, detects duplicates and rejects expired shares. These capabilities are present in the reviewed source; deployed feature parity has not been verified.
+
+## 技術 / Stack
 
 TypeScript, Cloudflare Workers, Hono, R2, D1, markdown-it

@@ -1,4 +1,4 @@
-# 補助金検索アシスタントのプロトタイプ
+# 補助金検索AIアシスタントのプロトタイプ
 
 **所属・関係:** 個人の開発プロジェクト
 
@@ -6,8 +6,18 @@
 
 ## 概要
 
-事業者向け補助金検索を対話形式で支援するローカルプロトタイプ。会話入力の検証、候補ごとの説明、出典の抜粋、検索ワーカーを分けて実装しています。
+事業者の資金ニーズから補助金の検索条件を整理し、候補と出典を示すローカルAIプロトタイプを開発。TypeScript／Reactの画面、言語モデルとの対話処理、Playwrightの検索キューを接続しました。サーバー側で検索条件、候補ID、出典の抜粋を検証。限定的なローカル検索の確認記録があり、本番運用の準備状況は未確認です。
 
-## 技術
+## Overview
+
+AI subsidy-search assistant prototype
+
+**Context:** Independent project
+
+**Role:** AI search prototype and application development
+
+Built a local AI prototype that turns a business’s funding needs into subsidy-search conditions and source-linked candidate explanations. A TypeScript/React workspace connects a language-model conversation layer to a queued Playwright search worker. Server checks validate conditions, candidate IDs and source excerpts. Repository records document bounded local search checks; production readiness remains unverified.
+
+## 技術 / Stack
 
 TypeScript, Node.js, React, Playwright

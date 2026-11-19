@@ -8,8 +8,20 @@
 
 ## 概要
 
-Introductionで、結婚式場向けフォトブースのイベント管理、ゲスト向けアルバム、会場表示を開発しました。確認したソースはNext.js、React、TypeScript、FirebaseとSalsa API連携を使用しています。開発履歴は2022年12月〜2024年10月ですが、2024年4月の退職後のコミットを在籍やサービス公開の根拠にはしていません。
+Introductionで、式場スタッフのイベント管理とゲストの写真閲覧をつなぐフォトブース用アプリを開発。Next.js、TypeScript、Firebase、Salsa APIでイベント設定、ゲスト向けアルバム、会場表示を実装しました。管理側・ゲスト側の両方をソースで確認しており、サービス公開や事業成果は未確認です。
 
-## 技術
+## Overview
+
+SNAP — wedding photobooth product
+
+**Context:** Introduction Inc.
+
+**Role:** Application development and interface design
+
+**Period:** Repository history: December 2022 – October 2024; Introduction employment ended April 2024
+
+Developed connected applications for venue staff and wedding guests to manage photobooth events and view captured photos at Introduction. Built event settings, guest albums and venue displays with Next.js, TypeScript, Firebase and the Salsa API. The reviewed source contains both administration and guest-facing flows; a public launch or commercial result has not been verified.
+
+## 技術 / Stack
 
 TypeScript, React, Next.js, Firebase, Mantine, Salsa API
