@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import careerProfile from "./content/career-profile.json";
+
+const profileTitle = `${careerProfile.name} | FalconeX・フルスタックエンジニア`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,21 +17,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "飯塚健杜 | フルスタックエンジニア",
+  title: profileTitle,
   description:
-    "React / Next.js / AWS を活用したフルスタックエンジニア。イベント管理システムやB2B SaaSの開発を通じて、スタートアップの技術課題解決とプロダクト成長に貢献。",
+    careerProfile.hero_summary,
   keywords: ["フルスタックエンジニア", "Next.js", "React", "AWS", "サーバーレス", "スタートアップ"],
   robots: "noindex, nofollow",
   openGraph: {
-    title: "飯塚健杜 | フルスタックエンジニア",
-    description: "React / Next.js / AWS を活用したフルスタックエンジニア。イベント管理システムやB2B SaaSの開発を通じて、スタートアップの技術課題解決とプロダクト成長に貢献。",
+    title: profileTitle,
+    description: careerProfile.hero_summary,
     type: "website",
     locale: "ja_JP",
-    url: "https://iizuka.dev",
+    url: careerProfile.links.portfolio,
     siteName: "飯塚健杜 ポートフォリオ",
     images: [
       {
-        url: "https://iizuka.dev/profile.jpg",
+        url: `${careerProfile.links.portfolio}/profile.jpg`,
         width: 1200,
         height: 630,
         alt: "飯塚健杜 - フルスタックエンジニア",
@@ -38,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "飯塚健杜 | フルスタックエンジニア",
-    description: "React / Next.js / AWS を活用したフルスタックエンジニア。イベント管理システムやB2B SaaSの開発経験。",
-    images: ["https://iizuka.dev/profile.jpg"],
+    title: profileTitle,
+    description: careerProfile.hero_summary,
+    images: [`${careerProfile.links.portfolio}/profile.jpg`],
   },
   other: {
     "X-Robots-Tag": "noindex, nofollow, noarchive, nocache",
