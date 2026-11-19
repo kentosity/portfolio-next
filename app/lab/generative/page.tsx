@@ -12,7 +12,7 @@ const display = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Work, in print. | Kento Iizuka",
+  title: "Selected work | Kento Iizuka",
   description:
     "An archive of engineering projects, each interpreted as an original, repeatable computational print.",
 };
@@ -23,6 +23,7 @@ const editions: {
   title: string;
   summary: string;
   summaryJa: string;
+  role: string;
   interpretation: string;
   interpretationJa: string;
 }[] = [
@@ -33,7 +34,8 @@ const editions: {
     summary:
       "Connects salon sales data to reporting, with automated imports and checks for missing or duplicate records.",
     summaryJa:
-      "美容室の売上データをレポートにつなぎ、取り込みの自動化と欠落・重複の検出を行う基盤。",
+      "美容室の売上データをレポートにつなぎ、取り込みの自動化と欠落・重複の検出を行います。",
+    role: "Data integration, application development & automation",
     interpretation:
       "Seven streams bend into a shared current, echoing the movement from separate data sources to one reporting system.",
     interpretationJa:
@@ -46,7 +48,8 @@ const editions: {
     summary:
       "Turns AI responses into streaming speech on macOS, with word-timed captions and playback controls.",
     summaryJa:
-      "AIの応答をmacOSで音声再生し、単語に同期する字幕と再生操作を提供するツール。",
+      "AIの応答をmacOSで音声再生し、単語に同期する字幕と再生操作を提供します。",
+    role: "AI-assisted tool development",
     interpretation:
       "Nested oscillations gather around a quiet center. The seven technologies in the stack set the harmonic frequency.",
     interpretationJa:
@@ -57,9 +60,10 @@ const editions: {
     name: "Common ground",
     title: "Event platform",
     summary:
-      "Separates reservations and check-in into reusable services, reducing annual infrastructure costs by about 95%.",
+      "Reusable reservation and check-in services reduced annual infrastructure costs by about 95%.",
     summaryJa:
-      "予約とチェックインを再利用できる機能に分け、年間インフラ費を約95%削減した基盤。",
+      "予約とチェックインを再利用できる機能に分け、年間インフラ費を約95%削減しました。",
+    role: "Architecture & full-stack development",
     interpretation:
       "Six families of paths share a small set of turns, interpreting the platform's modular, reusable structure.",
     interpretationJa:
@@ -75,7 +79,7 @@ export default function GenerativePage() {
     .map((project, index) => ({
       ...editions[index],
       sourceTitle: project.title,
-      sourceSummary: project.oneLiner,
+      roleJa: project.role,
       stack: project.stack,
       href: project.link,
       reviewed,

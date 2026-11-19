@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { createPrint, projectSeed, type PrintKind } from "./art";
+import PrintImage from "./print-image";
 import styles from "./prints.module.css";
 
 export type ArchiveProject = {
@@ -10,9 +11,10 @@ export type ArchiveProject = {
   name: string;
   title: string;
   sourceTitle: string;
-  sourceSummary: string;
   summary: string;
   summaryJa: string;
+  role: string;
+  roleJa: string;
   interpretation: string;
   interpretationJa: string;
   stack: string;
@@ -31,72 +33,59 @@ function printSource(project: ArchiveProject) {
   };
 }
 
-function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+function Mark() {
   return (
     <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
       fill="none"
       aria-hidden="true"
     >
       <path
-        d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h16m-6-6 6 6-6 6"}
+        d="M3 5h7M15 5h14M3 12h15M23 12h6M3 19h7M15 19h14M3 26h15M23 26h6"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="2"
       />
     </svg>
   );
 }
 
-function Mark() {
-  return (
-    <svg
-      width="33"
-      height="33"
-      viewBox="0 0 36 36"
-      fill="none"
-      aria-hidden="true"
-    >
-      {[0, 1, 2, 3, 4].map((index) => (
-        <path
-          key={index}
-          d={`M${4 + index * 5} 5v${23 - index * 3}l${24 - index * 5} -${16 - index * 2}`}
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-      ))}
-    </svg>
-  );
-}
-
-function PrintImage({
-  project,
-  variation = 0,
-  construction = false,
+function LanguageSwitch({
+  language,
+  onChange,
 }: {
-  project: ArchiveProject;
-  variation?: number;
-  construction?: boolean;
+  language: Language;
+  onChange: (language: Language) => void;
 }) {
-  const artwork = useMemo(
-    () => createPrint(printSource(project), variation, construction),
-    [project, variation, construction],
-  );
   return (
-    <div
-      className={styles.artwork}
-      aria-hidden="true"
-      dangerouslySetInnerHTML={{ __html: artwork }}
-    />
+    <div className={styles.languages} role="group" aria-label="Language / 言語">
+      {(["en", "ja"] as const).map((option) => (
+        <button
+          key={option}
+          type="button"
+          aria-pressed={language === option}
+          onClick={() => onChange(option)}
+        >
+          {option.toUpperCase()}
+        </button>
+      ))}
+    </div>
   );
 }
 
 export default function Archive({ projects }: { projects: ArchiveProject[] }) {
   const [language, setLanguage] = useState<Language>("en");
   const [selected, setSelected] = useState<ArchiveProject | null>(null);
+  const [variations, setVariations] = useState<Record<PrintKind, number>>({
+    current: 0,
+    voice: 0,
+    routes: 0,
+  });
+  const [arrangement, setArrangement] = useState(0);
   const [variation, setVariation] = useState(0);
   const [construction, setConstruction] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const isJapanese = language === "ja";
@@ -105,14 +94,53 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
 
   useEffect(() => {
     if (!selected) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     dialog.current?.showModal();
     closeButton.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
   }, [selected]);
 
   function openPrint(project: ArchiveProject) {
     setSelected(project);
-    setVariation(0);
+    setVariation(variations[project.kind]);
     setConstruction(false);
+  }
+
+  function remixPrint(project: ArchiveProject) {
+    const nextVariation = variations[project.kind] + 1;
+    setVariations((current) => ({ ...current, [project.kind]: nextVariation }));
+    setAnnouncement(
+      text(
+        `${project.name}, variation ${nextVariation}.`,
+        `${project.name}、バリエーション${nextVariation}。`,
+      ),
+    );
+  }
+
+  function keepFocusInPrint(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key !== "Tab") return;
+
+    const controls = [
+      ...event.currentTarget.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ].filter((element) => element.getClientRects().length > 0);
+    const firstControl = controls[0];
+    const lastControl = controls[controls.length - 1];
+    if (!firstControl || !lastControl) return;
+
+    const shouldWrapBackward =
+      event.shiftKey && document.activeElement === firstControl;
+    const shouldWrapForward =
+      !event.shiftKey && document.activeElement === lastControl;
+    if (!shouldWrapBackward && !shouldWrapForward) return;
+
+    event.preventDefault();
+    const nextControl = shouldWrapBackward ? lastControl : firstControl;
+    nextControl.focus();
   }
 
   function downloadPrint() {
@@ -123,13 +151,13 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
     );
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${selected.kind}-${projectSeed(printSource(selected)) + variation}.svg`;
+    link.download = `${selected.kind}-${(projectSeed(printSource(selected)) + variation) >>> 0}.svg`;
     link.click();
     URL.revokeObjectURL(url);
   }
 
   return (
-    <div lang={language}>
+    <div lang={language} className={styles.catalogue}>
       <a className={styles.skipLink} href="#prints">
         {text("Skip to projects", "作品へ移動")}
       </a>
@@ -139,7 +167,7 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
           <span>
             Kento Iizuka
             <span className={styles.identitySubtitle}>
-              {text("Engineer & maker", "エンジニア・つくる人")}
+              {text("Software engineer", "ソフトウェアエンジニア")}
             </span>
           </span>
         </Link>
@@ -148,29 +176,12 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
           className={styles.navigation}
         >
           <a className={styles.currentLink} href="#prints">
-            {text("Selected work", "制作したもの")}
-            <span>3</span>
+            {text("Work", "制作したもの")}
           </a>
           <Link className={styles.aboutLink} href="/portfolio#about">
             {text("About", "プロフィール")}
           </Link>
-          <div className={styles.languages} aria-label="Language / 言語">
-            <button
-              type="button"
-              aria-pressed={!isJapanese}
-              onClick={() => setLanguage("en")}
-            >
-              EN
-            </button>
-            <span aria-hidden="true">/</span>
-            <button
-              type="button"
-              aria-pressed={isJapanese}
-              onClick={() => setLanguage("ja")}
-            >
-              JA
-            </button>
-          </div>
+          <LanguageSwitch language={language} onChange={setLanguage} />
         </nav>
       </header>
 
@@ -179,81 +190,99 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
           className={styles.introduction}
           aria-labelledby="archive-title"
         >
-          <div className={styles.headlineBlock}>
-            <p className={styles.collectionNote}>
-              {text("The generative archive", "コードから生まれる作品集")}
-            </p>
-            <h1 id="archive-title">
-              {text("Work, in print.", "つくる、そのかたち。")}
-            </h1>
-          </div>
-          <div className={styles.introCopy}>
-            <p>
-              {text(
-                "Projects become patterns. A small collection of things I’ve built, each with a print of its own.",
-                "これまでにつくったものを、一枚ずつの作品に。プロジェクトの特徴から生まれた模様を並べました。",
-              )}
-            </p>
-            <a href="#colophon">
-              {text("How the prints are made", "作品ができるまで")}
-              <Arrow />
-            </a>
-          </div>
+          <h1 id="archive-title">{text("Selected work", "制作したもの")}</h1>
+          <p>
+            {text(
+              "I like organizing code and systems so they make sense.",
+              "コードや仕組みを整理して、わかりやすくするのが好きです。",
+            )}
+          </p>
         </section>
+
+        <div className={styles.galleryTools}>
+          <p>
+            {text(
+              "Three projects, interpreted as generative prints.",
+              "3つのプロジェクトを、コードで描いた作品にしました。",
+            )}
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setArrangement((current) => current + 1);
+              setAnnouncement(
+                text("All prints arranged.", "すべての作品を整えました。"),
+              );
+            }}
+          >
+            <Mark />
+            {text("Arrange all prints", "すべての作品を整える")}
+          </button>
+        </div>
 
         <section
           id="prints"
           className={styles.gallery}
           aria-label={text("Selected project prints", "プロジェクトの作品集")}
         >
-          {projects.map((project, index) => (
-            <article
-              className={`${styles.project} ${styles[project.kind]}`}
-              key={project.href}
-            >
-              <button
-                type="button"
-                className={styles.frameButton}
-                aria-haspopup="dialog"
-                onClick={() => openPrint(project)}
-                aria-label={text(
-                  `Inspect ${project.name}, a print for ${project.title}`,
-                  `${project.name}：${project.sourceTitle}の作品を見る`,
-                )}
-              >
-                <div className={styles.frame}>
-                  <div className={styles.paper}>
-                    <PrintImage project={project} />
-                    <div className={styles.printSignature}>
-                      <span>{project.name}</span>
-                      <span>KI / {String(index + 1).padStart(2, "0")}</span>
-                    </div>
+          {projects.map((project) => (
+            <article className={styles.project} key={project.href}>
+              <div className={styles.frame}>
+                <div className={styles.paper}>
+                  <PrintImage
+                    source={printSource(project)}
+                    variation={variations[project.kind]}
+                    arrangement={arrangement}
+                    remixLabel={text(
+                      `Remix ${project.name}`,
+                      `${project.name}を描き直す`,
+                    )}
+                    remixHint={text("Remix print", "作品を描き直す")}
+                    onRemix={() => remixPrint(project)}
+                  />
+                  <div className={styles.printSignature} aria-hidden="true">
+                    <span>{project.name}</span>
+                    <span>Kento Iizuka</span>
                   </div>
                 </div>
-                <span className={styles.inspectHint}>
+              </div>
+              <div className={styles.printActions}>
+                <span>{project.name}</span>
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={() => openPrint(project)}
+                  aria-label={text(
+                    `Inspect ${project.name}`,
+                    `${project.name}を見る`,
+                  )}
+                >
                   {text("Inspect print", "作品を見る")}
                   <span aria-hidden="true">＋</span>
-                </span>
-              </button>
+                </button>
+              </div>
               <div className={styles.caption}>
-                <div className={styles.captionHeading}>
-                  <span className={styles.accession}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h2>
-                    <Link href={project.href}>
-                      {text(project.title, project.sourceTitle)}
-                      <Arrow diagonal />
-                    </Link>
-                  </h2>
-                </div>
-                <p>{text(project.summary, project.summaryJa)}</p>
-                <div className={styles.edition}>
-                  <span>{project.name}</span>
-                  <span>
-                    {text("Seed", "シード")} {projectSeed(printSource(project))}
-                  </span>
-                </div>
+                <h2>
+                  <Link href={project.href}>
+                    {text(project.title, project.sourceTitle)}
+                  </Link>
+                </h2>
+                <p className={styles.summary}>
+                  {text(project.summary, project.summaryJa)}
+                </p>
+                <dl className={styles.projectFacts}>
+                  <div>
+                    <dt>{text("Role", "担当")}</dt>
+                    <dd>{text(project.role, project.roleJa)}</dd>
+                  </div>
+                  <div>
+                    <dt>{text("Stack", "技術")}</dt>
+                    <dd>{project.stack}</dd>
+                  </div>
+                </dl>
+                <Link className={styles.caseStudy} href={project.href}>
+                  {text("Read project", "プロジェクトを読む")}
+                </Link>
               </div>
             </article>
           ))}
@@ -264,48 +293,42 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
           id="colophon"
           aria-labelledby="colophon-title"
         >
-          <div className={styles.colophonTitle}>
-            <span className={styles.seedMark} aria-hidden="true">
-              ✳
-            </span>
+          <div>
+            <Mark />
             <h2 id="colophon-title">
-              {text(
-                "A project leaves a pattern.",
-                "プロジェクトが、模様を残す。",
-              )}
+              {text("How the prints work", "作品のしくみ")}
             </h2>
           </div>
           <p>
             {text(
-              "A name becomes a seed. The tools shape the lines. Every print is drawn with code, and the same project data brings it back, exactly. Open a frame to explore its construction or keep a copy.",
-              "名前が種になり、使った技術が線を形づくります。すべてコードで描かれ、同じデータから同じ作品が生まれます。額を開くと、構造を見たり作品を保存したりできます。",
+              "Each print gathers scattered lines into a structure. Hover to arrange it again, or click to make a new variation. The project’s name and tools give the original its shape. Open a print to explore its structure and save a copy.",
+              "散らばった線が集まり、一つの構造になります。カーソルを重ねると整い直し、クリックすると別の形が生まれます。元の形は、プロジェクトの名前と使った技術から決まります。作品を開くと、構造の確認や保存ができます。",
             )}
           </p>
         </section>
       </main>
 
       <footer className={styles.footer}>
-        <span>
-          Kento Iizuka <span aria-hidden="true">©</span> 2026
-        </span>
-        <span>
-          {text(
-            "Made of logic. Open to chance.",
-            "論理から生まれる、偶然のかたち。",
-          )}
-        </span>
-        <a href="https://github.com/kentosity">
-          GitHub
-          <Arrow diagonal />
-        </a>
+        <span>Kento Iizuka © 2026</span>
+        <div>
+          <Link href="/portfolio">
+            {text("Full portfolio", "ポートフォリオ")}
+          </Link>
+          <a href="https://github.com/kentosity">GitHub</a>
+        </div>
       </footer>
+      <p className={styles.screenReaderOnly} role="status">
+        {announcement}
+      </p>
 
       <dialog
         ref={dialog}
         className={styles.dialog}
+        lang={language}
         onClick={(event) => {
           if (event.target === event.currentTarget) dialog.current?.close();
         }}
+        onKeyDown={keepFocusInPrint}
         onClose={() => setSelected(null)}
         aria-labelledby="print-title"
       >
@@ -313,7 +336,7 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
           <div className={styles.inspection}>
             <div className={styles.inspectionArt}>
               <PrintImage
-                project={selected}
+                source={printSource(selected)}
                 variation={variation}
                 construction={construction}
               />
@@ -329,26 +352,8 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
                 ×
               </button>
               <div className={styles.inspectionTopline}>
-                <p className={styles.collectionNote}>
-                  {text("Inside the print", "作品のしくみ")}
-                </p>
-                <div className={styles.languages} aria-label="Language / 言語">
-                  <button
-                    type="button"
-                    aria-pressed={!isJapanese}
-                    onClick={() => setLanguage("en")}
-                  >
-                    EN
-                  </button>
-                  <span aria-hidden="true">/</span>
-                  <button
-                    type="button"
-                    aria-pressed={isJapanese}
-                    onClick={() => setLanguage("ja")}
-                  >
-                    JA
-                  </button>
-                </div>
+                <span>{text("Generative print", "コードで描いた作品")}</span>
+                <LanguageSwitch language={language} onChange={setLanguage} />
               </div>
               <h2 id="print-title">{selected.name}</h2>
               <p>{text(selected.interpretation, selected.interpretationJa)}</p>
@@ -360,7 +365,7 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
               </div>
               <p className={styles.sourceNote}>
                 {text(
-                  "Derived from the project name, stack, and source review date",
+                  "From the project name, stack, and source review date",
                   "プロジェクト名・使用技術・データ確認日から生成",
                 )}{" "}
                 ({selected.reviewed}).
@@ -375,7 +380,7 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setVariation(variation + 1)}
+                  onClick={() => setVariation((current) => current + 1)}
                 >
                   {text("Next variation", "次のバリエーション")}
                 </button>
@@ -396,15 +401,16 @@ export default function Archive({ projects }: { projects: ArchiveProject[] }) {
                 onClick={downloadPrint}
               >
                 {text("Save this print", "作品を保存")}
-                <span aria-hidden="true">↓</span>
               </button>
               <div className={styles.projectDetails}>
                 <h3>{text(selected.title, selected.sourceTitle)}</h3>
-                <p>{text(selected.summary, selected.sourceSummary)}</p>
+                <p>{text(selected.summary, selected.summaryJa)}</p>
+                <p className={styles.role}>
+                  {text(selected.role, selected.roleJa)}
+                </p>
                 <p className={styles.stack}>{selected.stack}</p>
                 <Link href={selected.href}>
-                  {text("Read the project", "プロジェクトを読む")}
-                  <Arrow diagonal />
+                  {text("Read project", "プロジェクトを読む")}
                 </Link>
               </div>
             </div>

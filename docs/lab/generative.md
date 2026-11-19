@@ -1,24 +1,26 @@
-# Measured drift
+# Generative archive
 
-A project begins with a set of constraints and becomes a working system. Measured drift translates that passage into ink: many precise marks accumulate, converge, and make room for one another. Its conceptual seed is the movement between independent parts and a shared purpose. Each print is an interpretation of the project's structure.
+The page at `/lab/generative` presents the first three featured projects from `app/content/career-profile.json` as computational prints. The theme is Kento’s interest in organizing code and systems so they make sense. The introduction states that in English and Japanese. Project titles, outcomes, roles, technology stacks, and case-study links sit together beneath each print.
 
-The project's original title, ordered technology stack, and content review date form an immutable seed. A small integer generator produces all variation. Stack length determines the number of interacting channels. The same source data and algorithm version always reconstruct the same plate; the archive records that relationship as an edition.
+The artwork expresses organization through parallel lines. A data platform gathers channels into a current, a speech tool arranges oscillations around a center, and an event platform gives modular routes shared junctions. The project title, ordered stack, and source review date seed each original. Variations advance the seed; the event print also varies its junction positions. These are artistic interpretations of the project structures.
 
-Three meticulously crafted systems share a visual grammar. Data channels bend into a common current. Speech wraps oscillation around a quiet center. Reservations and check-ins occupy interlocking routes. Carefully tuned harmonic relationships produce each composition, with restrained seeded displacement giving the lines a human irregularity.
+Each plate has twelve groups of paths. On its first appearance, hover, keyboard focus, or an explicit arrangement action, those groups settle from seeded translations and rotations into their final positions. Clicking a print creates a variation with a brief crossfade. Native Web Animations finish within 1.4 seconds, and there is no drawing loop. Leaving the viewport, changing the motion preference, or removing the component cancels its animations. Reduced motion shows the completed artwork immediately and keeps remixing available.
 
-The implementation balances dense passages against generous unprinted space. Line spacing, interrupted bands, and the meeting of ink colors deserve the same painstaking refinement as the overall silhouette. Screenshots at actual reading sizes guide these decisions: the work must hold together as both a framed object and a close inspection.
+The catalogue uses a cool white wall (`#f1f3f5`), graphite (`#252c32`), cobalt (`#3554b5`), and the original paper and ink colors. Syne supplies the display type, with Geist and system Japanese sans for reading. Frames, titles, and project facts align across three desktop columns. Tablet layouts pair each print with its description; phones use a single column. SVG downloads contain the completed vector artwork.
 
-Time is held inside the completed plate. SVG paths are generated once, with no drawing loop. Opening a print exposes its construction; an explicit study control changes its variation while the original remains recoverable. The archive uses accessible HTML captions, English and Japanese text, and vector downloads to let the artwork travel beyond its frame.
+## Controls and accessibility
 
-## Implementation decisions
+- Hover or focus a print to replay its arrangement. Click or press Enter to remix it.
+- “Arrange all prints” replays the arrangement across the gallery.
+- “Inspect print” opens a native modal dialog with construction, variation, exact restore, and SVG download controls.
+- EN/JA switches preserve the selected print, variation, and construction state. The page and dialog declare the selected language.
+- Dialogs retain keyboard focus, return it to the opener on close, support Escape, and restore document scrolling. Controls have visible focus and accessible names.
+- Titles and links render on the server. All project facts come from existing public content; English roles are translations of the generated Japanese roles.
 
-- Wall `#e7e9e4`, paper `#faf9f2`, graphite `#242722`, cobalt `#3448b5`, rust `#a64b3c`, highlight `#edf0b5`.
-- Syne for the archive title; the existing Geist family and system Japanese sans for captions.
-- Three framed prints share a hanging line. The middle print sits lower and the outer prints have different mat proportions. Captions align to their frames.
-- The first view gives the art most of the available space. The brief's physical archive justifies paper and shadows; the cool wall and geometric type keep the page specific to computational prints.
-- Source: the first three featured records in `app/content/career-profile.json`. The review date is extracted from `generated_from`; it is identified as a source review date rather than a project creation date.
-- Skills read directly from `anthropics/skills` at `e4bb5d960d87126ff3b3a8af1a104b7db67560ba`: `frontend-design` and `algorithmic-art`, including both algorithmic-art templates. The portfolio brief explicitly permits SVG and directs adapting the isolated study into the site's own presentation.
+## Design process and verification
 
-## Visual review
+Read the portfolio design research from `kentosity/resume`, branch `aide/design-research-2026-11-19`, before implementation. Used Anthropic’s `frontend-design` skill directly from the locally installed skill collection. The algorithmic-art reference informed seeded variation; its standalone viewer is adapted into the existing Next.js/SVG implementation, as the portfolio brief requests. Animation uses the browser’s native API and adds no runtime package.
 
-The first screenshot review led to a shorter introduction and smaller, more widely spaced frames so all three project summaries fit the desktop viewport. The second pass increased caption legibility, exposed the original seeds, and added a language control inside the viewer. Reviewing the open viewer revealed that the global CSS reset removed native dialog centering; explicit centering and initial close-button focus fix the overlay.
+The first desktop/mobile review led to a shorter introduction and smaller prints so project details appear sooner. The second review revealed a mobile frame shrinking inside the flex layout; making frame width explicit aligns it with its caption. The final pass tightened summary spacing, made the event outcome easier to scan, and changed Japanese summaries to plain sentences. A Playwright focus test exposed a native-dialog boundary where Shift+Tab could leave the viewer; explicit wrapping now keeps both tab directions inside it.
+
+Validation includes ESLint, `tsc --noEmit`, and the production Next.js build. Playwright checks cover arrangement and remixing, completed idle state, all three viewers, construction and exact reset, language preservation, clean SVG downloads, keyboard activation and focus, project navigation, mobile controls, reduced motion, and EN/JA overflow at 320, 390, 600, 768, 1024, and 1440 pixels. Desktop (1440×900), mobile (390×844), full-page, Japanese, and inspection screenshots are saved under `/tmp/aide-proto/shots/generative2-*`.

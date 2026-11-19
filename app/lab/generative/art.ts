@@ -129,6 +129,8 @@ function drawRoutes(
 ) {
   const marks: string[] = [];
   const stagger = 20 + random() * 25;
+  const junctionShift = (random() - 0.5) * 48;
+  const crossingShift = (random() - 0.5) * 34;
   const lanes = channels * 15;
 
   for (let lane = 0; lane < lanes; lane++) {
@@ -138,9 +140,9 @@ function drawRoutes(
     const points: [number, number][] = [
       [78 + offset, 92],
       [78 + offset, 235 - offset * 0.2],
-      [338 + offset * 0.45, 235 - offset * 0.2],
-      [338 + offset * 0.45, 340 + offset * 0.3],
-      [140 + offset * 0.5, 340 + offset * 0.3],
+      [338 + offset * 0.45 + junctionShift, 235 - offset * 0.2],
+      [338 + offset * 0.45 + junctionShift, 340 + offset * 0.3 + crossingShift],
+      [140 + offset * 0.5, 340 + offset * 0.3 + crossingShift],
       [140 + offset * 0.5, 548 - offset * 0.24],
       [480 - offset * 0.34, 548 - offset * 0.24],
       [480 - offset * 0.34, 630 + stagger - turn],
@@ -171,6 +173,12 @@ export function createPrint(
     source.kind
   ];
   const marks = draw(random, channels, construction);
+  const paths = marks.match(/<path[^>]*\/>/g) ?? [];
+  const bandSize = Math.ceil(paths.length / 12);
+  const bands = Array.from({ length: 12 }, (_, index) => {
+    const band = paths.slice(index * bandSize, (index + 1) * bandSize);
+    return `<g data-band="${index}">${band.join("")}</g>`;
+  }).join("");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" width="600" height="720"><rect width="600" height="720" fill="#faf9f2"/><g stroke-linejoin="round" stroke-linecap="round">${marks}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" width="600" height="720"><rect width="600" height="720" fill="#faf9f2"/><g stroke-linejoin="round" stroke-linecap="round">${bands}</g></svg>`;
 }

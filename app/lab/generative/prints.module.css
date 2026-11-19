@@ -1,7 +1,9 @@
 .archive {
-  --wall: #e7e9e4;
-  --ink: #242722;
-  --quiet: #64695f;
+  --wall: #f1f3f5;
+  --ink: #252c32;
+  --quiet: #58636c;
+  --line: #cfd5da;
+  --cobalt: #3554b5;
   min-height: 100vh;
   background: var(--wall);
   color: var(--ink);
@@ -9,7 +11,11 @@
     var(--font-geist-sans), "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
+.catalogue {
+  max-width: 1440px;
+  padding: 0 64px;
+  margin: auto;
+}
 .archive button,
 .archive a {
   -webkit-tap-highlight-color: transparent;
@@ -22,15 +28,19 @@
   text-decoration: none;
 }
 .archive :is(a, button):focus-visible {
-  outline: 2px solid #3448b5;
-  outline-offset: 6px;
+  outline: 2px solid var(--cobalt);
+  outline-offset: 5px;
+}
+.archive a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 .archive button:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: default;
 }
 .archive ::selection {
-  background: #d2d99b;
+  background: #d5dff5;
   color: var(--ink);
 }
 .skipLink {
@@ -44,328 +54,350 @@
 .skipLink:focus {
   top: 12px;
 }
-
 .header {
-  margin: 0 5%;
-  height: 92px;
+  min-height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #cbd0c5;
+  border-bottom: 1px solid var(--line);
+  gap: 24px;
 }
 .identity {
   display: flex;
   align-items: center;
-  gap: 13px;
-  font-size: 16px;
+  gap: 14px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.35px;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
 }
 .identitySubtitle {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 400;
   color: var(--quiet);
-  margin-top: 4px;
+  margin-top: 3px;
   letter-spacing: 0;
 }
 .navigation {
   display: flex;
   align-items: center;
-  gap: 37px;
-  font-size: 12px;
+  gap: 34px;
+  font-size: 14px;
 }
 .currentLink {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-.currentLink > span {
-  background: #d5dacd;
-  font-size: 10px;
-  min-width: 19px;
-  height: 19px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 19px;
+  text-decoration: underline !important;
+  text-underline-offset: 6px;
 }
 .languages {
   display: flex;
-  gap: 3px;
   align-items: center;
-}
-.languages > span {
-  color: #8c9285;
+  gap: 2px;
 }
 .languages button {
   border: 0;
-  padding: 8px 3px;
-  min-width: 32px;
-  min-height: 36px;
+  padding: 10px 8px;
+  min-width: 44px;
+  min-height: 44px;
   background: none;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--quiet);
 }
 .languages button[aria-pressed="true"] {
   color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 5px;
+  background: #e0e5ea;
+  border-radius: 3px;
 }
-
 .introduction {
-  margin: 0 5%;
-  padding: 36px 0 43px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
+  padding: 32px 0 28px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 60px;
 }
-.collectionNote {
-  font-size: 11px;
-  margin: 0 0 16px;
-  color: var(--quiet);
-}
-.headlineBlock h1 {
+.introduction h1 {
   font-family: var(--font-print-display), sans-serif;
-  font-size: clamp(58px, 6.6vw, 110px);
-  line-height: 0.95;
+  font-size: clamp(48px, 5.6vw, 82px);
+  line-height: 1.06;
   font-weight: 500;
-  letter-spacing: -6px;
+  letter-spacing: -4px;
   margin: 0;
 }
-.introCopy {
-  max-width: 280px;
-  margin-bottom: 3px;
-  font-size: 13px;
-  line-height: 1.65;
+.introduction > p {
+  max-width: 390px;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
-.introCopy p {
-  margin: 0 0 15px;
-}
-.introCopy a {
-  display: inline-flex;
+.galleryTools {
+  display: flex;
   align-items: center;
-  gap: 22px;
-  font-size: 11px;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 0 22px;
+  font-size: 14px;
+  color: var(--quiet);
 }
-.introCopy a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.galleryTools p {
+  margin: 0;
 }
-
+.galleryTools button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  border: 1px solid #b8c4ce;
+  border-radius: 3px;
+  padding: 7px 13px;
+  background: transparent;
+  white-space: nowrap;
+  color: var(--ink);
+  font-size: 14px;
+}
+.galleryTools button:hover {
+  border-color: var(--cobalt);
+  color: var(--cobalt);
+}
+.galleryTools svg {
+  width: 19px;
+  height: 19px;
+}
 .gallery {
   display: grid;
-  grid-template-columns: 1fr 0.96fr 1fr;
-  gap: 6.5%;
-  margin: 0 5%;
-  padding: 0 0 63px;
-  scroll-margin-top: 25px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  padding: 0 0 60px;
+  scroll-margin-top: 24px;
 }
 .project {
   min-width: 0;
-}
-.frameButton {
-  display: block;
-  border: 0;
-  padding: 0;
-  text-align: left;
-  background: transparent;
-  width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .frame {
-  padding: 9px;
-  background: #33362f;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #aab1b6;
+  background: #cdd1d3;
   box-shadow:
-    inset 0 0 0 1px #50554b,
-    inset 0 0 0 3px #282c24,
-    2px 4px 5px #343c2929,
-    9px 17px 21px #343c2921,
-    20px 30px 40px #343c290e;
+    inset 0 0 0 1px #eceef0,
+    0 3px 4px #252c3212,
+    0 12px 22px #252c3210;
 }
 .paper {
   background: #faf9f2;
-  padding: 23px 24px 17px;
-  box-shadow: inset 0 0 8px #2427221a;
+  padding: 16px 22px 13px;
+}
+.artworkShell {
+  position: relative;
 }
 .artwork {
   width: 100%;
   line-height: 0;
+  overflow: hidden;
+  position: relative;
 }
 .artwork svg {
   display: block;
   width: 100%;
   height: auto;
 }
-.printSignature {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 11px;
-  font-size: 6px;
-  color: #66695f;
-  letter-spacing: 0.15px;
-  line-height: 1.3;
+.artwork [data-band] {
+  transform-origin: 300px 360px;
 }
-.voice {
-  padding-top: 34px;
+.paper .artwork {
+  height: clamp(230px, 19vw, 276px);
 }
-.voice .paper {
-  padding: 21px 17px 15px;
+.paper .artwork svg {
+  height: 100%;
 }
-.routes .paper {
-  padding: 35px 29px 19px;
-}
-.inspectHint {
-  display: flex;
+.previousArtwork {
   position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translate(-50%, 6px);
-  background: #edf0b5;
-  color: #242722;
+  inset: 0;
+  pointer-events: none;
+}
+.printButton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.remixHint {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 23px;
-  white-space: nowrap;
-  padding: 9px 14px;
-  font-size: 11px;
+  gap: 7px;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  color: white;
+  background: var(--ink);
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1.5;
   opacity: 0;
+  transform: translateY(4px);
   transition:
     opacity 180ms ease,
     transform 180ms ease;
-  box-shadow: 0 2px 10px #24272215;
 }
-.inspectHint > span {
-  font-size: 18px;
-  line-height: 1;
+.remixHint > span {
+  font-size: 19px;
 }
-.frameButton:hover .inspectHint,
-.frameButton:focus-visible .inspectHint {
+.printButton:is(:hover, :focus-visible) .remixHint {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
+}
+.printSignature {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 10px;
+  color: #62665f;
+  line-height: 1.5;
+}
+.printActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  font-size: 13px;
+  color: var(--quiet);
+}
+.printActions button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 7px 0 7px 10px;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  color: var(--ink);
+}
+.printActions button:hover {
+  color: var(--cobalt);
+}
+.printActions button > span {
+  font-size: 20px;
 }
 .caption {
-  margin-top: 24px;
-}
-.captionHeading {
   display: flex;
-  gap: 12px;
-  align-items: baseline;
-}
-.accession {
-  color: var(--quiet);
-  font-size: 10px;
+  flex-direction: column;
+  flex: 1;
 }
 .caption h2 {
   margin: 0;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: -0.4px;
-  flex: 1;
+  font-size: 22px;
+  font-weight: 550;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
 }
-.caption h2 a {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
+.summary {
+  margin: 12px 0 18px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #424d56;
 }
-.caption h2 svg {
-  flex-shrink: 0;
-  width: 14px;
-  height: 14px;
+.projectFacts {
+  margin: auto 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  font-size: 14px;
+  line-height: 1.6;
 }
-.caption h2 a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.projectFacts > div {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
 }
-.caption > p {
-  margin: 11px 0 19px 26px;
-  font-size: 12px;
-  line-height: 1.7;
-  color: #50574b;
-  max-width: 310px;
-}
-.edition {
-  border-top: 1px solid #cbd0c5;
-  padding-top: 10px;
-  margin-left: 26px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 10px;
+.projectFacts dt {
   color: var(--quiet);
+  font-size: 13px;
 }
-
+.projectFacts dd {
+  margin: 0;
+}
+.caseStudy {
+  align-self: flex-start;
+  margin-top: 5px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--cobalt);
+  text-decoration: underline !important;
+  text-underline-offset: 5px;
+}
 .colophon {
-  margin: 0 5%;
-  border-top: 1px solid #bfc6b7;
-  padding: 37px 0 44px;
+  border-top: 1px solid var(--line);
+  padding: 35px 0 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 9%;
+  gap: 80px;
   scroll-margin-top: 30px;
 }
-.colophonTitle {
+.colophon > div {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  align-items: flex-start;
+  gap: 17px;
 }
-.seedMark {
-  font-size: 44px;
-  line-height: 1;
+.colophon svg {
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 .colophon h2 {
-  font-family: var(--font-print-display), sans-serif;
-  font-size: 24px;
-  line-height: 1.3;
+  font-size: 25px;
+  line-height: 1.4;
   font-weight: 500;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.7px;
   margin: 0;
 }
 .colophon > p {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.8;
   margin: 0;
-  max-width: 445px;
-  color: #565e50;
+  max-width: 560px;
+  color: var(--quiet);
 }
 .footer {
-  border-top: 1px solid #cbd0c5;
-  margin: 0 5%;
-  padding: 22px 0 28px;
+  border-top: 1px solid var(--line);
+  padding: 23px 0 28px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--quiet);
 }
-.footer a {
+.footer > div {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  gap: 28px;
 }
-.footer svg {
-  width: 13px;
-  height: 13px;
-}
-
 .dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: min(1050px, calc(100% - 48px));
+  width: min(1120px, calc(100% - 48px));
   height: fit-content;
   max-height: calc(100dvh - 48px);
   border: 0;
+  border-radius: 4px;
   padding: 0;
   color: var(--ink);
-  background: #eef0e9;
+  background: var(--wall);
   overscroll-behavior: contain;
 }
 .dialog::backdrop {
-  background: #242722b8;
+  background: #252c32b8;
   backdrop-filter: blur(5px);
 }
 .dialog[open] {
@@ -373,331 +405,380 @@
 }
 .inspection {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 .inspectionArt {
-  padding: 40px;
+  padding: 38px;
   align-self: center;
 }
 .inspectionArt .artwork {
-  box-shadow: 4px 10px 24px #24272218;
+  box-shadow: 3px 8px 24px #252c3214;
 }
 .inspectionCopy {
-  padding: 48px 45px 40px 20px;
+  padding: 55px 38px 35px 12px;
   position: relative;
 }
 .closeButton {
   position: absolute;
-  top: 5px;
+  top: 8px;
   right: 8px;
-  background: none;
+  background: var(--wall);
   border: 0;
+  border-radius: 3px;
   font-size: 30px !important;
   font-weight: 300;
   padding: 0;
   width: 44px;
   height: 44px;
+  z-index: 1;
 }
 .inspectionTopline {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 14px;
   gap: 10px;
-}
-.inspectionTopline .collectionNote {
-  margin: 0;
+  font-size: 13px;
+  color: var(--quiet);
 }
 .inspectionCopy h2 {
   font-family: var(--font-print-display), sans-serif;
-  font-size: 36px;
+  font-size: 38px;
   letter-spacing: -1.2px;
   line-height: 1.1;
-  margin: 10px 0 21px;
+  margin: 12px 0 20px;
 }
 .inspectionCopy > p {
-  font-size: 12px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.75;
 }
 .seedReadout {
   display: flex;
   justify-content: space-between;
-  margin: 25px 0 8px;
-  border-top: 1px solid #bfc6b7;
+  margin: 23px 0 8px;
+  border-top: 1px solid var(--line);
   padding-top: 13px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .seedReadout output {
   font-variant-numeric: tabular-nums;
 }
 .inspectionCopy .sourceNote {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--quiet);
 }
 .studyControls {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
-  margin: 22px 0;
+  gap: 0 20px;
+  margin: 16px 0;
 }
 .studyControls button {
   background: none;
   border: 0;
-  border-bottom: 1px solid #8d9584;
-  padding: 4px 0;
-  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  padding: 9px 0;
+  min-height: 44px;
+  font-size: 14px;
 }
 .studyControls button[aria-pressed="true"] {
-  color: #3448b5;
-  border-color: #3448b5;
+  color: var(--cobalt);
 }
 .downloadButton {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  padding: 12px 16px;
-  background: #dde49e;
-  border: 1px solid #c8d17d;
-  font-size: 12px !important;
+  min-height: 48px;
+  padding: 11px 16px;
+  background: var(--cobalt);
+  color: white;
+  border: 1px solid var(--cobalt);
+  border-radius: 3px;
+  font-size: 15px !important;
 }
 .downloadButton:hover {
-  background: #d2dc87;
+  background: #294397;
 }
 .projectDetails {
   padding-top: 25px;
 }
 .projectDetails h3 {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 500;
+  line-height: 1.45;
   margin: 0 0 10px;
 }
 .projectDetails p {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.75;
-  color: #565e50;
+  color: var(--quiet);
+  margin: 10px 0;
 }
-.projectDetails .stack {
-  font-size: 10px;
-  margin: 12px 0 20px;
+.projectDetails .role {
+  color: var(--ink);
 }
 .projectDetails a {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-size: 14px;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 5px;
+  color: var(--cobalt);
 }
-.projectDetails svg {
-  width: 14px;
-  height: 14px;
+.archive [lang="ja"] .introduction h1 {
+  font-family: inherit;
+  font-size: clamp(38px, 4.3vw, 62px);
+  letter-spacing: -2px;
+  line-height: 1.3;
 }
-
-.archive [lang="ja"] .headlineBlock h1 {
-  font-family: var(--font-geist-sans), "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: clamp(38px, 4.3vw, 70px);
-  letter-spacing: -3px;
-  line-height: 1.25;
+.archive [lang="ja"] .introduction > p {
+  font-size: 20px;
+  line-height: 1.7;
 }
 .archive [lang="ja"] .caption h2 {
-  font-size: 14px;
+  font-size: 19px;
+  line-height: 1.5;
 }
-.archive [lang="ja"] .colophon h2 {
-  font-family: inherit;
-  font-size: 21px;
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 @keyframes open-print {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-@media (min-width: 1600px) {
-  .archive > div {
-    max-width: 1680px;
-    margin: auto;
-  }
-}
-@media (max-width: 1000px) {
-  .headlineBlock h1 {
-    font-size: 7vw;
-    letter-spacing: -4px;
-  }
-  .introduction {
-    gap: 30px;
-  }
-  .introCopy {
-    max-width: 240px;
-    font-size: 12px;
+@media (max-width: 1100px) {
+  .catalogue {
+    padding: 0 36px;
   }
   .gallery {
-    gap: 3%;
+    gap: 26px;
   }
-  .paper,
-  .routes .paper {
-    padding: 20px 15px 13px;
+  .introduction {
+    gap: 36px;
   }
-  .captionHeading {
-    gap: 7px;
+  .introduction > p {
+    font-size: 20px;
   }
-  .caption > p,
-  .edition {
-    margin-left: 21px;
+  .paper {
+    padding: 14px 12px 12px;
   }
   .caption h2 {
-    font-size: 14px;
+    font-size: 20px;
   }
-  .inspectionArt {
-    padding: 30px;
+  .projectFacts > div {
+    display: block;
   }
-  .inspectionCopy {
-    padding-right: 30px;
+  .projectFacts dt {
+    margin-bottom: 3px;
   }
 }
-
-@media (max-width: 650px) {
-  .header {
-    height: 85px;
-    margin: 0 6%;
-  }
-  .identity {
-    gap: 9px;
-    font-size: 13px;
-  }
-  .identity > svg {
-    width: 28px;
-    height: 28px;
-  }
-  .identitySubtitle {
-    font-size: 9px;
+@media (max-width: 800px) {
+  .catalogue {
+    padding: 0 28px;
   }
   .navigation {
     gap: 20px;
+  }
+  .introduction {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 32px 0 24px;
+  }
+  .introduction h1 {
+    font-size: 62px;
+    letter-spacing: -3px;
+  }
+  .introduction > p {
+    max-width: 470px;
+  }
+  .galleryTools {
+    padding-bottom: 20px;
+  }
+  .galleryTools p {
+    max-width: 290px;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .project {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: 0 30px;
+  }
+  .frame {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+  }
+  .printActions {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .caption {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+  .paper .artwork {
+    height: 282px;
+  }
+  .projectFacts {
+    margin-top: 0;
+  }
+  .projectFacts > div {
+    display: grid;
+  }
+  .colophon {
+    gap: 35px;
+  }
+  .inspection {
+    grid-template-columns: 0.9fr 1fr;
+  }
+  .inspectionArt {
+    padding: 20px;
+  }
+  .inspectionCopy {
+    padding-right: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .catalogue {
+    padding: 0 24px;
+  }
+  .header {
+    min-height: 86px;
+    gap: 12px;
+  }
+  .identity {
+    gap: 10px;
+    font-size: 16px;
+  }
+  .identity > svg {
+    width: 27px;
+    height: 27px;
+  }
+  .identitySubtitle {
+    font-size: 12px;
+  }
+  .navigation {
+    gap: 0;
   }
   .currentLink,
   .aboutLink {
     display: none;
   }
+  .languages button {
+    padding: 10px 6px;
+  }
   .introduction {
-    margin: 0 6%;
-    padding: 35px 0 35px;
-    display: block;
+    padding: 30px 0 22px;
+    gap: 18px;
   }
-  .collectionNote {
-    font-size: 10px;
-    margin-bottom: 14px;
+  .introduction h1 {
+    font-size: clamp(40px, 11.7vw, 64px);
+    letter-spacing: -2.5px;
   }
-  .headlineBlock h1 {
-    font-size: clamp(44px, 11.1vw, 72px);
-    letter-spacing: -2.7px;
-    line-height: 1.1;
+  .introduction > p {
+    font-size: 18px;
+    line-height: 1.55;
+    letter-spacing: -0.3px;
+    max-width: 330px;
   }
-  .introCopy {
-    margin-top: 20px;
-    max-width: 290px;
-    font-size: 12px;
+  .galleryTools {
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+    padding-bottom: 23px;
   }
-  .introCopy p {
-    margin-bottom: 13px;
+  .galleryTools p {
+    font-size: 13px;
+    max-width: 180px;
   }
-  .introCopy a {
-    font-size: 10px;
-    gap: 13px;
+  .galleryTools button {
+    padding: 7px 10px;
+    font-size: 13px;
   }
   .gallery {
-    display: block;
-    margin: 0 10%;
-    padding-bottom: 44px;
+    display: grid;
+    gap: 38px;
+    padding-bottom: 36px;
   }
   .project {
-    margin-bottom: 43px;
+    display: flex;
   }
-  .project:last-child {
-    margin-bottom: 0;
+  .paper {
+    padding: 18px 22px 14px;
   }
-  .frame {
-    padding: 7px;
-    box-shadow:
-      inset 0 0 0 1px #50554b,
-      inset 0 0 0 3px #282c24,
-      2px 4px 5px #343c2929,
-      8px 15px 23px #343c2926;
+  .paper .artwork {
+    height: clamp(248px, 72vw, 320px);
   }
-  .paper,
-  .routes .paper {
-    padding: 21px 20px 13px;
-  }
-  .voice {
-    padding-top: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .voice .paper {
-    padding: 20px 16px 13px;
-  }
-  .caption {
-    margin-top: 22px;
-  }
-  .caption h2 {
-    font-size: 16px;
-  }
-  .captionHeading {
-    gap: 12px;
-  }
-  .caption > p {
+  .remixHint {
+    opacity: 1;
+    transform: none;
     font-size: 12px;
-    margin-left: 26px;
-    margin-bottom: 15px;
-  }
-  .edition {
-    margin-left: 26px;
-    font-size: 9px;
+    padding: 3px 9px;
+    margin-bottom: 2px;
   }
   .printSignature {
-    margin-top: 10px;
-    font-size: 5px;
+    font-size: 10px;
+    margin-top: 14px;
   }
-  .inspectHint {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    bottom: 18px;
-    padding: 7px 11px;
-    gap: 18px;
-    font-size: 9px;
+  .printActions {
+    min-height: 48px;
+  }
+  .caption h2 {
+    font-size: 24px;
+  }
+  .summary {
+    margin: 12px 0 20px;
+  }
+  .projectFacts > div {
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+  }
+  .projectFacts {
+    margin-top: 0;
+  }
+  .caseStudy {
+    margin-top: 0;
   }
   .colophon {
-    margin: 0 6%;
-    padding: 27px 0;
     display: block;
+    padding: 28px 0;
   }
-  .colophonTitle {
-    gap: 12px;
-    margin-bottom: 19px;
+  .colophon > div {
+    margin-bottom: 18px;
+    gap: 13px;
   }
   .colophon h2 {
-    font-size: 20px;
-    letter-spacing: -0.7px;
+    font-size: 22px;
   }
-  .seedMark {
-    font-size: 33px;
-  }
-  .colophon > p {
-    font-size: 11px;
+  .colophon svg {
+    width: 26px;
+    height: 26px;
   }
   .footer {
-    margin: 0 6%;
-    font-size: 9px;
     flex-wrap: wrap;
-    row-gap: 14px;
+    font-size: 12px;
+    row-gap: 12px;
   }
-  .footer > span:nth-child(2) {
-    order: 3;
-    width: 100%;
+  .footer > div {
+    gap: 20px;
   }
   .dialog {
     width: calc(100% - 24px);
@@ -708,34 +789,59 @@
     flex-direction: column;
   }
   .inspectionArt {
-    padding: 28px 48px 12px;
+    padding: 34px 48px 0;
     width: 100%;
   }
   .inspectionCopy {
-    padding: 25px;
+    padding: 22px;
     position: static;
   }
   .inspectionCopy h2 {
-    font-size: 30px;
-  }
-  .studyControls button {
-    min-height: 44px;
+    font-size: 32px;
   }
   .closeButton {
     position: fixed;
-    background: #eef0e9;
-    top: 18px;
-    right: 20px;
+    top: 17px;
+    right: 17px;
   }
-  .archive [lang="ja"] .headlineBlock h1 {
-    font-size: 8vw;
-    letter-spacing: -1.7px;
+  .archive [lang="ja"] .introduction h1 {
+    font-size: 38px;
+    letter-spacing: -1.5px;
   }
-  .archive [lang="ja"] .colophon h2 {
+  .archive [lang="ja"] .introduction > p {
     font-size: 17px;
   }
+  .archive [lang="ja"] .caption h2 {
+    font-size: 20px;
+  }
 }
-
+@media (max-width: 350px) {
+  .catalogue {
+    padding: 0 18px;
+  }
+  .identity {
+    gap: 7px;
+    font-size: 14px;
+  }
+  .identity > svg {
+    width: 24px;
+  }
+  .identitySubtitle {
+    font-size: 11px;
+  }
+  .languages button {
+    min-width: 38px;
+  }
+  .paper {
+    padding: 16px;
+  }
+}
+@media (hover: none) {
+  .remixHint {
+    opacity: 1;
+    transform: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .archive *,
   .archive *::before,
