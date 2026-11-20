@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import {
   AtlasCollectionMemory,
+  AtlasCollectionReturn,
   AtlasLanguageLink,
   ProjectBuilding,
   RoomDrawing,
@@ -65,20 +66,27 @@ export function AtlasShell({
           className={styles.navigation}
           aria-label={text(locale, "Main navigation", "メインナビゲーション")}
         >
-          {navigation.map(([href, label]) => (
-            <Link
-              key={href}
-              href={`${route(locale, href)}${href === "/projects" && area ? `?area=${area}` : ""}`}
-              aria-current={
-                path === href ||
-                (href === "/projects" && path.startsWith("/projects/"))
-                  ? "page"
-                  : undefined
-              }
-            >
-              {label}
-            </Link>
-          ))}
+          {navigation.map(([href, label]) =>
+            href === "/projects" ? (
+              <AtlasCollectionReturn
+                key={href}
+                locale={locale}
+                href={`${route(locale, href)}${area ? `?area=${area}` : ""}`}
+                className=""
+                isCurrent={path.startsWith("/projects")}
+              >
+                {label}
+              </AtlasCollectionReturn>
+            ) : (
+              <Link
+                key={href}
+                href={route(locale, href)}
+                aria-current={path === href ? "page" : undefined}
+              >
+                {label}
+              </Link>
+            ),
+          )}
         </nav>
         <nav
           className={styles.languages}
@@ -370,62 +378,63 @@ export function AtlasCollection({
   ).length;
   return (
     <>
-      <AtlasCollectionMemory key={area ?? "all"} locale={locale} />
-      <header className={styles.pageHeading}>
-        <h1>{text(locale, "The project rooms.", "プロジェクトの部屋。")}</h1>
-        <p>
+      <AtlasCollectionMemory key={area ?? "all"} locale={locale}>
+        <header className={styles.pageHeading}>
+          <h1>{text(locale, "The project rooms.", "プロジェクトの部屋。")}</h1>
+          <p>
+            {text(
+              locale,
+              "Tools, products and systems, organized by the work they help people do. Open a room to see the problem, the structure and the result.",
+              "道具、プロダクト、業務システムを、取り組んだ仕事ごとに整理しました。それぞれの部屋で、課題、構造、結果を紹介します。",
+            )}
+          </p>
+        </header>
+        <nav
+          className={styles.filterBar}
+          aria-label={text(locale, "Filter projects by area", "分野で絞り込む")}
+        >
+          <Link
+            href={route(locale, "/projects")}
+            aria-current={!area ? "true" : undefined}
+          >
+            {text(locale, "All projects", "すべて")}
+          </Link>
+          {areas.map((value) => (
+            <Link
+              key={value}
+              href={`${route(locale, "/projects")}?area=${value}`}
+              aria-current={area === value ? "true" : undefined}
+            >
+              {areaLabels[value][locale]}
+            </Link>
+          ))}
+        </nav>
+        <p className={styles.resultCount} role="status">
           {text(
             locale,
-            "Tools, products and systems, organized by the work they help people do. Open a room to see the problem, the structure and the result.",
-            "道具、プロダクト、業務システムを、取り組んだ仕事ごとに整理しました。それぞれの部屋で、課題、構造、結果を紹介します。",
+            `${resultCount} projects`,
+            `${resultCount}件のプロジェクト`,
           )}
         </p>
-      </header>
-      <nav
-        className={styles.filterBar}
-        aria-label={text(locale, "Filter projects by area", "分野で絞り込む")}
-      >
-        <Link
-          href={route(locale, "/projects")}
-          aria-current={!area ? "true" : undefined}
-        >
-          {text(locale, "All projects", "すべて")}
-        </Link>
-        {areas.map((value) => (
-          <Link
-            key={value}
-            href={`${route(locale, "/projects")}?area=${value}`}
-            aria-current={area === value ? "true" : undefined}
-          >
-            {areaLabels[value][locale]}
-          </Link>
+        {selectedAreas.map((value) => (
+          <section className={styles.collectionGroup} key={value}>
+            <h2>{areaLabels[value][locale]}</h2>
+            <div className={styles.collectionGrid}>
+              {projects
+                .filter((project) => project.area === value)
+                .map((project, index) => (
+                  <ProjectEntry
+                    key={project.slug}
+                    project={project}
+                    locale={locale}
+                    index={index}
+                    area={area}
+                  />
+                ))}
+            </div>
+          </section>
         ))}
-      </nav>
-      <p className={styles.resultCount} role="status">
-        {text(
-          locale,
-          `${resultCount} projects`,
-          `${resultCount}件のプロジェクト`,
-        )}
-      </p>
-      {selectedAreas.map((value) => (
-        <section className={styles.collectionGroup} key={value}>
-          <h2>{areaLabels[value][locale]}</h2>
-          <div className={styles.collectionGrid}>
-            {projects
-              .filter((project) => project.area === value)
-              .map((project, index) => (
-                <ProjectEntry
-                  key={project.slug}
-                  project={project}
-                  locale={locale}
-                  index={index}
-                  area={area}
-                />
-              ))}
-          </div>
-        </section>
-      ))}
+      </AtlasCollectionMemory>
       <ContactBand locale={locale} />
     </>
   );
@@ -461,11 +470,13 @@ export function AtlasCaseStudy({
         >
           <Link href={route(locale)}>{text(locale, "Home", "ホーム")}</Link>
           <span aria-hidden="true">/</span>
-          <Link
+          <AtlasCollectionReturn
+            locale={locale}
+            className=""
             href={`${route(locale, "/projects")}${area ? `?area=${area}` : ""}`}
           >
             {text(locale, "Projects", "プロジェクト")}
-          </Link>
+          </AtlasCollectionReturn>
           <span aria-hidden="true">/</span>
           <span>{project.roomName[locale]}</span>
         </nav>
@@ -690,8 +701,8 @@ export function AtlasCaseStudy({
         </div>
       </section>
       <p className={styles.collectionReturn}>
-        <Link
-          className={styles.textLink}
+        <AtlasCollectionReturn
+          locale={locale}
           href={`${route(locale, "/projects")}${area ? `?area=${area}` : ""}`}
         >
           {text(
@@ -699,7 +710,7 @@ export function AtlasCaseStudy({
             "Back to the project collection",
             "プロジェクト一覧に戻る",
           )}
-        </Link>
+        </AtlasCollectionReturn>
       </p>
       <ContactBand locale={locale} slug={project.slug} />
     </>

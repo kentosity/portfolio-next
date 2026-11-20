@@ -200,13 +200,16 @@ try {
   assert.equal(await page.locator("main article").count(), 4);
   await page.goBack();
   assert.equal(new URL(page.url()).searchParams.get("area"), "ai-tools");
-  await page.locator("main article").nth(2).scrollIntoViewIfNeeded();
-  const savedScroll = await page.evaluate(() => window.scrollY);
   await page
+    .getByRole("heading", { name: "The project rooms.", exact: true })
+    .waitFor();
+  const coordinationLink = page
     .locator("main article")
     .nth(2)
-    .getByRole("link", { name: "Read the case study", exact: true })
-    .click();
+    .getByRole("link", { name: "Read the case study", exact: true });
+  await coordinationLink.scrollIntoViewIfNeeded();
+  const savedScroll = await page.evaluate(() => window.scrollY);
+  await coordinationLink.click();
   await page.waitForURL("**/projects/agent-coordination?area=ai-tools");
   await page
     .getByRole("link", { name: "Back to the project collection", exact: true })
@@ -216,8 +219,24 @@ try {
     (expected) => Math.abs(window.scrollY - expected) < 90,
     savedScroll,
   );
+  await page
+    .locator("main article")
+    .nth(2)
+    .getByRole("link", { name: "Read the case study", exact: true })
+    .click();
+  await page.waitForURL("**/projects/agent-coordination?area=ai-tools");
+  await page
+    .locator("header")
+    .first()
+    .getByRole("link", { name: "Projects", exact: true })
+    .click();
+  await page.waitForURL("**/en/projects?area=ai-tools");
+  await page.waitForFunction(
+    (expected) => Math.abs(window.scrollY - expected) < 90,
+    savedScroll,
+  );
   checks.push(
-    "Collection filter survives language change, browser Back and a case-study round trip with scroll restoration",
+    "Collection filter survives language change, browser Back and case-study return through page and header links with scroll restoration",
   );
 
   await open(page, `${root}/en/projects/local-speech`);

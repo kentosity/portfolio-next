@@ -5,7 +5,9 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./atlas.module.css";
 
-export type AtlasLocale = "en" | "ja";
+import type { Locale } from "@/app/content/model";
+
+export type AtlasLocale = Locale;
 
 export function AtlasLanguageLink({
   href,
@@ -54,40 +56,98 @@ type BuildingProject = {
   href: string;
 };
 
-export function AtlasCollectionMemory({ locale }: { locale: AtlasLocale }) {
+function collectionPositionKey(locale: AtlasLocale, href: string) {
+  return `atlas:collection:${locale}:${href}`;
+}
+
+function readCollectionPosition(locale: AtlasLocale, href: string) {
+  try {
+    const storedPosition = sessionStorage.getItem(
+      collectionPositionKey(locale, href),
+    );
+    if (storedPosition === null) return;
+    const scrollPosition = Number(storedPosition);
+    if (Number.isFinite(scrollPosition) && scrollPosition >= 0)
+      return scrollPosition;
+  } catch {
+    return;
+  }
+}
+
+export function AtlasCollectionReturn({
+  locale,
+  href,
+  children,
+  className = styles.textLink,
+  isCurrent = false,
+}: {
+  locale: AtlasLocale;
+  href: string;
+  children: ReactNode;
+  className?: string;
+  isCurrent?: boolean;
+}) {
+  const router = useRouter();
+
+  return (
+    <Link
+      className={className}
+      aria-current={isCurrent ? "page" : undefined}
+      href={href}
+      onClick={(event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+          return;
+        event.preventDefault();
+        const hasSavedPosition =
+          readCollectionPosition(locale, href) !== undefined;
+        router.push(href, { scroll: !hasSavedPosition });
+      }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function AtlasCollectionMemory({
+  locale,
+  children,
+}: {
+  locale: AtlasLocale;
+  children: ReactNode;
+}) {
   useEffect(() => {
-    const location = `${window.location.pathname}${window.location.search}`;
-    const storageKey = `atlas:collection:${locale}:${location}`;
-    let animationFrame = 0;
-
-    const savePosition = () => {
-      try {
-        sessionStorage.setItem(storageKey, String(window.scrollY));
-      } catch {
-        return;
-      }
-    };
-    const scheduleSave = () => {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(savePosition);
-    };
-
-    try {
-      const savedPosition = Number(sessionStorage.getItem(storageKey));
-      if (Number.isFinite(savedPosition) && savedPosition > 0)
-        requestAnimationFrame(() => window.scrollTo(0, savedPosition));
-    } catch {}
-
-    window.addEventListener("scroll", scheduleSave, { passive: true });
-    document.addEventListener("click", savePosition, true);
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", scheduleSave);
-      document.removeEventListener("click", savePosition, true);
-    };
+    const href = `${window.location.pathname}${window.location.search}`;
+    const savedPosition = readCollectionPosition(locale, href);
+    if (savedPosition === undefined) return;
+    const restorationFrame = requestAnimationFrame(() =>
+      window.scrollTo(0, savedPosition),
+    );
+    return () => cancelAnimationFrame(restorationFrame);
   }, [locale]);
 
-  return null;
+  return (
+    <div
+      onClickCapture={(event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        const anchor = target?.closest<HTMLAnchorElement>("a");
+        const opensCaseStudy = anchor?.pathname.startsWith(
+          `/lab/full/atlas/${locale}/projects/`,
+        );
+        if (!opensCaseStudy) return;
+        const href = `${window.location.pathname}${window.location.search}`;
+        try {
+          sessionStorage.setItem(
+            collectionPositionKey(locale, href),
+            String(window.scrollY),
+          );
+        } catch {
+          return;
+        }
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export function RoomDrawing({ variant = 0 }: { variant?: number }) {
