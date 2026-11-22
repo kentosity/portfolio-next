@@ -521,8 +521,8 @@ export function PortfolioCollection({
           <p role="status">
             {text(
               locale,
-              `${filteredProjects.length} case studies${problem ? ` · ${problemGroups[problem].title.en}` : ` across ${problemTypes.length} kinds of problem`}`,
-              `${filteredProjects.length}件の事例${problem ? `：${problemGroups[problem].title.ja}` : `を、${problemTypes.length}種類の課題で整理`}`,
+              `${filteredProjects.length} case studies${problem ? ` · ${problemGroups[problem].title.en}` : ` across ${groups.length} kinds of problem`}`,
+              `${filteredProjects.length}件の事例${problem ? `：${problemGroups[problem].title.ja}` : `を、${groups.length}種類の課題で整理`}`,
             )}
           </p>
           {(problem || area) && (
