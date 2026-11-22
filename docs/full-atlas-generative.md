@@ -45,10 +45,29 @@ npm run start -- --hostname 127.0.0.1 --port 3157
 PLAYWRIGHT_BROWSERS_PATH=/tmp/aide-proto/atlasgen-browsers npm run test:atlasgen
 ```
 
-`BASE_URL` selects a deployed preview. `SHOT_DIR` defaults to `/tmp/aide-proto/shots`; `CAPTURE_PASS` adds a screenshot suffix. Chromium's browser sandbox remains enabled. `CHROMIUM_PATH` can select an installed isolated test browser.
+`BASE_URL` selects a deployed preview. `SHOT_DIR` defaults to `/tmp/aide-proto/shots`; `CAPTURE_PREFIX` selects the filename prefix (default `full-atlasgen`); `CAPTURE_PASS` adds a screenshot suffix. Chromium's browser sandbox remains enabled. `CHROMIUM_PATH` can select an installed isolated test browser.
 
 The theme checks every route in both locales at 1440×900 and 390×844, and representative pages at 320, 768 and 1024 pixels. They cover localized text, section completeness, themed links, keyboard/touch sheet controls, filters/history/scroll restoration, language/anchor continuity, SVG variation/construction/download/restoration, reduced motion, supported annual cost figures, JavaScript-free case content, metadata and genuine 404s.
 
 Home, work and local-speech case screenshots are captured in both languages on desktop and mobile, with full-page and viewport versions: `/tmp/aide-proto/shots/full-atlasgen-{home,work,case}-{desktop,mobile}-{en,ja}*.png`.
 
 Validation completed locally: ESLint, TypeScript and production build passed; all 34 themed routes passed at desktop and mobile sizes, with 30 additional responsive layouts and the interaction checks above. The inherited site's 94 Playwright tests and three public-projection Python tests also passed. Screenshots were inspected across two passes; the second pass corrected a low-contrast stream drawing and captures completed animations.
+
+
+## Problem-led polish
+
+The collection, home sheets, featured entries and case-study headers lead with the problem. Entries show what was built and the supported result; case headers repeat that framing. The event-platform comparison derives its approximate $200,000 to $10,000 annual cost and 95% reduction from the shared metric. All other results and implementation descriptions reuse the existing public project records, including their prototype and personal-installation stages. Existing evidence TODOs remain in the case studies.
+
+Four colored filing tabs group the work by repeatable operations, coordination, finding/sharing information and website updates. The theme-local editorial headings and group assignments live in `_components/problems.ts`; project facts remain in the shared content. `?problem=operations|coordination|information|publishing` provides native-link filtering with or without JavaScript. Filters persist through cases, language switching and collection return. Legacy `?area=` links still work; an unknown problem filter shows the full collection.
+
+The pale project sheets use stable group colors, a folded corner, offset edges and a small hover/focus lift. Typography, spacing, touch targets, Japanese identity text and mobile costs have been refined. Motion follows the existing reduced-motion preference. No new runtime dependencies were added.
+
+```sh
+npm run start -- --hostname 127.0.0.1 --port 3159
+BASE_URL=http://127.0.0.1:3159 CAPTURE_PREFIX=polish CAPTURE_PASS=final \
+  PLAYWRIGHT_BROWSERS_PATH=/tmp/aide-proto/atlasgen-browsers npm run test:atlasgen
+```
+
+The extended theme suite verifies problem/built/result entries, every problem filter in EN/JA, matching case headings, locale and return continuity, invalid-filter handling and JavaScript-free filtering. It also captures the event case and individual sheets alongside home, work and speech cases. Screenshots are saved as `/tmp/aide-proto/shots/polish-{home,work,case,event}-{desktop,mobile}-{en,ja}-final*.png` and `polish-{entry,featured}-{desktop,mobile}-final.png`.
+
+Polish validation: ESLint, TypeScript, production build, all 34 themed routes on desktop/mobile, 30 additional responsive layouts, the interaction checks above, 94 inherited Playwright tests and three public-projection tests passed. EN/JA desktop/mobile screenshots were inspected in two design passes; the final pass tightens mobile collection headings, aligns featured artwork and keeps each cost value together on small screens.
