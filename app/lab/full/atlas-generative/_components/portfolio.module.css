@@ -1543,6 +1543,9 @@
   .page[lang="ja"] .pageHeading h1 {
     font-size: 45px;
   }
+  .page[lang="ja"] .collectionHeading h1 {
+    font-size: clamp(30px, 9.2vw, 45px);
+  }
   .page[lang="ja"] .caseHeading h1 {
     font-size: 36px;
     line-height: 1.35;
