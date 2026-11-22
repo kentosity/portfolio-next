@@ -30,10 +30,10 @@ Plan review: a conventional grid of animated project cards would repeat a famili
 
 ## Local references
 
-- `~/dotfiles/agents/skills` contains my-setup, code-style, browser, and yomiyasu; it has no dedicated design skill. my-setup and code-style guide this implementation.
-- `/tmp/aide-proto/frontend-design-SKILL.md` provides the two-pass design process, one strong visual idea, readable controls, responsive layout, and reduced-motion guidance. Applied to the sketches.
-- `/tmp/aide-proto/algorithmic-art-SKILL.md` and the cached copy under `generative-skills/skills/algorithmic-art` provide seeded randomness and parameter-exploration references. Its fixed Anthropic viewer and p5-only output conflict with this brief's Atlas palette and Next.js routes, so those instructions are superseded by the requested implementation.
-- Cached design material also includes canvas-design, webapp-testing, frontend-design, and Three.js references under `/tmp/aide-proto/generative-skills` and `/tmp/aide-proto/cabinet-three-skills`. These are reference material, not new installed dependencies.
+- The shared local skill catalog contains my-setup, code-style, browser, and yomiyasu; it has no dedicated design skill. my-setup and code-style guide this implementation.
+- A cached frontend-design skill provides the two-pass design process, one strong visual idea, readable controls, responsive layout, and reduced-motion guidance. Applied to the sketches.
+- A cached algorithmic-art skill provides seeded randomness and parameter-exploration references. Its fixed Anthropic viewer and p5-only output conflict with this brief's Atlas palette and Next.js routes, so those instructions are superseded by the requested implementation.
+- Cached design material also includes canvas-design, webapp-testing, frontend-design, and Three.js references. These are reference material, not new installed dependencies.
 - Existing `app/lab/full/atlas-generative/_components/art.ts` and `palette.ts` establish deterministic prints, thin cobalt lines, peach interruptions, and project-based seeds. The new studies import the same palette.
 
 ## Web references
