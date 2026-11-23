@@ -1,0 +1,199 @@
+.study {
+  padding-top: 40px;
+}
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  padding-bottom: 30px;
+}
+.eyebrow {
+  font-size: 0.875rem;
+  color: var(--cyan);
+  margin-bottom: 10px !important;
+}
+.intro h1 {
+  font-size: clamp(3rem, 5.4vw, 5.25rem);
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+.description {
+  max-width: 28ch;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  padding-bottom: 4px;
+}
+.tabs {
+  display: flex;
+  gap: 26px;
+  padding: 0 0 22px;
+  flex-wrap: wrap;
+  font-size: 0.9375rem;
+}
+.tabs a {
+  text-decoration: none;
+  color: var(--lavender);
+  padding: 5px 0;
+  border-bottom: 1px solid transparent;
+}
+.tabs a[aria-current] {
+  color: white;
+  border-color: var(--peach);
+}
+.figure {
+  margin: 0;
+}
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.4;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: pan-y;
+}
+.caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 0;
+  color: var(--lavender);
+  font-size: 0.875rem;
+}
+.caption span:last-child {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 26px;
+  flex-wrap: wrap;
+}
+.controls button {
+  font-size: 0.9375rem;
+  min-height: 46px;
+  padding: 9px 16px;
+}
+.controls .primary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.controls .primary:hover {
+  background: var(--peach);
+}
+.controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.controls > a {
+  padding: 10px;
+  font-size: 0.9375rem;
+}
+.parameter {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.9375rem;
+  margin-right: auto;
+}
+.parameter input {
+  width: 140px;
+  min-height: 44px;
+  accent-color: var(--peach);
+}
+.notes {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 32px;
+  padding: 26px 0 42px;
+  border-top: 1px solid #d3defb66;
+  color: var(--lavender);
+}
+.notes p {
+  max-width: 65ch;
+  font-size: 1rem;
+}
+.notes > span {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  padding-top: 2px;
+}
+.staticNotice {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 4px 10px;
+  font-size: 0.875rem;
+}
+.earlier {
+  padding-bottom: 30px;
+  color: var(--lavender);
+  font-size: 0.875rem;
+}
+@media (min-width: 1500px) {
+  .stage {
+    aspect-ratio: 1.55;
+  }
+}
+@media (max-width: 700px) {
+  .study {
+    padding-top: 28px;
+  }
+  .intro {
+    display: block;
+    padding-bottom: 22px;
+  }
+  .intro h1 {
+    font-size: 3.3rem;
+  }
+  .description {
+    margin-top: 18px !important;
+    max-width: 31ch;
+    font-size: 1rem;
+  }
+  .tabs {
+    gap: 5px 20px;
+    font-size: 0.875rem;
+    padding-bottom: 18px;
+  }
+  .stage {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+  .caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .parameter {
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
+  .parameter input {
+    width: 65%;
+  }
+  .controls {
+    gap: 8px;
+  }
+  .controls button {
+    padding: 9px 12px;
+    font-size: 0.875rem;
+  }
+  .notes {
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 30px;
+  }
+}

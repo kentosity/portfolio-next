@@ -341,7 +341,7 @@ try {
     assert.equal(await page.locator("html").getAttribute("lang"), locale);
   }
   await page.goto(`${baseUrl}/lab/art`);
-  assert.match(page.url(), /\/lab\/art\/sorting-room$/);
+  assert.match(page.url(), /\/lab\/art\/tidal-glass$/);
   checks.push(
     "server-rendered artwork without JavaScript; invalid study 404; index redirect; inherited EN/JA portfolio smoke checks",
   );
