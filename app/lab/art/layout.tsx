@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Art studies",
   },
   description:
-    "Interactive studies in giving complex systems a clear structure.",
+    "Interactive artworks in liquid light, folded paper, woven type, and miniature worlds.",
   robots: { index: false, follow: false },
 };
 
