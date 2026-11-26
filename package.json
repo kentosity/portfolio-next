@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "content:generate": "python3 scripts/generate-content.py",
     "test:atlasgen": "node tests/full-atlasgen.mjs",
-    "test:atlasgen-theme": "node tests/atlasgen-theme.mjs"
+    "test:atlasgen-theme": "node tests/atlasgen-theme.mjs",
+    "test:atlasgen-career": "node tests/atlasgen-career.mjs"
   },
   "dependencies": {
     "next": "16.1.5",

@@ -82,6 +82,7 @@ export const profile = {
     ja: siteContent.about.ja[index],
   })),
   experience: siteContent.experience.map((item) => ({
+    id: item.id,
     company: item.company,
     period: item.period,
     role: item.title,

@@ -230,7 +230,7 @@ try {
   for (const locale of ["en", "ja"]) {
     for (const [problem, count] of [
       ["operations", 3],
-      ["coordination", 3],
+      ["coordination", 4],
       ["information", 3],
       ["publishing", 2],
     ]) {

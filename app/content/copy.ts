@@ -23,7 +23,7 @@ export const copy = {
     career: "A career across products and operations",
     skills: "Skills connected to work",
     education: "Education",
-    current: "AI Engineer at FalconeX · Tokyo, Japan",
+    current: "AI Engineer",
     nameOther: "飯塚健杜",
     collectionIntro:
       "Professional systems, personal AI tools and web products, grouped by the work they do.",
@@ -101,7 +101,7 @@ export const copy = {
     career: "プロダクトから運用までの経験",
     skills: "技術と取り組んだ事例",
     education: "学歴",
-    current: "FalconeXのAIエンジニア · 東京",
+    current: "AIエンジニア",
     nameOther: "Kento Iizuka",
     collectionIntro:
       "業務システム、個人用AIツール、Webプロダクトを、取り組んだ仕事ごとに紹介します。",

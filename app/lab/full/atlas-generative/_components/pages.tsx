@@ -60,15 +60,8 @@ export function PortfolioShell({
         {text(locale, "Skip to content", "本文へ移動")}
       </a>
       <header className={styles.header}>
-        <Link className={styles.brand} href={route(locale)}>
-          <strong>{profile.identity.name[locale]}</strong>
-          <span>
-            {text(
-              locale,
-              "Software, given structure.",
-              "仕組みを、わかりやすく。",
-            )}
-          </span>
+        <Link className={styles.homeLink} href={route(locale)}>
+          {text(locale, "Home", "ホーム")}
         </Link>
         <nav
           className={styles.navigation}
@@ -292,10 +285,10 @@ function CareerTimeline({
   return (
     <div className={styles.timeline}>
       {profile.experience.map((item) => (
-        <article key={item.company}>
+        <article key={item.id} data-experience={item.id}>
           <p className={styles.smallText}>{item.period[locale]}</p>
           <div>
-            <h3>{item.company}</h3>
+            <h3>{item.company[locale]}</h3>
             <p>{item.role[locale]}</p>
             {detailed ? (
               <ul>
@@ -907,8 +900,8 @@ export function PortfolioAbout({ locale }: { locale: Locale }) {
         <p>
           {text(
             locale,
-            "I’m Kento, an engineer in Tokyo. I enjoy making the relationships between people, interfaces and services easier to understand.",
-            "東京で働くエンジニア、飯塚健杜です。使う人、画面、サービスの関係を整理し、わかりやすい仕組みを作ることが好きです。",
+            "I’m Kento, an AI Engineer in Tokyo. I enjoy making the relationships between people, interfaces and services easier to understand.",
+            "東京で働くAIエンジニア、飯塚健杜です。使う人、画面、サービスの関係を整理し、わかりやすい仕組みを作ることが好きです。",
           )}
         </p>
       </header>

@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Project explicitly allowed public profile fields into the site's typed data file."""
 import argparse
+import copy
 import json
 import subprocess
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+CAREER_UPDATES = ROOT / "app/content/approved-career-updates.json"
 
 
 def bilingual(en, ja):
@@ -251,10 +255,11 @@ def project_projection(source):
 
 
 def project_profile(profile, revision):
-    selected = profile["selected_projects"]
+    approved_slugs = {project["slug"] for project in json.loads(CAREER_UPDATES.read_text())["projects"]}
+    selected = [project for project in profile["selected_projects"] if project["slug"] not in approved_slugs]
     if {project["slug"] for project in selected} != set(PROJECTS):
         raise ValueError("Review the explicit 11-project publication allowlist before regenerating")
-    return {
+    content = {
         "source": {"repository": "kentosity/resume", "revision": revision, "reviewedOn": profile["reviewed_on"]},
         "identity": {
             "name": bilingual(profile["identity"]["name"], profile["identity"]["name_ja"]),
@@ -280,25 +285,60 @@ def project_profile(profile, revision):
         },
         "projects": [project_projection(project) for project in selected],
     }
+    return apply_approved_career_updates(content)
+
+
+def apply_approved_career_updates(content):
+    updated = copy.deepcopy(content)
+    approved = json.loads(CAREER_UPDATES.read_text())
+    updated["source"]["amendments"] = {
+        "file": str(CAREER_UPDATES.relative_to(ROOT)),
+        "reviewedOn": approved["reviewedOn"],
+    }
+    updated["identity"]["role"] = approved["identityRole"]
+    updated["introduction"] = approved["introduction"]
+    updated["about"] = approved["about"]
+
+    experience_by_id = {item["id"]: item for item in updated["experience"]}
+    experience_by_id.update({item["id"]: item for item in approved["experience"]})
+    experience_order = approved["experienceOrder"]
+    remaining_ids = [identifier for identifier in experience_by_id if identifier not in experience_order]
+    updated["experience"] = [experience_by_id[identifier] for identifier in [*experience_order, *remaining_ids]]
+    for item in updated["experience"]:
+        if isinstance(item["company"], str):
+            item["company"] = bilingual(item["company"], item["company"])
+
+    projects_by_slug = {project["slug"]: project for project in updated["projects"]}
+    for slug, correction in approved["projectCorrections"].items():
+        projects_by_slug[slug].update(correction)
+    projects_by_slug.update({project["slug"]: project for project in approved["projects"]})
+    updated["projects"] = list(projects_by_slug.values())
+    return updated
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile", type=Path, required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--profile", type=Path)
+    source.add_argument("--apply-approved-updates", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    profile_path = args.profile.resolve()
-    revision = subprocess.check_output(["git", "-C", str(profile_path.parent), "rev-parse", "HEAD"], text=True).strip()
-    content = project_profile(json.loads(profile_path.read_text()), revision)
+    output = ROOT / "app/content/site-content.ts"
+    if args.apply_approved_updates:
+        current_content = json.loads(output.read_text().split(" = ", 1)[1].removesuffix(";\n"))
+        content = apply_approved_career_updates(current_content)
+    else:
+        profile_path = args.profile.resolve()
+        revision = subprocess.check_output(["git", "-C", str(profile_path.parent), "rev-parse", "HEAD"], text=True).strip()
+        content = project_profile(json.loads(profile_path.read_text()), revision)
     rendered = 'import type { SiteContent } from "./model";\n\nexport const siteContent: SiteContent = ' + json.dumps(content, ensure_ascii=False, indent=2) + ";\n"
-    output = Path(__file__).resolve().parents[1] / "app/content/site-content.ts"
     if args.check:
         if output.read_text() != rendered:
             raise SystemExit("Public content is out of sync")
-        print("Public projection matches the canonical profile and editorial rules")
+        print("Public projection matches its source and approved editorial rules")
     else:
         output.write_text(rendered)
-        print("Generated 11 public project records and bilingual career content")
+        print(f"Generated {len(content['projects'])} public project records and bilingual career content")
 
 
 if __name__ == "__main__":

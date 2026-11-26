@@ -59,6 +59,13 @@ export const problemFraming: Record<
   string,
   { type: ProblemType; heading: Localized }
 > = {
+  epicpull: {
+    type: "coordination",
+    heading: {
+      en: "Card purchases needed connected accounts and payments.",
+      ja: "カードの購入に、認証と決済をつなぎたい。",
+    },
+  },
   "salon-data-platform": {
     type: "operations",
     heading: {

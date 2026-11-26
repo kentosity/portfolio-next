@@ -6,7 +6,7 @@ Atlas supplies the cobalt surround, light surfaces, large type, floating sheets,
 
 The home sheets stack, lift and select individual projects. Collection cards carry the same seeded drawings into the cases. Each case pairs an artistic interpretation with an inspectable workflow, then explains the problem, contribution, decisions, supported results, artifacts and technology responsibilities. The event-platform case derives its approximate $200k to $10k annual cost comparison (~95%) from the shared record.
 
-Project facts, chronology, translations, relationships and TODOs are derived from the existing typed public projection of the canonical resume in `app/content/site-content.ts`; the source model and generator are unchanged. Missing approved media, measurements, personal tradeoffs and reviewed PDF exports retain the structure's `TODO [stable-id]` treatment. The artwork is described as an interpretation; the workflow drawing is described as a conceptual reconstruction. The existing placeholder inventory remains in [site-structure.md](site-structure.md#content-placeholders).
+Project facts, chronology, translations, relationships and TODOs are derived from the existing typed public projection of the canonical resume in `app/content/site-content.ts`; the generator also applies the user-approved career amendments in `app/content/approved-career-updates.json`. Missing approved media, measurements, personal tradeoffs and reviewed PDF exports retain the structure's `TODO [stable-id]` treatment. The artwork is described as an interpretation; the workflow drawing is described as a conceptual reconstruction. The existing placeholder inventory remains in [site-structure.md](site-structure.md#content-placeholders).
 
 ## Routes
 
@@ -29,8 +29,9 @@ The entry route opens English. Each route below exists under both `/lab/full/atl
 - `/projects/falconex-site`
 - `/projects/markdown-sharing`
 - `/projects/ongy-viewer`
+- `/projects/epicpull`
 
-This gives 34 localized content routes. Unknown locales and cases return 404. Language changes preserve the project, filters, contact context and section anchor. Collection return restores its filter and scroll position. Preview metadata disables indexing.
+This gives 36 localized content routes. Unknown locales and cases return 404. Language changes preserve the project, filters, contact context and section anchor. Collection return restores its filter and scroll position. Preview metadata disables indexing.
 
 Static SVG endpoints at `/lab/full/atlas-generative/prints/<project-slug>` reuse the generator and public record. The gallery and home use these cacheable images, avoiding repeated inline path data. Interactive prints render on demand, animate briefly in response to changes, and honor reduced motion. The page's primary content and navigation render with JavaScript disabled.
 
@@ -85,6 +86,14 @@ PLAYWRIGHT_BROWSERS_PATH=/tmp/aide-proto/atlasgen-browsers npm run test:atlasgen
 # Use BASE_URL and CAPTURE_PREFIX=atlasgen-theme-preview for the deployed preview.
 ```
 
-The WebKit suite checks all 34 EN/JA routes on desktop and mobile, including a dark system preference, matching computed root/body backgrounds, a single theme-color meta tag matching the visible top surface, light color-scheme metadata, paper/sage section transitions, anchor loads, client navigation, Back restoration, resize, themed 404s, the entry redirect and isolation from `/en`. It also checks representative routes with JavaScript disabled under both system color preferences.
+The WebKit suite checks all 36 EN/JA routes on desktop and mobile, including a dark system preference, matching computed root/body backgrounds, a single theme-color meta tag matching the visible top surface, light color-scheme metadata, paper/sage section transitions, anchor loads, client navigation, Back restoration, resize, themed 404s, the entry redirect and isolation from `/en`. It also checks representative routes with JavaScript disabled under both system color preferences.
 
 Home, contact and local-speech cases have top/bottom viewport screenshots in both locales and sizes. Each is paired with an 80px body translation that exposes the root canvas; these simulate overscroll edges. Native Safari toolbar rendering and OS rubber-band gestures require a real Safari/device check. Screenshots use `/tmp/aide-proto/shots/atlasgen-theme-*.png`; computed colors and browser errors are saved in `atlasgen-theme-results.json`.
+
+## Career and header updates
+
+EpicPull is one project built for ZenCard as a contractor, with an EN/JA case study under `/projects/epicpull` and the coordination problem filter. One ZenCard timeline item covers February–August 2026. The entry and case describe the implemented authentication, payments, wallet, buyback and migration work. The contract ended when the company shut down. FalconeX starts in February 2026; Introduction shows full-time CTO work from April 2023 to April 2024. The hero uses the simple AI Engineer title. The header provides a Home link and navigation.
+
+The skills offset came from `.prose li + li`, which added 14px above every skill after TypeScript. That spacing now applies to prose lists while the flex skills list uses its own gap. `npm run test:atlasgen-career` verifies the single service/company entries, dates, titles, localized case and header, and records every skill item’s box, text box, padding, line-height and font-loading state in `atlasgen-career-results.json`. Desktop/mobile EN/JA entry, case and skills screenshots use `atlasgen-career-*.png`.
+
+The theme suite records WebKit RSC prefetch access-control failures separately from application exceptions. These appeared during history/resize checks and are retained for the full-site audit; the background and theme-color assertions remain strict.

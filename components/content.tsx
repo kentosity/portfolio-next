@@ -126,7 +126,7 @@ export function Career({
       {siteContent.experience.map((job) => (
         <article key={job.id}>
           <div>
-            <h3>{job.company}</h3>
+            <h3>{job.company[locale]}</h3>
             <p className="subtle">{job.period[locale]}</p>
           </div>
           <div>

@@ -13,8 +13,8 @@ export default function PortfolioNotFound() {
   return (
     <div className={styles.page} style={paletteVariables} lang={locale}>
       <header className={styles.header}>
-        <Link className={styles.brand} href={route(locale)}>
-          <strong>Kento Iizuka</strong>
+        <Link className={styles.homeLink} href={route(locale)}>
+          {locale === "en" ? "Home" : "ホーム"}
         </Link>
       </header>
       <main id="main" className={styles.pageHeading}>

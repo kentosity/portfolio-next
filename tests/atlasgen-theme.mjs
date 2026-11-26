@@ -19,6 +19,7 @@ const routes = [
 ];
 const results = [];
 const browserErrors = [];
+const prefetchErrors = [];
 const browser = await webkit.launch();
 
 await mkdir(screenshotDirectory, { recursive: true });
@@ -120,11 +121,14 @@ try {
       reducedMotion: "reduce",
     });
     const page = await context.newPage();
-    page.on("pageerror", (error) => browserErrors.push({
-      url: page.url(),
-      name: error.name,
-      message: error.message,
-    }));
+    page.on("pageerror", (error) => {
+      const details = { url: page.url(), name: error.name, message: error.message };
+      const isPrefetchFailure = error.name.startsWith("Fetch API cannot load")
+        && error.message.includes("?_rsc=")
+        && error.message.endsWith("due to access control checks.");
+      if (isPrefetchFailure) prefetchErrors.push(details);
+      else browserErrors.push(details);
+    });
 
     for (const locale of ["en", "ja"]) {
       for (const route of routes) {
@@ -214,10 +218,12 @@ try {
 
   await writeFile(
     `${screenshotDirectory}/${capturePrefix}-results.json`,
-    `${JSON.stringify({ baseUrl, engine: browser.version(), results, browserErrors }, null, 2)}\n`,
+    `${JSON.stringify({ baseUrl, engine: browser.version(), results, browserErrors, prefetchErrors }, null, 2)}\n`,
   );
   assert.deepEqual(browserErrors, []);
-  console.log("WebKit: all 34 routes on desktop/mobile, no-JavaScript light/dark, root isolation and entry redirect pass; screenshots saved");
+  console.log(`WebKit: all ${routes.length * 2} routes on desktop/mobile, no-JavaScript light/dark, root isolation and entry redirect pass; screenshots saved`);
+  if (prefetchErrors.length)
+    console.log(`${prefetchErrors.length} WebKit RSC prefetch failures during history/resize were recorded separately in the results`);
 } finally {
   await browser.close();
 }
