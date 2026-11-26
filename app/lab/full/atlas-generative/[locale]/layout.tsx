@@ -1,8 +1,16 @@
 import type { ReactNode } from "react";
+import type { Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Geist } from "next/font/google";
 import { isLocale, locales } from "@/app/content/model";
+import { palette, paletteVariables } from "../_components/palette";
+import { PortfolioThemeColor } from "../_components/theme-color";
 import "./reset.css";
+
+export const viewport: Viewport = {
+  themeColor: palette.blue,
+  colorScheme: "light",
+};
 
 const geist = Geist({
   subsets: ["latin"],
@@ -24,8 +32,11 @@ export default async function PortfolioLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   return (
-    <html lang={locale}>
-      <body className={geist.variable}>{children}</body>
+    <html lang={locale} className="atlas-generative" style={paletteVariables}>
+      <body className={geist.variable}>
+        <PortfolioThemeColor />
+        {children}
+      </body>
     </html>
   );
 }
