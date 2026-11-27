@@ -33,7 +33,7 @@ export const siteContent: SiteContent = {
     },
     {
       "label": "LinkedIn",
-      "url": "https://jp.linkedin.com/in/kento-iizuka-a79289273"
+      "url": "https://www.linkedin.com/in/kento-iizuka"
     },
     {
       "label": "Wantedly",

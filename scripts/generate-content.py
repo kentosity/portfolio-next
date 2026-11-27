@@ -299,6 +299,10 @@ def apply_approved_career_updates(content):
     updated["introduction"] = approved["introduction"]
     updated["about"] = approved["about"]
 
+    approved_link_urls = approved.get("linkUrls", {})
+    for link in updated["links"]:
+        link["url"] = approved_link_urls.get(link["label"], link["url"])
+
     experience_by_id = {item["id"]: item for item in updated["experience"]}
     experience_by_id.update({item["id"]: item for item in approved["experience"]})
     experience_order = approved["experienceOrder"]
