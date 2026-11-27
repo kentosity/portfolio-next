@@ -54,7 +54,7 @@ export const siteContent: SiteContent = {
       "Since February 2026, I have worked as an AI Engineer at FalconeX. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
       "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard shut down.",
       "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB reduced annual infrastructure cost from about $200k to about $10k (~95%).",
-      "I served as full-time CTO at Introduction from April 2023 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
+      "I served as full-time CTO at Introduction from April 2020 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
       "My core stack includes TypeScript, React/Next.js, Vue/Nuxt, Node.js/NestJS and AWS, with recent work in Python, BigQuery and Google Cloud. I also build personal developer tools, including local speech and macOS playback tooling for my own development setup.",
       "I welcome conversations about engineering roles and client projects in web products, data integration and AI-assisted business automation. I enjoy understanding the workflow, building the solution and improving it with the people using it."
     ],
@@ -63,7 +63,7 @@ export const siteContent: SiteContent = {
       "2026年2月からFalconeXに勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
       "2026年2月から8月まで、株式会社ZenCardの業務委託として「エピックプル」を開発しました。認証、決済、USDCを扱うウォレット、カード買取機能に加え、米国・香港向けの利用者向け画面と、LaravelからNext.jsへの段階的な移行を担当しました。会社の閉鎖に伴い、契約を終了しました。",
       "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
-      "Introductionでは、2023年4月から2024年4月まで正社員のCTOを担当しました。SNAPのイベント管理、ゲスト向けアルバム、会場表示を開発し、プロダクトデザインや顧客対応にも携わりました。",
+      "Introductionでは、2020年4月から2024年4月まで正社員のCTOを担当しました。SNAPのイベント管理、ゲスト向けアルバム、会場表示を開発し、プロダクトデザインや顧客対応にも携わりました。",
       "主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloudを使った開発や、個人環境に導入するローカル音声合成・macOS再生ツールにも取り組んでいます。",
       "エンジニア採用のお話と、Web開発・データ連携・AIを活用した業務改善のご相談をお待ちしています。使う人の業務を理解し、必要な仕組みをつくり、運用しながら改善する仕事に関心があります。"
     ]
@@ -177,12 +177,12 @@ export const siteContent: SiteContent = {
         "ja": "正社員・CTO"
       },
       "period": {
-        "en": "April 2023 – April 2024",
-        "ja": "2023年4月 – 2024年4月"
+        "en": "April 2020 – April 2024",
+        "ja": "2020年4月 – 2024年4月"
       },
       "summary": {
-        "en": "Served as full-time CTO from April 2023 to April 2024, working across engineering, product design and customer-facing tasks. Built SNAP at Introduction.",
-        "ja": "2023年4月から2024年4月まで正社員のCTOを担当。開発、プロダクトデザイン、顧客対応に取り組み、IntroductionでSNAPを開発しました。"
+        "en": "Served as full-time CTO from April 2020 to April 2024, working across engineering, product design and customer-facing tasks. Built SNAP at Introduction.",
+        "ja": "2020年4月から2024年4月まで正社員のCTOを担当。開発、プロダクトデザイン、顧客対応に取り組み、IntroductionでSNAPを開発しました。"
       },
       "bullets": {
         "en": [

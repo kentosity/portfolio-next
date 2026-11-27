@@ -69,7 +69,7 @@ try {
         assert.match(introduction, /CTO/);
         assert.match(introduction, locale === "en" ? /Full-time CTO/ : /正社員・CTO/);
         assert.doesNotMatch(introduction, /\bintern\b|part[ -]time|アルバイト/i);
-        assert.match(introduction, locale === "en" ? /April 2023 – April 2024/ : /2023年4月 – 2024年4月/);
+        assert.match(introduction, locale === "en" ? /April 2020 – April 2024/ : /2020年4月 – 2024年4月/);
         const falconex = await page.locator('[data-experience="falconex"]').innerText();
         assert.match(falconex, locale === "en" ? /February 2026 – Present/ : /2026年2月 – 現在/);
         assert.doesNotMatch(falconex, /Around|頃/);

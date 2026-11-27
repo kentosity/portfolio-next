@@ -92,7 +92,7 @@ Home, contact and local-speech cases have top/bottom viewport screenshots in bot
 
 ## Career and header updates
 
-EpicPull is one project built for ZenCard as a contractor, with an EN/JA case study under `/projects/epicpull` and the coordination problem filter. One ZenCard timeline item covers February–August 2026. The entry and case describe the implemented authentication, payments, wallet, buyback and migration work. The contract ended when the company shut down. FalconeX starts in February 2026; Introduction shows full-time CTO work from April 2023 to April 2024. The hero uses the simple AI Engineer title. The header provides a Home link and navigation.
+EpicPull is one project built for ZenCard as a contractor, with an EN/JA case study under `/projects/epicpull` and the coordination problem filter. One ZenCard timeline item covers February–August 2026. The entry and case describe the implemented authentication, payments, wallet, buyback and migration work. The contract ended when the company shut down. FalconeX starts in February 2026; Introduction shows full-time CTO work from April 2020 to April 2024. The hero uses the simple AI Engineer title. The header provides a Home link and navigation.
 
 The skills offset came from `.prose li + li`, which added 14px above every skill after TypeScript. That spacing now applies to prose lists while the flex skills list uses its own gap. `npm run test:atlasgen-career` verifies the single service/company entries, dates, titles, localized case and header, and records every skill item’s box, text box, padding, line-height and font-loading state in `atlasgen-career-results.json`. Desktop/mobile EN/JA entry, case and skills screenshots use `atlasgen-career-*.png`.
 
