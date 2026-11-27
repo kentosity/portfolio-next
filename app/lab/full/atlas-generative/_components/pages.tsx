@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import {
   PortfolioCollectionMemory,
   PortfolioCollectionReturn,
-  PortfolioLanguageLink,
   ProjectSheets,
   RoomDrawing,
   SystemPlan,
@@ -28,6 +27,7 @@ import {
 } from "./routing";
 import { problemGroups, problemTypes, type ProblemType } from "./problems";
 import { paletteVariables } from "./palette";
+import { PortfolioLanguageSwitch } from "./language-switch";
 
 const text = (locale: Locale, en: string, ja: string) =>
   locale === "en" ? en : ja;
@@ -89,21 +89,7 @@ export function PortfolioShell({
             ),
           )}
         </nav>
-        <nav
-          className={styles.languages}
-          aria-label={text(locale, "Language", "言語")}
-        >
-          {(["en", "ja"] as const).map((language) => (
-            <PortfolioLanguageLink
-              key={language}
-              href={`${route(language, path)}${collectionQuery({ area, problem })}`}
-              locale={language}
-              isCurrent={language === locale}
-            >
-              {language === "en" ? "English" : "日本語"}
-            </PortfolioLanguageLink>
-          ))}
-        </nav>
+        <PortfolioLanguageSwitch locale={locale} path={path} area={area} problem={problem} />
       </header>
       <main id="main">{children}</main>
       <footer className={styles.footer}>

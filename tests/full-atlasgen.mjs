@@ -261,7 +261,7 @@ try {
       assert.equal(await page.locator("h1").innerText(), heading);
       await page
         .getByRole("link", {
-          name: locale === "en" ? "日本語" : "English",
+          name: locale === "en" ? "JP" : "EN",
           exact: true,
         })
         .click();
@@ -296,7 +296,7 @@ try {
 
   await open(page, `${root}/en/projects?area=ai-tools`);
   assert.equal(await page.locator("main article").count(), 4);
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects?area=ai-tools");
   assert.equal(await page.locator("main article").count(), 4);
   await page.goBack();
@@ -349,7 +349,7 @@ try {
     await page.evaluate(() => document.activeElement.matches(":focus-visible")),
     true,
   );
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects/local-speech");
   checks.push(
     "Case-study rooms support keyboard selection and language switching retains the case route",
@@ -417,7 +417,7 @@ try {
   );
 
   await open(page, `${root}/en/projects/event-platform#results`);
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects/event-platform#results");
   checks.push("Language switching retains a case-study section anchor");
 

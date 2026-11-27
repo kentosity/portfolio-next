@@ -83,17 +83,24 @@
 }
 .languages {
   display: flex;
+  align-items: center;
   gap: 4px;
   font-size: 14px;
 }
 .languages a {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
   padding: 6px 10px;
   border: 1px solid transparent;
-  border-radius: 50%;
+  border-radius: 999px;
   text-decoration: none;
 }
 .languages a[aria-current="true"] {
-  border-color: var(--rule);
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--blue);
 }
 .hero {
   display: grid;
