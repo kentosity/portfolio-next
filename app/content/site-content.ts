@@ -326,64 +326,6 @@ export const siteContent: SiteContent = {
       }
     }
   ],
-  "todos": {
-    "hiring": {
-      "id": "hiring-preferences",
-      "text": {
-        "en": "Confirm hiring focus, location/remote arrangements, relocation/travel preferences and public availability wording.",
-        "ja": "採用で希望する分野、勤務地・リモート条件、転居・出張の希望、公開する稼働状況を確認してください。"
-      }
-    },
-    "languages": {
-      "id": "working-languages",
-      "text": {
-        "en": "Confirm the public wording of working-language proficiency.",
-        "ja": "業務で使う言語と習熟度の公開表現を確認してください。"
-      }
-    },
-    "identity": {
-      "id": "public-identity",
-      "text": {
-        "en": "Confirm this name presentation, public contact email and professional links.",
-        "ja": "氏名の表記、公開する連絡先メールアドレス、仕事用リンクを確認してください。"
-      }
-    },
-    "domain": {
-      "id": "production-domain",
-      "text": {
-        "en": "Confirm the final production domain; metadata currently uses the existing portfolio origin.",
-        "ja": "最終的な公開ドメインを確認してください。メタデータには既存のポートフォリオURLを使用しています。"
-      }
-    },
-    "engagement": {
-      "id": "client-engagement",
-      "text": {
-        "en": "Confirm the contracting party, work offered, actual availability, engagement sequence, deliverables and any pricing or response-time wording.",
-        "ja": "契約主体、提供できる業務、稼働状況、進め方、成果物、料金や返信時期の表現を確認してください。"
-      }
-    },
-    "portrait": {
-      "id": "portrait-and-interests",
-      "text": {
-        "en": "Supply an approved portrait/name treatment, a personal story about organizing systems and any interests or sketches to share.",
-        "ja": "掲載する写真・氏名の見せ方、仕組みを整理することにまつわるエピソード、公開したい関心やスケッチを用意してください。"
-      }
-    },
-    "resume-en": {
-      "id": "resume-pdf-en",
-      "text": {
-        "en": "Review a new public-safe English PDF export from the canonical profile, including contact details and project links.",
-        "ja": "正本プロフィールから英語PDFを作成し、連絡先と公開可能なプロジェクトリンクを確認してください。"
-      }
-    },
-    "resume-ja": {
-      "id": "resume-pdf-ja",
-      "text": {
-        "en": "Review a new public-safe Japanese PDF export from the canonical profile, including contact details and project links.",
-        "ja": "正本プロフィールから日本語PDFを作成し、連絡先と公開可能なプロジェクトリンクを確認してください。"
-      }
-    }
-  },
   "projects": [
     {
       "id": "salon-data-platform",
@@ -500,44 +442,7 @@ export const siteContent: SiteContent = {
             "ja": "データの受け渡し形式"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "salon-data-platform-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "salon-data-platform-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "salon-data-platform-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "salon-data-platform-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "salon-data-platform-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "local-speech",
@@ -654,44 +559,7 @@ export const siteContent: SiteContent = {
             "ja": "音声モデル"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "local-speech-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "local-speech-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "local-speech-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "local-speech-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "local-speech-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "wecall",
@@ -803,44 +671,7 @@ export const siteContent: SiteContent = {
             "ja": "コンテンツ配信"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "event-platform-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "event-platform-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "event-platform-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "event-platform-evidence",
-          "text": {
-            "en": "Document the annual cost baseline/comparison periods, included services and measurement method for the confirmed approximate headline.",
-            "ja": "確認済みの概算値について、比較する年度、対象サービス、集計方法を用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "event-platform-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "subsidy-search-pilot",
@@ -936,44 +767,7 @@ export const siteContent: SiteContent = {
             "ja": "検索キューのブラウザー操作"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "subsidy-search-pilot-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "subsidy-search-pilot-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "subsidy-search-pilot-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits. Confirm ownership and publication rights before sharing code or recordings.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。 コードや録画の掲載前に、所有権と公開権限を確認してください。"
-          }
-        },
-        "evidence": {
-          "id": "subsidy-search-pilot-evidence",
-          "text": {
-            "en": "Supply a versioned evaluation set, baseline, model/configuration/date, scoring method, aggregate outcomes, failures, cost and latency.",
-            "ja": "版を固定した評価セット、ベースライン、モデル・設定・日付、採点方法、集計結果、失敗例、費用、遅延を用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "subsidy-search-pilot-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "agent-coordination",
@@ -1067,44 +861,7 @@ export const siteContent: SiteContent = {
             "ja": "ローカルの通信"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "agent-coordination-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "agent-coordination-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "agent-coordination-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "agent-coordination-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "agent-coordination-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "weno",
@@ -1221,44 +978,7 @@ export const siteContent: SiteContent = {
             "ja": "チケット状態の保存"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "event-ticketing-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "event-ticketing-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "event-ticketing-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "event-ticketing-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "event-ticketing-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "snap",
@@ -1368,44 +1088,7 @@ export const siteContent: SiteContent = {
             "ja": "フォトブースとの連携"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "snap-photobooth-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "snap-photobooth-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "snap-photobooth-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "snap-photobooth-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "snap-photobooth-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "iplusi",
@@ -1522,44 +1205,7 @@ export const siteContent: SiteContent = {
             "ja": "フロントエンドのビルド"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "architecture-portfolio-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "architecture-portfolio-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "architecture-portfolio-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "architecture-portfolio-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "architecture-portfolio-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "falconex-site",
@@ -1653,44 +1299,7 @@ export const siteContent: SiteContent = {
             "ja": "ページの内容"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "falconex-site-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "falconex-site-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "falconex-site-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "falconex-site-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "falconex-site-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "markdown-sharing",
@@ -1798,44 +1407,7 @@ export const siteContent: SiteContent = {
             "ja": "Markdownの表示"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "markdown-sharing-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "markdown-sharing-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "markdown-sharing-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "markdown-sharing-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method. Verify that the deployed application matches the reviewed source.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。 公開環境と確認したソースの機能が一致するか検証してください。"
-          }
-        },
-        "reflection": {
-          "id": "markdown-sharing-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "ongy",
@@ -1910,44 +1482,7 @@ export const siteContent: SiteContent = {
             "ja": "プロトタイプのデプロイ"
           }
         }
-      ],
-      "todos": {
-        "context": {
-          "id": "ongy-viewer-context",
-          "text": {
-            "en": "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.",
-            "ja": "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"
-          }
-        },
-        "decisions": {
-          "id": "ongy-viewer-decisions",
-          "text": {
-            "en": "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.",
-            "ja": "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "ongy-viewer-artifacts",
-          "text": {
-            "en": "Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits.",
-            "ja": "掲載許可のある画面か合成データの例、録画、公開できる成果物・コードのリンク、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "ongy-viewer-evidence",
-          "text": {
-            "en": "Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method. Supply an authoritative original stack record.",
-            "ja": "測定の期間・対象・方法、現在の利用・公開状況、掲載許可のある協力者のコメントを用意してください。 当時の技術構成が分かる一次資料も用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "ongy-viewer-reflection",
-          "text": {
-            "en": "Choose the next improvement and explain how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
-          }
-        }
-      }
+      ]
     },
     {
       "id": "epicpull",
@@ -2066,44 +1601,7 @@ export const siteContent: SiteContent = {
       "related": [
         "event-platform",
         "snap-photobooth"
-      ],
-      "todos": {
-        "context": {
-          "id": "epicpull-context",
-          "text": {
-            "en": "Describe the team responsibilities and one concrete account, payment or migration problem to explain.",
-            "ja": "チーム内の担当範囲と、認証・決済・移行で直面した具体的な課題を追記してください。"
-          }
-        },
-        "decisions": {
-          "id": "epicpull-decisions",
-          "text": {
-            "en": "Explain the constraints and alternatives behind the staged migration and mobile compatibility work.",
-            "ja": "段階的な移行やモバイル向けの互換性維持について、制約と検討した選択肢を追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "epicpull-artifacts",
-          "text": {
-            "en": "Supply approved screenshots, a recording or synthetic workflow examples, with any required credits.",
-            "ja": "掲載許可のある画面、録画、合成データによる処理例と、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "epicpull-evidence",
-          "text": {
-            "en": "Supply attributable release records or measurements for the implemented workflows, including scope and period.",
-            "ja": "実装した機能について、対象と期間が分かる公開・利用の記録や測定結果を用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "epicpull-reflection",
-          "text": {
-            "en": "Describe the next improvement and how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を追記してください。"
-          }
-        }
-      }
+      ]
     }
   ]
 };

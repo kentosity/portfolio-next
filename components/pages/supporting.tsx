@@ -9,7 +9,6 @@ import {
   PageIntro,
   Section,
   Skills,
-  Todo,
   Workflow,
 } from "../content";
 
@@ -44,9 +43,6 @@ export function AboutPage({ locale }: { locale: Locale }) {
       </Section>
       <Section title={text.education}>
         <Education locale={locale} />
-      </Section>
-      <Section title={text.portrait}>
-        <Todo item={siteContent.todos.portrait} locale={locale} />
       </Section>
       <Section title={text.contact}>
         <ContactActions locale={locale} />
@@ -95,10 +91,6 @@ export function ResumePage({ locale }: { locale: Locale }) {
       </Section>
       <Section title={text.education}>
         <Education locale={locale} />
-      </Section>
-      <Section title={text.pdf}>
-        <p>{text.pdfPending}</p>
-        <Todo item={siteContent.todos[`resume-${locale}`]} locale={locale} />
       </Section>
       <p className="subtle">
         {text.updated}:{" "}
@@ -206,9 +198,6 @@ export function WorkTogetherPage({ locale }: { locale: Locale }) {
           ))}
         </ol>
       </Section>
-      <Section title={text.terms}>
-        <Todo item={siteContent.todos.engagement} locale={locale} />
-      </Section>
       <Section title={text.contact}>
         <p>{text.projectPrompt}</p>
         <Link className="button" href={`/${locale}/contact#projects`}>
@@ -283,9 +272,6 @@ export function ContactPage({
       </div>
       <Section title={text.practical}>
         <p>{siteContent.identity.location[locale]}</p>
-        <Todo item={siteContent.todos.hiring} locale={locale} />
-        <Todo item={siteContent.todos.languages} locale={locale} />
-        <Todo item={siteContent.todos.engagement} locale={locale} />
       </Section>
       <Section title={text.links}>
         <ul className="professional-links">
@@ -295,8 +281,6 @@ export function ContactPage({
             </li>
           ))}
         </ul>
-        <Todo item={siteContent.todos.identity} locale={locale} />
-        <Todo item={siteContent.todos.domain} locale={locale} />
       </Section>
     </>
   );

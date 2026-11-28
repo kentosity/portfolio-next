@@ -124,20 +124,6 @@ function Paragraphs({
   );
 }
 
-function MissingEvidence({
-  locale,
-  item,
-}: {
-  locale: Locale;
-  item: { id: string; text: Localized };
-}) {
-  return (
-    <aside className={styles.placeholder} data-todo={item.id}>
-      <strong>TODO [{item.id}]:</strong> {item.text[locale]}
-    </aside>
-  );
-}
-
 function ProjectEntry({
   project,
   locale,
@@ -642,7 +628,6 @@ export function PortfolioCaseStudy({
             <Paragraphs values={project.built} locale={locale} />
             <h3>{text(locale, "My contribution", "担当した範囲")}</h3>
             <p>{project.role[locale]}</p>
-            <MissingEvidence locale={locale} item={project.todos.context} />
           </div>
         </section>
         <section className={styles.caseSection} id="decisions">
@@ -659,19 +644,12 @@ export function PortfolioCaseStudy({
                 <Paragraphs values={decision.description} locale={locale} />
               </article>
             ))}
-            <MissingEvidence locale={locale} item={project.todos.decisions} />
           </div>
         </section>
         <section className={styles.caseSection} id="results">
           <h2>{text(locale, "Results and evidence", "結果と根拠")}</h2>
           <div className={styles.prose}>
             <Paragraphs values={project.results} locale={locale} />
-            {project.slug === "subsidy-search-pilot" && (
-              <h3 id="evaluation">{text(locale, "Evaluation", "評価")}</h3>
-            )}
-            {project.evidenceGap && (
-              <MissingEvidence locale={locale} item={project.evidenceGap} />
-            )}
           </div>
         </section>
         <section className={styles.caseSection} id="artifacts">
@@ -707,9 +685,6 @@ export function PortfolioCaseStudy({
                 <p>{artifact.description[locale]}</p>
               </article>
             ))}
-            {project.artifactGap && (
-              <MissingEvidence locale={locale} item={project.artifactGap} />
-            )}
           </div>
         </section>
         <section className={styles.caseSection} id="stack">
@@ -731,14 +706,6 @@ export function PortfolioCaseStudy({
                 ))}
               </tbody>
             </table>
-          </div>
-        </section>
-        <section className={styles.caseSection} id="reflection">
-          <h2>
-            {text(locale, "The next useful question", "次に確かめたいこと")}
-          </h2>
-          <div className={styles.prose}>
-            <MissingEvidence locale={locale} item={project.todos.reflection} />
           </div>
         </section>
       </div>
@@ -923,10 +890,6 @@ export function PortfolioResume({ locale }: { locale: Locale }) {
             {text(locale, "Profile reviewed: ", "プロフィール確認日：")}
             {profile.reviewedOn}
           </p>
-          <MissingEvidence
-            locale={locale}
-            item={profile.todos[`resume-${locale}`]}
-          />
         </div>
       </section>
       <ContactBand locale={locale} />
@@ -1077,7 +1040,6 @@ export function PortfolioWorkTogether({ locale }: { locale: Locale }) {
               "東京を拠点に、現在はFalconeX Inc.で勤務しています。想定する範囲や時期をお知らせください。進め方を個別にご相談します。",
             )}
           </p>
-          <MissingEvidence locale={locale} item={profile.todos.engagement} />
         </div>
       </section>
       <ContactBand locale={locale} />
@@ -1147,9 +1109,7 @@ export function PortfolioContact({
             <a className={styles.solidButton} href={emailLink(hiringSubject)}>
               {text(locale, "Email about a role", "採用についてメールする")}
             </a>
-          ) : (
-            <MissingEvidence locale={locale} item={profile.todos.identity} />
-          )}
+          ) : null}
         </section>
         <section className={styles.contactPanel} id="projects">
           <h2>{text(locale, "Development projects", "開発プロジェクト")}</h2>

@@ -38,10 +38,6 @@ export default async function Page({
   );
   return (
     <>
-      <aside className="review-notice">
-        <strong>{copy.ja.legacy}</strong>
-        <p>{copy.ja.legacyIntro}</p>
-      </aside>
       <article className="legacy-prose">
         <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
       </article>

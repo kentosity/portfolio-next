@@ -3,7 +3,6 @@ export type Locale = (typeof locales)[number];
 export type Localized<T = string> = Record<Locale, T>;
 export type Area = "ai-tools" | "data-systems" | "products-websites";
 
-export type ContentTodo = { id: string; text: Localized };
 export type Project = {
   id: string;
   slug: string;
@@ -23,10 +22,6 @@ export type Project = {
   results: Localized;
   stack: { name: string; responsibility: Localized }[];
   related: string[];
-  todos: Record<
-    "context" | "decisions" | "artifacts" | "evidence" | "reflection",
-    ContentTodo
-  >;
   metric?: {
     currency: string;
     period: string;
@@ -63,7 +58,6 @@ export type SiteContent = {
   }[];
   skills: { title: Localized; items: Localized<string[]> }[];
   education: { school: Localized; description: Localized }[];
-  todos: Record<string, ContentTodo>;
   projects: Project[];
 };
 

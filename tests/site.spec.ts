@@ -243,3 +243,25 @@ test("localized home and all case covers are actual 1200 by 630 PNG images", asy
     }
   }
 });
+
+test("public routes do not render TODO or placeholder markers", async ({
+  request,
+}) => {
+  const routes = [
+    "/",
+    ...locales.flatMap((locale) => [
+      ...corePages.map((route) => (route ? `/${locale}/${route}` : `/${locale}`)),
+      ...siteContent.projects.map(
+        (project) => `/${locale}/projects/${project.slug}`,
+      ),
+    ]),
+    ...legacySlugs.map((slug) => `/projects/${slug}`),
+  ];
+  const banned =
+    /TODO|data-todo|content-todo|review-notice|awaiting review|awaiting reconciliation|確認待ち/i;
+  for (const route of routes) {
+    const response = await request.get(route);
+    expect(response.ok(), route).toBe(true);
+    expect(await response.text(), route).not.toMatch(banned);
+  }
+});
