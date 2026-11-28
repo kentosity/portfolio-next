@@ -55,7 +55,7 @@ class PublicProjectionTests(unittest.TestCase):
         self.assertFalse(any(project["slug"] == "zencard" for project in updated["projects"]))
         self.assertEqual(sum(job["id"] == "zencard" for job in updated["experience"]), 1)
         job = next(job for job in updated["experience"] if job["id"] == "zencard")
-        self.assertEqual(job["company"], {"en": "ZenCard", "ja": "株式会社ZenCard"})
+        self.assertEqual(job["company"], {"en": "ZenCard Inc.", "ja": "株式会社ZenCard"})
         self.assertEqual(job["period"]["en"], "February 2026 – August 2026")
         introduction = next(job for job in updated["experience"] if job["id"] == "introduction")
         self.assertEqual(introduction["title"], {"en": "Full-time CTO", "ja": "正社員・CTO"})

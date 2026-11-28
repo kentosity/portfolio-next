@@ -51,16 +51,16 @@ export const siteContent: SiteContent = {
   "about": {
     "en": [
       "I build web products, data pipelines and tools that make business workflows easier to run. My work spans problem discovery, interface design, full-stack development and operations.",
-      "Since February 2026, I have worked as an AI Engineer at FalconeX. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
-      "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard shut down.",
+      "Since February 2026, I have worked as an AI Engineer at FalconeX Inc.. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
+      "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard Inc. on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard Inc. shut down.",
       "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB lowered annual infrastructure cost.",
       "I served as full-time CTO at Introduction from April 2020 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
       "My core stack includes TypeScript, React/Next.js, Vue/Nuxt, Node.js/NestJS and AWS, with recent work in Python, BigQuery and Google Cloud. I also build personal developer tools, including local speech and macOS playback tooling for my own development setup.",
       "I welcome conversations about engineering roles and client projects in web products, data integration and AI-assisted business automation. I enjoy understanding the workflow, building the solution and improving it with the people using it."
     ],
     "ja": [
-      "FalconeXのAIエンジニアです。Webプロダクト、データ連携、業務自動化を中心に、課題整理、UI設計、フルスタック開発、運用改善に取り組んでいます。",
-      "2026年2月からFalconeXに勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
+      "FalconeX Inc.のAIエンジニアです。Webプロダクト、データ連携、業務自動化を中心に、課題整理、UI設計、フルスタック開発、運用改善に取り組んでいます。",
+      "2026年2月からFalconeX Inc.に勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
       "2026年2月から8月まで、株式会社ZenCardの業務委託として「エピックプル」を開発しました。認証、決済、USDCを扱うウォレット、カード買取機能に加え、米国・香港向けの利用者向け画面と、LaravelからNext.jsへの段階的な移行を担当しました。会社の閉鎖に伴い、契約を終了しました。",
       "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を削減しました。",
       "Introductionでは、2020年4月から2024年4月まで正社員のCTOを担当しました。SNAPのイベント管理、ゲスト向けアルバム、会場表示を開発し、プロダクトデザインや顧客対応にも携わりました。",
@@ -72,8 +72,8 @@ export const siteContent: SiteContent = {
     {
       "id": "falconex",
       "company": {
-        "en": "FalconeX",
-        "ja": "FalconeX"
+        "en": "FalconeX Inc.",
+        "ja": "FalconeX Inc."
       },
       "title": {
         "en": "AI Engineer",
@@ -84,8 +84,8 @@ export const siteContent: SiteContent = {
         "ja": "2026年2月 – 現在"
       },
       "summary": {
-        "en": "Develop software and automation for client workflows as an employee at FalconeX.",
-        "ja": "FalconeXの社員として、クライアントの業務に合わせたソフトウェアと自動化を開発。"
+        "en": "Develop software and automation for client workflows as an employee at FalconeX Inc..",
+        "ja": "FalconeX Inc.の社員として、クライアントの業務に合わせたソフトウェアと自動化を開発。"
       },
       "bullets": {
         "en": [
@@ -105,7 +105,7 @@ export const siteContent: SiteContent = {
     {
       "id": "zencard",
       "company": {
-        "en": "ZenCard",
+        "en": "ZenCard Inc.",
         "ja": "株式会社ZenCard"
       },
       "title": {
@@ -117,7 +117,7 @@ export const siteContent: SiteContent = {
         "ja": "2026年2月 – 2026年8月"
       },
       "summary": {
-        "en": "Developed EpicPull, ZenCard’s online trading-card pack service, as a contractor. The engagement ended when the company shut down.",
+        "en": "Developed EpicPull, ZenCard Inc.’s online trading-card pack service, as a contractor. The engagement ended when the company shut down.",
         "ja": "株式会社ZenCardの業務委託として、オンラインのトレーディングカードパックサービス「エピックプル」を開発。会社の閉鎖に伴い、契約を終了しました。"
       },
       "bullets": {
@@ -125,7 +125,7 @@ export const siteContent: SiteContent = {
           "Developed authentication, payment, wallet and card-buyback workflows with Privy, Solana/USDC, Coinflow checkout and webhooks, and Laravel APIs.",
           "Built Next.js/React storefront features and shared TypeScript UI foundations for the US and Hong Kong markets.",
           "Implemented staged frontend routing, mobile API compatibility and backend-availability handling for the Laravel-to-Next.js migration.",
-          "The contract ran from February to August 2026 and ended when ZenCard shut down."
+          "The contract ran from February to August 2026 and ended when ZenCard Inc. shut down."
         ],
         "ja": [
           "Privy認証、Solana上のUSDCを扱う入出金・決済処理、Coinflowの決済・通知処理、Laravelの各種APIを使い、認証・決済・ウォレット・カード買取機能を開発。",
@@ -398,12 +398,12 @@ export const siteContent: SiteContent = {
         "ja": "美容室のPOS帳票を取り込み、検証付きの集計とダッシュボードにつなぐ仕組みです。"
       },
       "description": {
-        "en": "To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.",
-        "ja": "美容室チェーンのPOSデータを集計・分析につなぐため、FalconeXでTypeScript／PythonによるBigQueryへの取り込み、集計処理、React／Fastifyのダッシュボードを開発。全件・期間指定の取り込み、Parquet形式での受け渡し、Windows POSの定期帳票出力と失敗時の処理に対応しました。集計では入力の欠落・重複を検出します。"
+        "en": "To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX Inc.. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.",
+        "ja": "美容室チェーンのPOSデータを集計・分析につなぐため、FalconeX Inc.でTypeScript／PythonによるBigQueryへの取り込み、集計処理、React／Fastifyのダッシュボードを開発。全件・期間指定の取り込み、Parquet形式での受け渡し、Windows POSの定期帳票出力と失敗時の処理に対応しました。集計では入力の欠落・重複を検出します。"
       },
       "association": {
-        "en": "FalconeX — hair salon chain client engagement",
-        "ja": "FalconeX — 美容室チェーンへの支援"
+        "en": "FalconeX Inc. — hair salon chain client engagement",
+        "ja": "FalconeX Inc. — 美容室チェーンへの支援"
       },
       "contribution": {
         "en": "Data integration, reporting application and automation development",
@@ -413,8 +413,8 @@ export const siteContent: SiteContent = {
       "collectionOrder": 2,
       "homeOrder": 3,
       "stage": {
-        "en": "Client development through FalconeX",
-        "ja": "FalconeXでのクライアント向け開発"
+        "en": "Client development through FalconeX Inc.",
+        "ja": "FalconeX Inc.でのクライアント向け開発"
       },
       "problem": {
         "en": "A salon chain needed to connect POS exports to analytical reporting, including complete and date-window imports and checks for missing or duplicate inputs.",
@@ -443,8 +443,8 @@ export const siteContent: SiteContent = {
         ]
       },
       "results": {
-        "en": "The developed capabilities include full and date-window ingestion, Parquet staging, validated reporting, a React/Fastify dashboard and scheduled Windows exports with failure handling. The work is attributed to Kento through FalconeX for an anonymous salon-chain client.",
-        "ja": "全件・期間指定の取り込み、Parquetでの受け渡し、検証付きの集計、React／Fastifyの画面、失敗時の処理を含むWindowsの定期出力を開発しました。FalconeXで、美容室チェーン向けに担当した業務です。"
+        "en": "The developed capabilities include full and date-window ingestion, Parquet staging, validated reporting, a React/Fastify dashboard and scheduled Windows exports with failure handling. The work is attributed to Kento through FalconeX Inc. for an anonymous salon-chain client.",
+        "ja": "全件・期間指定の取り込み、Parquetでの受け渡し、検証付きの集計、React／Fastifyの画面、失敗時の処理を含むWindowsの定期出力を開発しました。FalconeX Inc.で、美容室チェーン向けに担当した業務です。"
       },
       "related": [
         "event-platform",
@@ -1566,8 +1566,8 @@ export const siteContent: SiteContent = {
       "slug": "falconex-site",
       "legacySlugs": [],
       "title": {
-        "en": "FalconeX corporate website",
-        "ja": "FalconeXコーポレートサイト"
+        "en": "FalconeX Inc. corporate website",
+        "ja": "FalconeX Inc.コーポレートサイト"
       },
       "summary": {
         "en": "A corporate website turns Markdown content into validated company pages and inquiry forms.",
@@ -1578,8 +1578,8 @@ export const siteContent: SiteContent = {
         "ja": "会社情報の更新と問い合わせ対応を共通の構成で管理するため、WordPress／PHPの独自テーマを開発。Markdownからのページ生成、メタデータ検証、JavaScriptによるフォームエラー表示とフォーカス移動を実装しました。不正・重複するページ情報を検出し、問い合わせ時には修正が必要な入力項目へ案内します。"
       },
       "association": {
-        "en": "FalconeX",
-        "ja": "FalconeX"
+        "en": "FalconeX Inc.",
+        "ja": "FalconeX Inc."
       },
       "contribution": {
         "en": "Website development and maintenance",
@@ -1589,8 +1589,8 @@ export const siteContent: SiteContent = {
       "collectionOrder": 3,
       "homeOrder": null,
       "stage": {
-        "en": "Website development at FalconeX",
-        "ja": "FalconeXでのWebサイト開発"
+        "en": "Website development at FalconeX Inc.",
+        "ja": "FalconeX Inc.でのWebサイト開発"
       },
       "problem": {
         "en": "Company pages and inquiry interactions need a maintainable shared content structure and clear validation.",
@@ -1958,7 +1958,7 @@ export const siteContent: SiteContent = {
         "ja": "エピックプル"
       },
       "summary": {
-        "en": "Connected account, payment, wallet and card-buyback workflows for ZenCard’s online trading-card pack service.",
+        "en": "Connected account, payment, wallet and card-buyback workflows for ZenCard Inc.’s online trading-card pack service.",
         "ja": "株式会社ZenCardのトレーディングカードパックサービスで、認証・決済・ウォレット・カード買取をつなぐ機能を開発しました。"
       },
       "description": {
@@ -1966,7 +1966,7 @@ export const siteContent: SiteContent = {
         "ja": "オンラインのトレーディングカードパックサービス「エピックプル」で、認証・決済・ウォレット・カード買取機能を開発。Privy認証、Solana上のUSDCを扱う入出金・決済処理、Coinflowの決済・通知処理、Laravelの各種APIを実装。米国・香港向けに、Next.jsとReactによる利用者向け画面と、TypeScriptを用いた共通の画面部品を開発。LaravelからNext.jsへの移行に向け、段階的な画面の切り替え、モバイル向けAPIとの互換性維持、障害時の案内表示を実装。"
       },
       "association": {
-        "en": "Built for ZenCard as a contractor, February–August 2026.",
+        "en": "Built for ZenCard Inc. as a contractor, February–August 2026.",
         "ja": "株式会社ZenCardの業務委託として開発。2026年2月〜8月。"
       },
       "contribution": {
@@ -1977,7 +1977,7 @@ export const siteContent: SiteContent = {
       "collectionOrder": 0,
       "homeOrder": null,
       "stage": {
-        "en": "The engagement ended when ZenCard shut down.",
+        "en": "The engagement ended when ZenCard Inc. shut down.",
         "ja": "会社の閉鎖に伴い、業務委託を終了。"
       },
       "problem": {

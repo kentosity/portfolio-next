@@ -1073,8 +1073,8 @@ export function PortfolioWorkTogether({ locale }: { locale: Locale }) {
           <p>
             {text(
               locale,
-              "I’m based in Tokyo and currently work at FalconeX. Share the intended scope and timing so we can discuss how a project could fit.",
-              "東京を拠点に、現在はFalconeXで勤務しています。想定する範囲や時期をお知らせください。進め方を個別にご相談します。",
+              "I’m based in Tokyo and currently work at FalconeX Inc.. Share the intended scope and timing so we can discuss how a project could fit.",
+              "東京を拠点に、現在はFalconeX Inc.で勤務しています。想定する範囲や時期をお知らせください。進め方を個別にご相談します。",
             )}
           </p>
           <MissingEvidence locale={locale} item={profile.todos.engagement} />
