@@ -51,7 +51,7 @@ export const siteContent: SiteContent = {
   "about": {
     "en": [
       "I build web products, data pipelines and tools that make business workflows easier to run. My work spans problem discovery, interface design, full-stack development and operations.",
-      "Since February 2026, I have worked as an AI Engineer at FalconeX Inc.. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
+      "Since February 2026, I have worked as an AI Engineer at FalconeX Inc. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
       "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard Inc. on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard Inc. shut down.",
       "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB lowered annual infrastructure cost.",
       "I served as full-time CTO at Introduction from April 2020 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
@@ -84,7 +84,7 @@ export const siteContent: SiteContent = {
         "ja": "2026年2月 – 現在"
       },
       "summary": {
-        "en": "Develop software and automation for client workflows as an employee at FalconeX Inc..",
+        "en": "Develop software and automation for client workflows as an employee at FalconeX Inc.",
         "ja": "FalconeX Inc.の社員として、クライアントの業務に合わせたソフトウェアと自動化を開発。"
       },
       "bullets": {
@@ -398,7 +398,7 @@ export const siteContent: SiteContent = {
         "ja": "美容室のPOS帳票を取り込み、検証付きの集計とダッシュボードにつなぐ仕組みです。"
       },
       "description": {
-        "en": "To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX Inc.. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.",
+        "en": "To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX Inc. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.",
         "ja": "美容室チェーンのPOSデータを集計・分析につなぐため、FalconeX Inc.でTypeScript／PythonによるBigQueryへの取り込み、集計処理、React／Fastifyのダッシュボードを開発。全件・期間指定の取り込み、Parquet形式での受け渡し、Windows POSの定期帳票出力と失敗時の処理に対応しました。集計では入力の欠落・重複を検出します。"
       },
       "association": {

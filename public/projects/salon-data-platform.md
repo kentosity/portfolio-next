@@ -16,7 +16,7 @@ Data integration and reporting for a hair salon chain client
 
 **Role:** Data integration, reporting application and automation development
 
-To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX Inc.. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.
+To connect a hair salon chain client’s POS data with analytical reporting, built TypeScript/Python ingestion into BigQuery, reporting calculations and a React/Fastify dashboard through FalconeX Inc. The workflow supports full and date-window imports, Parquet staging and scheduled Windows report exports with failure handling. Report calculations flag missing or duplicate inputs.
 
 ## 技術 / Stack
 
