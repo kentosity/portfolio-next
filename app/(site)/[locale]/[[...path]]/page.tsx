@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { copy, pageDescriptions } from "@/app/content/copy";
 import { isLocale } from "@/app/content/model";
 import { corePages, isArea, siteContent } from "@/lib/content";
-import { shouldIndex } from "@/lib/site-policy";
+import { shouldIndex, siteOrigin } from "@/lib/site-policy";
 import { projects } from "@/app/lab/full/atlas-generative/_components/content";
 import { isProblemType } from "@/app/lab/full/atlas-generative/_components/problems";
 import {
@@ -66,8 +66,17 @@ export async function generateMetadata({
     pageDescriptions[page.currentPath]?.[page.locale] ??
     siteContent.introduction[page.locale];
   const suffix = page.currentPath ? `/${page.currentPath}` : "";
-  const origin = siteContent.identity.origin;
+  const origin = siteOrigin;
   const pageUrl = `${origin}/${page.locale}${suffix}`;
+  const imagePath = page.project
+    ? `/${page.locale}/projects/${page.project.slug}/opengraph-image`
+    : `/${page.locale}/opengraph-image`;
+  const image = {
+    url: `${origin}${imagePath}`,
+    width: 1200,
+    height: 630,
+    alt: title,
+  };
 
   return {
     metadataBase: new URL(origin),
@@ -85,16 +94,19 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: "website",
       title,
       description,
       url: pageUrl,
+      siteName: "Kento Iizuka",
       locale: page.locale === "en" ? "en_US" : "ja_JP",
-      type: "website",
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [image],
     },
   };
 }

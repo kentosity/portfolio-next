@@ -40,9 +40,9 @@ English is the default: `/` permanently redirects to `/en`. Both `/en` and `/ja`
 
 ## SEO and review policy
 
-`lib/site-policy.ts` supplies the canonical origin and indexing policy. Metadata uses the existing portfolio origin until `NEXT_PUBLIC_SITE_URL` is confirmed. Each reviewed page has a localized title/description, self-canonical, reciprocal EN/JA and x-default alternates, Person data, and a localized social cover. Cases include CreativeWork and breadcrumb data. Filter variants canonicalize to the collection. The sitemap includes the 36 reviewed bilingual pages and omits guessed modification dates.
+`lib/site-policy.ts` supplies the canonical origin (`https://kento-iizuka-portfolio.vercel.app`) and indexing policy. Each reviewed page has a localized title/description, self-canonical, reciprocal EN/JA and x-default alternates, Person data, and a localized social cover. Cases include CreativeWork and breadcrumb data. Filter variants canonicalize to the collection. The sitemap includes the 36 reviewed bilingual pages and omits guessed modification dates.
 
-Indexing remains disabled by default in HTML, HTTP headers and robots. A later authorized production launch can set `SITE_INDEXABLE=true` together with `VERCEL_ENV=production`. Preview environments remain excluded even if the indexing flag is set. Existing analytics run only in Vercel production. PDF exports and case recordings/screenshots are omitted from public pages until approved files are supplied.
+Production (`VERCEL_ENV=production`) is indexable: `robots.txt` allows all crawlers and includes the canonical sitemap, and public pages omit the noindex header and meta. Preview and local environments stay noindex. The 17 retained historical pages at `/projects/[slug]` remain noindex. Existing analytics run only in Vercel production. PDF exports and case recordings/screenshots are omitted from public pages until approved files are supplied.
 
 The social cover embeds a 133 KB static subset of [Noto Sans JP](https://github.com/google/fonts/tree/main/ofl/notosansjp), licensed under [OFL](assets/OFL.txt). When adding Japanese cover text, regenerate `assets/social-font.ttf` with `fonttools` installed and the original font downloaded from that directory:
 

@@ -57,16 +57,14 @@ const nextConfig: NextConfig = {
     ];
   },
   async headers() {
+    const noindex = {
+      headers: [
+        { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+      ],
+    };
     return shouldIndex
-      ? []
-      : [
-          {
-            source: "/:path*",
-            headers: [
-              { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
-            ],
-          },
-        ];
+      ? [{ source: "/projects/:path*", ...noindex }]
+      : [{ source: "/:path*", ...noindex }];
   },
 };
 
