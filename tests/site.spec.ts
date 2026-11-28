@@ -64,11 +64,11 @@ for (const locale of locales) {
     page,
   }) => {
     await page.goto(`/${locale}/projects`);
-    await expect(page.locator("[data-project]")).toHaveCount(11);
+    await expect(page.locator("[data-project]")).toHaveCount(12);
     for (const [area, count] of [
       ["ai-tools", 4],
       ["data-systems", 3],
-      ["products-websites", 4],
+      ["products-websites", 5],
     ] as const) {
       await page.locator(`.area-filters a[href$="area=${area}"]`).click();
       await expect(page).toHaveURL(new RegExp(`area=${area}`));
@@ -225,7 +225,7 @@ for (const locale of locales) {
   });
 }
 
-test("all 33 historical slugs receive explicit handling through both old URL families", async ({
+test("all current and historical project slugs receive explicit handling through both old URL families", async ({
   request,
 }) => {
   const redirects = siteContent.projects.flatMap((project) =>
@@ -234,7 +234,7 @@ test("all 33 historical slugs receive explicit handling through both old URL fam
       canonical: project.slug,
     })),
   );
-  expect(redirects.length + legacySlugs.length).toBe(33);
+  expect(redirects.length + legacySlugs.length).toBe(34);
   for (const redirect of redirects) {
     for (const prefix of ["/projects", "/portfolio/projects"]) {
       const response = await request.get(`${prefix}/${redirect.slug}`, {
@@ -282,7 +282,7 @@ test("unknown routes return 404 and SEO artifacts contain only reviewed canonica
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.status()).toBe(200);
   const xml = await sitemap.text();
-  expect((xml.match(/<loc>/g) || []).length).toBe(34);
+  expect((xml.match(/<loc>/g) || []).length).toBe(36);
   expect(xml).not.toContain("?area=");
   expect(xml).not.toContain("/projects/wecall");
   expect(await (await request.get("/robots.txt")).text()).toContain(

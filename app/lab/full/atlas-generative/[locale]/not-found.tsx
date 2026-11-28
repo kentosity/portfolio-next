@@ -5,17 +5,20 @@ import { useParams } from "next/navigation";
 import styles from "../_components/portfolio.module.css";
 import { paletteVariables } from "../_components/palette";
 import { route } from "../_components/routing";
+import { PortfolioLanguageSwitch } from "../_components/language-switch";
 
 export default function PortfolioNotFound() {
   const params = useParams();
   const locale = params.locale === "ja" ? "ja" : "en";
+  const path = Array.isArray(params.path) ? params.path.join("/") : params.path;
 
   return (
     <div className={styles.page} style={paletteVariables} lang={locale}>
       <header className={styles.header}>
-        <Link className={styles.brand} href={route(locale)}>
-          <strong>Kento Iizuka</strong>
+        <Link className={styles.homeLink} href={route(locale)}>
+          {locale === "en" ? "Home" : "ホーム"}
         </Link>
+        <PortfolioLanguageSwitch locale={locale} path={path} />
       </header>
       <main id="main" className={styles.pageHeading}>
         <h1>

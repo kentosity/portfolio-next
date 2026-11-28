@@ -1,0 +1,309 @@
+{
+  "reviewedOn": "2026-11-27",
+  "linkUrls": {
+    "LinkedIn": "https://www.linkedin.com/in/kento-iizuka"
+  },
+  "identityRole": {
+    "en": "AI Engineer",
+    "ja": "AIエンジニア"
+  },
+  "introduction": {
+    "en": "I’m an AI Engineer building web products, data pipelines and tools for AI-assisted workflows.",
+    "ja": "AIエンジニアとして、Webプロダクト、データ連携、業務を支えるAIツールを開発しています。"
+  },
+  "about": {
+    "en": [
+      "I build web products, data pipelines and tools that make business workflows easier to run. My work spans problem discovery, interface design, full-stack development and operations.",
+      "Since February 2026, I have worked as an AI Engineer at FalconeX. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
+      "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard shut down.",
+      "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB reduced annual infrastructure cost from about $200k to about $10k (~95%).",
+      "I served as full-time CTO at Introduction from April 2020 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
+      "My core stack includes TypeScript, React/Next.js, Vue/Nuxt, Node.js/NestJS and AWS, with recent work in Python, BigQuery and Google Cloud. I also build personal developer tools, including local speech and macOS playback tooling for my own development setup.",
+      "I welcome conversations about engineering roles and client projects in web products, data integration and AI-assisted business automation. I enjoy understanding the workflow, building the solution and improving it with the people using it."
+    ],
+    "ja": [
+      "FalconeXのAIエンジニアです。Webプロダクト、データ連携、業務自動化を中心に、課題整理、UI設計、フルスタック開発、運用改善に取り組んでいます。",
+      "2026年2月からFalconeXに勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
+      "2026年2月から8月まで、株式会社ZenCardの業務委託として「エピックプル」を開発しました。認証、決済、USDCを扱うウォレット、カード買取機能に加え、米国・香港向けの利用者向け画面と、LaravelからNext.jsへの段階的な移行を担当しました。会社の閉鎖に伴い、契約を終了しました。",
+      "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
+      "Introductionでは、2020年4月から2024年4月まで正社員のCTOを担当しました。SNAPのイベント管理、ゲスト向けアルバム、会場表示を開発し、プロダクトデザインや顧客対応にも携わりました。",
+      "主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloudを使った開発や、個人環境に導入するローカル音声合成・macOS再生ツールにも取り組んでいます。",
+      "エンジニア採用のお話と、Web開発・データ連携・AIを活用した業務改善のご相談をお待ちしています。使う人の業務を理解し、必要な仕組みをつくり、運用しながら改善する仕事に関心があります。"
+    ]
+  },
+  "experienceOrder": [
+    "falconex",
+    "zencard",
+    "generosity",
+    "introduction"
+  ],
+  "experience": [
+    {
+      "id": "falconex",
+      "company": {
+        "en": "FalconeX",
+        "ja": "FalconeX"
+      },
+      "title": {
+        "en": "AI Engineer",
+        "ja": "AIエンジニア"
+      },
+      "period": {
+        "en": "February 2026 – Present",
+        "ja": "2026年2月 – 現在"
+      },
+      "summary": {
+        "en": "Develop software and automation for client workflows as an employee at FalconeX.",
+        "ja": "FalconeXの社員として、クライアントの業務に合わせたソフトウェアと自動化を開発。"
+      },
+      "bullets": {
+        "en": [
+          "Develop POS-to-BigQuery data integration for a hair salon chain client, separating extraction, loading and orchestration and supporting full and date-window imports.",
+          "Build reporting calculations and a React dashboard with explicit validation of missing or duplicate inputs; develop Python automation for scheduled Windows POS report exports and failure handling.",
+          "Prepare security-product comparisons, technical explanations and AI/data advisory materials for a retail client.",
+          "Work across requirements, design, implementation and maintenance, using agent-assisted development where appropriate."
+        ],
+        "ja": [
+          "美容室チェーン向けにPOSデータをBigQueryへ連携する仕組みを開発。抽出・取り込み・実行管理を分離し、全件・期間指定の取り込みに対応。",
+          "集計処理とReactのダッシュボードを開発し、入力の欠落や重複を検証。PythonによるWindows POSの定期帳票出力と失敗時の処理も実装。",
+          "小売業のクライアント向けに、セキュリティ製品の比較、技術説明、AI・データ活用の検討資料を作成。",
+          "要件整理、設計、実装、保守に取り組み、必要に応じてAI支援開発を活用。"
+        ]
+      }
+    },
+    {
+      "id": "zencard",
+      "company": {
+        "en": "ZenCard",
+        "ja": "株式会社ZenCard"
+      },
+      "title": {
+        "en": "Full Stack Software Engineer (Contract)",
+        "ja": "フルスタックエンジニア（業務委託）"
+      },
+      "period": {
+        "en": "February 2026 – August 2026",
+        "ja": "2026年2月 – 2026年8月"
+      },
+      "summary": {
+        "en": "Developed EpicPull, ZenCard’s online trading-card pack service, as a contractor. The engagement ended when the company shut down.",
+        "ja": "株式会社ZenCardの業務委託として、オンラインのトレーディングカードパックサービス「エピックプル」を開発。会社の閉鎖に伴い、契約を終了しました。"
+      },
+      "bullets": {
+        "en": [
+          "Developed authentication, payment, wallet and card-buyback workflows with Privy, Solana/USDC, Coinflow checkout and webhooks, and Laravel APIs.",
+          "Built Next.js/React storefront features and shared TypeScript UI foundations for the US and Hong Kong markets.",
+          "Implemented staged frontend routing, mobile API compatibility and backend-availability handling for the Laravel-to-Next.js migration.",
+          "The contract ran from February to August 2026 and ended when ZenCard shut down."
+        ],
+        "ja": [
+          "Privy認証、Solana上のUSDCを扱う入出金・決済処理、Coinflowの決済・通知処理、Laravelの各種APIを使い、認証・決済・ウォレット・カード買取機能を開発。",
+          "米国・香港向けに、Next.jsとReactによる利用者向け画面と、TypeScriptを用いた共通の画面部品を開発。",
+          "LaravelからNext.jsへの移行に向け、段階的な画面の切り替え、モバイル向けAPIとの互換性維持、障害時の案内表示を実装。",
+          "2026年2月から8月まで業務委託として参画し、会社の閉鎖に伴い契約を終了。"
+        ]
+      }
+    },
+    {
+      "id": "introduction",
+      "company": {
+        "en": "Introduction Inc.",
+        "ja": "Introduction Inc."
+      },
+      "title": {
+        "en": "Full-time CTO",
+        "ja": "正社員・CTO"
+      },
+      "period": {
+        "en": "April 2020 – April 2024",
+        "ja": "2020年4月 – 2024年4月"
+      },
+      "summary": {
+        "en": "Served as full-time CTO from April 2020 to April 2024, working across engineering, product design and customer-facing tasks. Built SNAP at Introduction.",
+        "ja": "2020年4月から2024年4月まで正社員のCTOを担当。開発、プロダクトデザイン、顧客対応に取り組み、IntroductionでSNAPを開発しました。"
+      },
+      "bullets": {
+        "en": [
+          "Developed event administration, guest albums and venue displays for SNAP, a wedding photobooth project, alongside product design and customer-facing work.",
+          "Designed and developed Ongy, an Instagram story-viewing tool, across frontend, backend and interface design.",
+          "Delivered web and CMS projects, combining Figma design work with frontend implementation."
+        ],
+        "ja": [
+          "結婚式場向けフォトブース「SNAP」のイベント管理、ゲスト向けアルバム、会場表示を開発。デザインや顧客対応にも携わる。",
+          "Instagramストーリー閲覧ツール「Ongy」をデザイン、フロントエンド、バックエンドまで開発。",
+          "Figmaでのデザインと実装を組み合わせ、WebサイトやCMSの制作に取り組む。"
+        ]
+      }
+    }
+  ],
+  "projectCorrections": {
+    "ongy-viewer": {
+      "contribution": {
+        "en": "Design and full-stack development",
+        "ja": "デザイン・フルスタック開発"
+      },
+      "results": {
+        "en": "The prototype implements story browsing and organization. Kento designed and developed the interface, frontend and backend at Introduction.",
+        "ja": "ストーリーの閲覧と整理を実装したプロトタイプです。Introductionで、画面のデザインとフロントエンド・バックエンドの開発を担当しました。"
+      }
+    }
+  },
+  "projects": [
+    {
+      "id": "epicpull",
+      "slug": "epicpull",
+      "legacySlugs": [],
+      "title": {
+        "en": "EpicPull",
+        "ja": "エピックプル"
+      },
+      "summary": {
+        "en": "Connected account, payment, wallet and card-buyback workflows for ZenCard’s online trading-card pack service.",
+        "ja": "株式会社ZenCardのトレーディングカードパックサービスで、認証・決済・ウォレット・カード買取をつなぐ機能を開発しました。"
+      },
+      "description": {
+        "en": "Developed authentication, payment, wallet and card-buyback workflows for EpicPull, an online trading-card pack platform. Implemented Privy authentication, Solana/USDC wallet flows, Coinflow checkout/webhook handling and Laravel APIs. Built Next.js/React storefront features and shared TypeScript UI foundations for the US and Hong Kong markets. Implemented staged frontend routing, mobile API compatibility and backend-availability handling for the Laravel-to-Next.js migration.",
+        "ja": "オンラインのトレーディングカードパックサービス「エピックプル」で、認証・決済・ウォレット・カード買取機能を開発。Privy認証、Solana上のUSDCを扱う入出金・決済処理、Coinflowの決済・通知処理、Laravelの各種APIを実装。米国・香港向けに、Next.jsとReactによる利用者向け画面と、TypeScriptを用いた共通の画面部品を開発。LaravelからNext.jsへの移行に向け、段階的な画面の切り替え、モバイル向けAPIとの互換性維持、障害時の案内表示を実装。"
+      },
+      "association": {
+        "en": "Built for ZenCard as a contractor, February–August 2026.",
+        "ja": "株式会社ZenCardの業務委託として開発。2026年2月〜8月。"
+      },
+      "contribution": {
+        "en": "Full Stack Software Engineer (Contract)",
+        "ja": "フルスタックエンジニア（業務委託）"
+      },
+      "area": "products-websites",
+      "collectionOrder": 0,
+      "homeOrder": null,
+      "stage": {
+        "en": "The engagement ended when ZenCard shut down.",
+        "ja": "会社の閉鎖に伴い、業務委託を終了。"
+      },
+      "problem": {
+        "en": "Card purchases and buybacks needed connected account, payment and wallet flows while the storefront moved from Laravel to Next.js. The migration also needed to preserve compatibility with mobile APIs and handle backend availability.",
+        "ja": "カードの購入と買取に、認証・決済・ウォレットをつなぐ必要がありました。LaravelからNext.jsへの移行では、モバイル向けAPIとの互換性を維持し、バックエンドの稼働状況に応じた案内も必要でした。"
+      },
+      "workflow": {
+        "en": [
+          "Account and wallet",
+          "Checkout and card buyback",
+          "APIs and storefront"
+        ],
+        "ja": [
+          "認証とウォレット",
+          "決済とカード買取",
+          "業務APIと利用者向け画面"
+        ]
+      },
+      "decisions": {
+        "en": [
+          "Privy authentication and Solana/USDC wallet flows connect account access to wallet deposits, withdrawals and payments.",
+          "Coinflow checkout and webhook handling connect payment notifications to Laravel APIs and the card-buyback workflow.",
+          "Staged frontend routing supports the Laravel-to-Next.js migration. Mobile API compatibility and backend-availability handling keep the migration behavior explicit."
+        ],
+        "ja": [
+          "Privyによる認証とSolana上のUSDCを扱う処理を実装し、利用者の認証からウォレットへの入出金・決済につなぎました。",
+          "Coinflowの決済と通知処理、Laravelの各種APIを実装し、決済・カード買取機能を開発しました。",
+          "LaravelからNext.jsへ段階的に画面を切り替える仕組みを実装しました。モバイル向けAPIとの互換性を維持し、バックエンドが利用できない場合の案内も用意しました。"
+        ]
+      },
+      "results": {
+        "en": "Implemented authentication, checkout, USDC wallet and card-buyback workflows, Next.js/React storefront features for the US and Hong Kong markets, and compatibility support for a staged migration.",
+        "ja": "認証、決済、USDCを扱うウォレット、カード買取機能を実装しました。米国・香港向けの利用者向け画面と共通の画面部品を開発し、段階的な移行で必要な互換性維持や障害時の案内にも対応しました。"
+      },
+      "stack": [
+        {
+          "name": "Privy",
+          "responsibility": {
+            "en": "Authenticates users.",
+            "ja": "利用者の認証を処理します。"
+          }
+        },
+        {
+          "name": "Solana / USDC",
+          "responsibility": {
+            "en": "Supports wallet deposits, withdrawals and payments.",
+            "ja": "ウォレットへの入出金と決済を処理します。"
+          }
+        },
+        {
+          "name": "Coinflow",
+          "responsibility": {
+            "en": "Handles checkout and payment webhooks.",
+            "ja": "決済と決済結果の通知を処理します。"
+          }
+        },
+        {
+          "name": "Laravel",
+          "responsibility": {
+            "en": "Provides APIs for the service workflows.",
+            "ja": "サービスの各機能をAPIとして提供します。"
+          }
+        },
+        {
+          "name": "Next.js",
+          "responsibility": {
+            "en": "Provides storefront features and staged frontend routing.",
+            "ja": "利用者向け画面と段階的な画面の切り替えを実装します。"
+          }
+        },
+        {
+          "name": "React",
+          "responsibility": {
+            "en": "Builds the storefront interface.",
+            "ja": "利用者向け画面を構成します。"
+          }
+        },
+        {
+          "name": "TypeScript",
+          "responsibility": {
+            "en": "Provides shared UI foundations for the US and Hong Kong markets.",
+            "ja": "米国・香港向けの共通の画面部品を実装します。"
+          }
+        }
+      ],
+      "related": [
+        "event-platform",
+        "snap-photobooth"
+      ],
+      "todos": {
+        "context": {
+          "id": "epicpull-context",
+          "text": {
+            "en": "Describe the team responsibilities and one concrete account, payment or migration problem to explain.",
+            "ja": "チーム内の担当範囲と、認証・決済・移行で直面した具体的な課題を追記してください。"
+          }
+        },
+        "decisions": {
+          "id": "epicpull-decisions",
+          "text": {
+            "en": "Explain the constraints and alternatives behind the staged migration and mobile compatibility work.",
+            "ja": "段階的な移行やモバイル向けの互換性維持について、制約と検討した選択肢を追記してください。"
+          }
+        },
+        "artifacts": {
+          "id": "epicpull-artifacts",
+          "text": {
+            "en": "Supply approved screenshots, a recording or synthetic workflow examples, with any required credits.",
+            "ja": "掲載許可のある画面、録画、合成データによる処理例と、必要なクレジットを用意してください。"
+          }
+        },
+        "evidence": {
+          "id": "epicpull-evidence",
+          "text": {
+            "en": "Supply attributable release records or measurements for the implemented workflows, including scope and period.",
+            "ja": "実装した機能について、対象と期間が分かる公開・利用の記録や測定結果を用意してください。"
+          }
+        },
+        "reflection": {
+          "id": "epicpull-reflection",
+          "text": {
+            "en": "Describe the next improvement and how to assess it.",
+            "ja": "次に改善する点と、その効果を確かめる方法を追記してください。"
+          }
+        }
+      }
+    }
+  ]
+}

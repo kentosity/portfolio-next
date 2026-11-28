@@ -1,5 +1,15 @@
-import type { Locale, Project } from "@/app/content/model";
+import type { Area, Locale, Project } from "@/app/content/model";
 import type { PrintSource } from "./art";
+import type { ProblemType } from "./problems";
+
+export type CollectionFilter = { area?: Area; problem?: ProblemType };
+
+export function collectionQuery({ area, problem }: CollectionFilter) {
+  const query = new URLSearchParams();
+  if (area) query.set("area", area);
+  if (problem) query.set("problem", problem);
+  return query.size ? `?${query}` : "";
+}
 
 export const basePath = "/lab/full/atlas-generative";
 

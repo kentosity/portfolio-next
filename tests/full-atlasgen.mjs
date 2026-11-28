@@ -5,6 +5,7 @@ import { siteContent } from "../app/content/site-content.ts";
 
 const baseUrl = process.env.BASE_URL ?? "http://127.0.0.1:3157";
 const screenshotDirectory = process.env.SHOT_DIR ?? "/tmp/aide-proto/shots";
+const capturePrefix = process.env.CAPTURE_PREFIX ?? "full-atlasgen";
 const captureSuffix = process.env.CAPTURE_PASS
   ? `-${process.env.CAPTURE_PASS}`
   : "";
@@ -46,7 +47,14 @@ async function open(page, path) {
 
 async function capture(page, route, device, locale = "en") {
   await open(page, `${root}/${locale}${route}`);
-  const label = route === "" ? "home" : route === "/projects" ? "work" : "case";
+  const label =
+    route === ""
+      ? "home"
+      : route === "/projects"
+        ? "work"
+        : route.endsWith("event-platform")
+          ? "event"
+          : "case";
   await page.locator("main img").evaluateAll(async (images) => {
     for (const image of images) image.loading = "eager";
     await Promise.all(images.map((image) => image.decode()));
@@ -59,11 +67,11 @@ async function capture(page, route, device, locale = "en") {
     ),
   );
   await page.screenshot({
-    path: `${screenshotDirectory}/full-atlasgen-${label}-${device}-${locale}${captureSuffix}.png`,
+    path: `${screenshotDirectory}/${capturePrefix}-${label}-${device}-${locale}${captureSuffix}.png`,
     fullPage: true,
   });
   await page.screenshot({
-    path: `${screenshotDirectory}/full-atlasgen-${label}-${device}-${locale}${captureSuffix}-viewport.png`,
+    path: `${screenshotDirectory}/${capturePrefix}-${label}-${device}-${locale}${captureSuffix}-viewport.png`,
   });
 }
 
@@ -116,6 +124,19 @@ try {
             href.startsWith(root) || href.startsWith("/files/"),
             `${path} keeps themed navigation: ${href}`,
           );
+        if (route === "" || route === "/projects") {
+          const entries = page.locator("article[data-project]");
+          const expectedCount = route === "" ? 4 : siteContent.projects.length;
+          assert.equal(await entries.count(), expectedCount);
+          for (const entry of await entries.all()) {
+            assert.equal(await entry.locator("h3").count(), 1);
+            assert.deepEqual(
+              await entry.locator("dt").allTextContents(),
+              locale === "en" ? ["Built", "Result"] : ["つくったもの", "結果"],
+            );
+            assert.equal(await entry.locator("dd").count(), 2);
+          }
+        }
         if (route.startsWith("/projects/")) {
           for (const section of [
             "problem",
@@ -149,6 +170,17 @@ try {
     await capture(page, "", device, "ja");
     await capture(page, "/projects/local-speech", device, "ja");
     await capture(page, "/projects", device, "ja");
+    await capture(page, "/projects/event-platform", device);
+    await capture(page, "/projects/event-platform", device, "ja");
+    await open(page, `${root}/en/projects`);
+    await page.locator("article[data-project='event-platform']").screenshot({
+      path: `${screenshotDirectory}/${capturePrefix}-entry-${device}${captureSuffix}.png`,
+    });
+    await open(page, `${root}/en`);
+    await page.locator("section#projects").screenshot({
+      path: `${screenshotDirectory}/${capturePrefix}-featured-${device}${captureSuffix}.png`,
+      style: 'a[href="#main"]:not(:focus) { visibility: hidden; }',
+    });
     if (device === "mobile") {
       await open(page, `${root}/en`);
       await page
@@ -195,19 +227,85 @@ try {
     "Project sheets stack, lift and select through keyboard controls",
   );
 
+  for (const locale of ["en", "ja"]) {
+    for (const [problem, count] of [
+      ["operations", 3],
+      ["coordination", 4],
+      ["information", 3],
+      ["publishing", 2],
+    ]) {
+      await open(page, `${root}/${locale}/projects?problem=${problem}`);
+      assert.equal(await page.locator("article[data-project]").count(), count);
+      assert.equal(
+        await page.locator(`[data-problem-group="${problem}"]`).count(),
+        1,
+      );
+      assert.equal(
+        await page
+          .locator("nav[aria-label] a[aria-current='true']")
+          .filter({ hasText: String(count) })
+          .count(),
+        1,
+      );
+      const entry = page.locator("article[data-project]").first();
+      const heading = await entry.locator("h3").innerText();
+      const slug = await entry.getAttribute("data-project");
+      await entry
+        .getByRole("link", {
+          name: locale === "en" ? "Read the case study" : "事例を読む",
+          exact: true,
+        })
+        .click();
+      await page.waitForURL(`**/${locale}/projects/${slug}?problem=${problem}`);
+      assert.equal(new URL(page.url()).searchParams.get("problem"), problem);
+      assert.equal(await page.locator("h1").innerText(), heading);
+      await page
+        .getByRole("link", {
+          name: locale === "en" ? "JP" : "EN",
+          exact: true,
+        })
+        .click();
+      await page.waitForURL(
+        `**/${locale === "en" ? "ja" : "en"}/projects/${slug}?problem=${problem}`,
+      );
+      assert.equal(new URL(page.url()).searchParams.get("problem"), problem);
+      await page
+        .getByRole("link", {
+          name:
+            locale === "en"
+              ? "プロジェクト一覧に戻る"
+              : "Back to the project collection",
+          exact: true,
+        })
+        .click();
+      await page.waitForURL(
+        `**/${locale === "en" ? "ja" : "en"}/projects?problem=${problem}`,
+      );
+      assert.equal(new URL(page.url()).searchParams.get("problem"), problem);
+      assert.equal(await page.locator("article[data-project]").count(), count);
+    }
+  }
+  await open(page, `${root}/en/projects?problem=unknown`);
+  assert.equal(
+    await page.locator("article[data-project]").count(),
+    projectSlugs.length,
+  );
+  checks.push(
+    "All four problem filters work in EN/JA; case headings match the selected problem and filtering survives locale changes and case return; unknown filters show all work",
+  );
+
   await open(page, `${root}/en/projects?area=ai-tools`);
   assert.equal(await page.locator("main article").count(), 4);
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects?area=ai-tools");
   assert.equal(await page.locator("main article").count(), 4);
   await page.goBack();
   assert.equal(new URL(page.url()).searchParams.get("area"), "ai-tools");
   await page
-    .getByRole("heading", { name: "Work, in order.", exact: true })
+    .getByRole("heading", { name: "A problem. A way through.", exact: true })
     .waitFor();
   const coordinationLink = page
-    .locator("main article")
-    .nth(2)
+    .locator('main article[data-project="agent-coordination"]')
     .getByRole("link", { name: "Read the case study", exact: true });
   await coordinationLink.scrollIntoViewIfNeeded();
   const savedScroll = await page.evaluate(() => window.scrollY);
@@ -222,8 +320,7 @@ try {
     savedScroll,
   );
   await page
-    .locator("main article")
-    .nth(2)
+    .locator('main article[data-project="agent-coordination"]')
     .getByRole("link", { name: "Read the case study", exact: true })
     .click();
   await page.waitForURL("**/projects/agent-coordination?area=ai-tools");
@@ -252,7 +349,7 @@ try {
     await page.evaluate(() => document.activeElement.matches(":focus-visible")),
     true,
   );
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects/local-speech");
   checks.push(
     "Case-study rooms support keyboard selection and language switching retains the case route",
@@ -260,14 +357,12 @@ try {
 
   for (const locale of ["en", "ja"]) {
     await open(page, `${root}/${locale}/projects/local-speech`);
-    const print = page
-      .locator("main figure")
-      .filter({
-        has: page.getByRole("button", {
-          name: locale === "en" ? "Vary the print" : "図案を変える",
-          exact: true,
-        }),
-      });
+    const print = page.locator("main figure").filter({
+      has: page.getByRole("button", {
+        name: locale === "en" ? "Vary the print" : "図案を変える",
+        exact: true,
+      }),
+    });
     const artwork = print.locator("[aria-hidden='true']").first();
     const original = await artwork.innerHTML();
     const vary = print.getByRole("button", {
@@ -322,12 +417,24 @@ try {
   );
 
   await open(page, `${root}/en/projects/event-platform#results`);
-  await page.getByRole("link", { name: "日本語", exact: true }).click();
+  await page.getByRole("link", { name: "JP", exact: true }).click();
   await page.waitForURL("**/ja/projects/event-platform#results");
   checks.push("Language switching retains a case-study section anchor");
 
   const noScript = await browser.newContext({ javaScriptEnabled: false });
   const noScriptPage = await noScript.newPage();
+  for (const locale of ["en", "ja"]) {
+    await open(noScriptPage, `${root}/${locale}/projects`);
+    await noScriptPage.locator(`nav a[href$='?problem=operations']`).click();
+    await noScriptPage.waitForURL("**/projects?problem=operations");
+    assert.equal(
+      await noScriptPage.locator("article[data-project]").count(),
+      3,
+    );
+  }
+  checks.push(
+    "Problem filters work with JavaScript disabled in both languages",
+  );
   for (const locale of ["en", "ja"]) {
     await open(noScriptPage, `${root}/${locale}/projects/local-speech`);
     assert.match(
@@ -437,7 +544,7 @@ try {
   assert.deepEqual(browserErrors, []);
   checks.push("No browser JavaScript errors");
   await writeFile(
-    `${screenshotDirectory}/full-atlasgen-check-results${captureSuffix}.txt`,
+    `${screenshotDirectory}/${capturePrefix}-check-results${captureSuffix}.txt`,
     `${checks.join("\n")}\n`,
   );
   console.log(checks.join("\n"));

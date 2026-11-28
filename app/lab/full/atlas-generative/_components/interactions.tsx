@@ -36,7 +36,7 @@ export function PortfolioLanguageLink({
         event.preventDefault();
         const destination = new URL(href, window.location.origin);
         const currentLocation = new URL(window.location.href);
-        for (const name of ["area", "project"]) {
+        for (const name of ["area", "problem", "project"]) {
           const value = currentLocation.searchParams.get(name);
           if (value) destination.searchParams.set(name, value);
         }
@@ -54,6 +54,8 @@ type SheetProject = {
   slug: string;
   title: string;
   summary: string;
+  result: string;
+  problem: string;
   room: string;
   source: PrintSource;
   href: string;
@@ -338,12 +340,21 @@ export function ProjectSheets({
       </div>
       <div className={styles.buildingReadout} aria-live="polite">
         <div>
-          <span className={styles.smallText}>{selectedProject.room}</span>
           <h2>
-            <Link href={selectedProject.href}>{selectedProject.title}</Link>
+            <Link href={selectedProject.href}>{selectedProject.problem}</Link>
           </h2>
+          <p className={styles.smallText}>{selectedProject.title}</p>
         </div>
-        <p>{selectedProject.summary}</p>
+        <dl className={styles.sheetOutcome}>
+          <div>
+            <dt>{locale === "en" ? "Built" : "つくったもの"}</dt>
+            <dd>{selectedProject.summary}</dd>
+          </div>
+          <div>
+            <dt>{locale === "en" ? "Result" : "結果"}</dt>
+            <dd>{selectedProject.result}</dd>
+          </div>
+        </dl>
         <Link className={styles.textLink} href={selectedProject.href}>
           {locale === "en" ? "Read the case study" : "事例を読む"}
         </Link>

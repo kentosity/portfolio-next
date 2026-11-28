@@ -3,14 +3,11 @@ import type { ReactNode } from "react";
 import {
   PortfolioCollectionMemory,
   PortfolioCollectionReturn,
-  PortfolioLanguageLink,
   ProjectSheets,
   RoomDrawing,
   SystemPlan,
 } from "./interactions";
 import {
-  areaLabels,
-  areas,
   featuredProjects,
   profile,
   projects,
@@ -22,8 +19,15 @@ import {
 import styles from "./portfolio.module.css";
 import { Artwork } from "./artwork";
 import Print from "./print";
-import { printSource, interpretations, route } from "./routing";
+import {
+  collectionQuery,
+  printSource,
+  interpretations,
+  route,
+} from "./routing";
+import { problemGroups, problemTypes, type ProblemType } from "./problems";
 import { paletteVariables } from "./palette";
+import { PortfolioLanguageSwitch } from "./language-switch";
 
 const text = (locale: Locale, en: string, ja: string) =>
   locale === "en" ? en : ja;
@@ -34,11 +38,13 @@ export function PortfolioShell({
   locale,
   path,
   area,
+  problem,
   children,
 }: {
   locale: Locale;
   path: string;
   area?: Area;
+  problem?: ProblemType;
   children: ReactNode;
 }) {
   const navigation = [
@@ -54,15 +60,8 @@ export function PortfolioShell({
         {text(locale, "Skip to content", "本文へ移動")}
       </a>
       <header className={styles.header}>
-        <Link className={styles.brand} href={route(locale)}>
-          <strong>{profile.identity.name.en}</strong>
-          <span>
-            {text(
-              locale,
-              "Software, given structure.",
-              "仕組みを、わかりやすく。",
-            )}
-          </span>
+        <Link className={styles.homeLink} href={route(locale)}>
+          {text(locale, "Home", "ホーム")}
         </Link>
         <nav
           className={styles.navigation}
@@ -73,7 +72,7 @@ export function PortfolioShell({
               <PortfolioCollectionReturn
                 key={href}
                 locale={locale}
-                href={`${route(locale, href)}${area ? `?area=${area}` : ""}`}
+                href={`${route(locale, href)}${collectionQuery({ area, problem })}`}
                 className=""
                 isCurrent={path.startsWith("/projects")}
               >
@@ -90,21 +89,7 @@ export function PortfolioShell({
             ),
           )}
         </nav>
-        <nav
-          className={styles.languages}
-          aria-label={text(locale, "Language", "言語")}
-        >
-          {(["en", "ja"] as const).map((language) => (
-            <PortfolioLanguageLink
-              key={language}
-              href={`${route(language, path)}${area ? `?area=${area}` : ""}`}
-              locale={language}
-              isCurrent={language === locale}
-            >
-              {language === "en" ? "English" : "日本語"}
-            </PortfolioLanguageLink>
-          ))}
-        </nav>
+        <PortfolioLanguageSwitch locale={locale} path={path} area={area} problem={problem} />
       </header>
       <main id="main">{children}</main>
       <footer className={styles.footer}>
@@ -157,14 +142,26 @@ function ProjectEntry({
   project,
   locale,
   area,
+  problem,
 }: {
   project: PortfolioProject;
   locale: Locale;
   area?: Area;
+  problem?: ProblemType;
 }) {
-  const href = `${projectRoute(locale, project.slug)}${area ? `?area=${area}` : ""}`;
+  const href = `${projectRoute(locale, project.slug)}${collectionQuery({ area, problem })}`;
   return (
-    <article className={styles.projectEntry}>
+    <article
+      className={styles.projectEntry}
+      data-project={project.slug}
+      data-problem={project.framing.type}
+    >
+      <div className={styles.entryHeading}>
+        <h3>
+          <Link href={href}>{project.framing.heading[locale]}</Link>
+        </h3>
+        <p className={styles.projectTitle}>{project.title[locale]}</p>
+      </div>
       <Link
         href={href}
         className={styles.projectPlan}
@@ -174,18 +171,68 @@ function ProjectEntry({
           `${project.title.ja}の事例を読む`,
         )}
         tabIndex={-1}
+        aria-hidden="true"
       >
         <Artwork source={printSource(project, profile.reviewedOn)} />
       </Link>
-      <h3>
-        <Link href={href}>{project.title[locale]}</Link>
-      </h3>
-      <p>{project.summary[locale]}</p>
-      <p className={styles.projectStage}>{project.stage[locale]}</p>
-      <Link className={styles.textLink} href={href}>
-        {text(locale, "Read the case study", "事例を読む")}
-      </Link>
+      <div className={styles.entryNarrative}>
+        <dl className={styles.projectOutcome}>
+          <div>
+            <dt>{text(locale, "Built", "つくったもの")}</dt>
+            <dd>{project.summary[locale]}</dd>
+          </div>
+          <div>
+            <dt>{text(locale, "Result", "結果")}</dt>
+            <dd>
+              {project.costMetric ? (
+                <CostResult project={project} locale={locale} />
+              ) : (
+                project.results[0][locale]
+              )}
+            </dd>
+          </div>
+        </dl>
+        <p className={styles.projectStage}>{project.stage[locale]}</p>
+        <Link className={styles.textLink} href={href}>
+          {text(locale, "Read the case study", "事例を読む")}
+        </Link>
+      </div>
     </article>
+  );
+}
+
+function CostResult({
+  project,
+  locale,
+}: {
+  project: PortfolioProject;
+  locale: Locale;
+}) {
+  const metric = project.costMetric;
+  if (!metric) return null;
+  const formatCost = (cost: number) =>
+    locale === "ja"
+      ? `約${cost / 10000}万ドル`
+      : `about $${cost.toLocaleString("en-US")}`;
+  return (
+    <span className={styles.costResult}>
+      <strong>
+        <span className={styles.costValue}>
+          {formatCost(metric.before)} <span aria-hidden="true">↘</span>
+        </span>
+        <span className={styles.visuallyHidden}>
+          {text(locale, "to", "から")}
+        </span>
+        <span className={styles.costValue}>{formatCost(metric.after)}</span>
+      </strong>
+      <span>
+        {text(
+          locale,
+          `Annual infrastructure cost, approximately ${metric.percent}% lower.`,
+          `年間インフラ費を約${metric.percent}%削減。`,
+        )}
+      </span>
+    </span>
   );
 }
 
@@ -224,10 +271,10 @@ function CareerTimeline({
   return (
     <div className={styles.timeline}>
       {profile.experience.map((item) => (
-        <article key={item.company}>
+        <article key={item.id} data-experience={item.id}>
           <p className={styles.smallText}>{item.period[locale]}</p>
           <div>
-            <h3>{item.company}</h3>
+            <h3>{item.company[locale]}</h3>
             <p>{item.role[locale]}</p>
             {detailed ? (
               <ul>
@@ -282,7 +329,7 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
               className={styles.solidButton}
               href={route(locale, "/projects")}
             >
-              {text(locale, "Explore projects", "プロジェクトを見る")}
+              {text(locale, "Explore the problems", "解決した課題を見る")}
             </Link>
             <Link className={styles.textLink} href={route(locale, "/resume")}>
               {text(locale, "View resume", "経歴を見る")}
@@ -294,7 +341,9 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
           projects={featuredProjects.map((project) => ({
             slug: project.slug,
             title: project.title[locale],
+            problem: project.framing.heading[locale],
             summary: project.summary[locale],
+            result: project.results[0][locale],
             room: project.roomName[locale],
             href: projectRoute(locale, project.slug),
             source: printSource(project, profile.reviewedOn),
@@ -303,7 +352,9 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
       </section>
       <section className={styles.section} id="projects">
         <div className={styles.sectionHeading}>
-          <h2>{text(locale, "Selected work", "主なプロジェクト")}</h2>
+          <h2>
+            {text(locale, "Problems I’ve worked through", "取り組んできた課題")}
+          </h2>
           <Link className={styles.textLink} href={route(locale, "/projects")}>
             {text(locale, "All projects", "すべて見る")}
           </Link>
@@ -372,71 +423,125 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
 export function PortfolioCollection({
   locale,
   area,
+  problem,
 }: {
   locale: Locale;
   area?: Area;
+  problem?: ProblemType;
 }) {
-  const selectedAreas = area ? [area] : areas;
-  const resultCount = projects.filter(
-    (project) => !area || project.area === area,
-  ).length;
+  const selectedTypes = problem ? [problem] : problemTypes;
+  const filteredProjects = projects.filter(
+    (project) =>
+      (!area || project.area === area) &&
+      (!problem || project.framing.type === problem),
+  );
+  const groups = selectedTypes
+    .map((type) => ({
+      type,
+      projects: filteredProjects.filter(
+        (project) => project.framing.type === type,
+      ),
+    }))
+    .filter((group) => group.projects.length);
   return (
     <>
-      <PortfolioCollectionMemory key={area ?? "all"} locale={locale}>
-        <header className={styles.pageHeading}>
-          <h1>{text(locale, "Work, in order.", "仕事を、整理して。")}</h1>
+      <PortfolioCollectionMemory
+        key={collectionQuery({ area, problem }) || "all"}
+        locale={locale}
+      >
+        <header className={`${styles.pageHeading} ${styles.collectionHeading}`}>
+          <h1>
+            {text(
+              locale,
+              "A problem.\nA way through.",
+              "課題をひとつずつ、\n仕組みに。",
+            )}
+          </h1>
           <p>
             {text(
               locale,
-              "Tools, products and systems, organized by the work they help people do. Each case explains the problem, the structure and the result.",
-              "道具、プロダクト、業務システムを、取り組んだ仕事ごとに整理しました。各事例で、課題、構造、結果を紹介します。",
+              "A collection of problems I’ve worked on, what I built and what happened. Sort by the kind of problem you’re working through.",
+              "取り組んだ課題、つくった仕組み、その結果をまとめました。気になる課題の種類から、事例を探せます。",
             )}
           </p>
         </header>
         <nav
           className={styles.filterBar}
-          aria-label={text(locale, "Filter projects by area", "分野で絞り込む")}
+          aria-label={text(
+            locale,
+            "Sort by problem type",
+            "課題の種類で絞り込む",
+          )}
         >
           <Link
             href={route(locale, "/projects")}
-            aria-current={!area ? "true" : undefined}
+            aria-current={!area && !problem ? "true" : undefined}
           >
-            {text(locale, "All projects", "すべて")}
+            <span>{text(locale, "All problems", "すべての課題")}</span>
+            <span className={styles.filterCount}>{projects.length}</span>
           </Link>
-          {areas.map((value) => (
+          {problemTypes.map((type) => (
             <Link
-              key={value}
-              href={`${route(locale, "/projects")}?area=${value}`}
-              aria-current={area === value ? "true" : undefined}
+              key={type}
+              href={`${route(locale, "/projects")}${collectionQuery({ problem: type })}`}
+              aria-current={problem === type ? "true" : undefined}
             >
-              {areaLabels[value][locale]}
+              <span>{problemGroups[type].title[locale]}</span>
+              <span className={styles.filterCount}>
+                {
+                  projects.filter((project) => project.framing.type === type)
+                    .length
+                }
+              </span>
             </Link>
           ))}
         </nav>
-        <p className={styles.resultCount} role="status">
-          {text(
-            locale,
-            `${resultCount} projects`,
-            `${resultCount}件のプロジェクト`,
+        <div className={styles.collectionStatus}>
+          <p role="status">
+            {text(
+              locale,
+              `${filteredProjects.length} case studies${problem ? ` · ${problemGroups[problem].title.en}` : ` across ${groups.length} kinds of problem`}`,
+              `${filteredProjects.length}件の事例${problem ? `：${problemGroups[problem].title.ja}` : `を、${groups.length}種類の課題で整理`}`,
+            )}
+          </p>
+          {(problem || area) && (
+            <Link href={route(locale, "/projects")}>
+              {text(locale, "Show all problems", "すべての課題を表示")}
+            </Link>
           )}
-        </p>
-        {selectedAreas.map((value) => (
-          <section className={styles.collectionGroup} key={value}>
-            <h2>{areaLabels[value][locale]}</h2>
+        </div>
+        {groups.map((group) => (
+          <section
+            className={styles.collectionGroup}
+            key={group.type}
+            data-problem-group={group.type}
+          >
+            <div className={styles.groupHeading}>
+              <h2>{problemGroups[group.type].title[locale]}</h2>
+              <p>{problemGroups[group.type].description[locale]}</p>
+            </div>
             <div className={styles.collectionGrid}>
-              {projects
-                .filter((project) => project.area === value)
-                .map((project) => (
-                  <ProjectEntry
-                    key={project.slug}
-                    project={project}
-                    locale={locale}
-                    area={area}
-                  />
-                ))}
+              {group.projects.map((project) => (
+                <ProjectEntry
+                  key={project.slug}
+                  project={project}
+                  locale={locale}
+                  area={area}
+                  problem={problem}
+                />
+              ))}
             </div>
           </section>
         ))}
+        {!groups.length && (
+          <p className={styles.emptyCollection}>
+            {text(
+              locale,
+              "Choose another problem type to see the case studies.",
+              "別の課題の種類を選ぶと、事例を表示できます。",
+            )}
+          </p>
+        )}
       </PortfolioCollectionMemory>
       <ContactBand locale={locale} />
     </>
@@ -447,10 +552,12 @@ export function PortfolioCaseStudy({
   project,
   locale,
   area,
+  problem,
 }: {
   project: PortfolioProject;
   locale: Locale;
   area?: Area;
+  problem?: ProblemType;
 }) {
   const sectionLinks = [
     ["problem", text(locale, "The problem", "課題")],
@@ -476,15 +583,24 @@ export function PortfolioCaseStudy({
           <PortfolioCollectionReturn
             locale={locale}
             className=""
-            href={`${route(locale, "/projects")}${area ? `?area=${area}` : ""}`}
+            href={`${route(locale, "/projects")}${collectionQuery({ area, problem })}`}
           >
             {text(locale, "Projects", "プロジェクト")}
           </PortfolioCollectionReturn>
           <span aria-hidden="true">/</span>
           <span>{project.roomName[locale]}</span>
         </nav>
-        <h1>{project.title[locale]}</h1>
+        <h1>{project.framing.heading[locale]}</h1>
+        <p className={styles.caseProjectTitle}>{project.title[locale]}</p>
         <p className={styles.caseSummary}>{project.summary[locale]}</p>
+        <div className={styles.caseOutcome}>
+          <span>{text(locale, "Result", "結果")}</span>
+          {project.costMetric ? (
+            <CostResult project={project} locale={locale} />
+          ) : (
+            <p>{project.results[0][locale]}</p>
+          )}
+        </div>
       </header>
       <dl className={styles.caseContext}>
         <div>
@@ -742,7 +858,7 @@ export function PortfolioCaseStudy({
       <p className={styles.collectionReturn}>
         <PortfolioCollectionReturn
           locale={locale}
-          href={`${route(locale, "/projects")}${area ? `?area=${area}` : ""}`}
+          href={`${route(locale, "/projects")}${collectionQuery({ area, problem })}`}
         >
           {text(
             locale,
@@ -770,8 +886,8 @@ export function PortfolioAbout({ locale }: { locale: Locale }) {
         <p>
           {text(
             locale,
-            "I’m Kento, an engineer in Tokyo. I enjoy making the relationships between people, interfaces and services easier to understand.",
-            "東京で働くエンジニア、飯塚健杜です。使う人、画面、サービスの関係を整理し、わかりやすい仕組みを作ることが好きです。",
+            "I’m Kento, an AI Engineer in Tokyo. I enjoy making the relationships between people, interfaces and services easier to understand.",
+            "東京で働くAIエンジニア、飯塚健杜です。使う人、画面、サービスの関係を整理し、わかりやすい仕組みを作ることが好きです。",
           )}
         </p>
       </header>

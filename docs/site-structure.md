@@ -1,6 +1,6 @@
 # Site structure inventory
 
-Core routes use both `/en` and `/ja`. The collection has 11 distinct reviewed projects.
+Core routes use both `/en` and `/ja`. The collection has 12 distinct reviewed projects.
 
 | Page | Routes |
 | --- | --- |
@@ -26,10 +26,11 @@ Core routes use both `/en` and `/ja`. The collection has 11 distinct reviewed pr
 | `falconex-site` | `/en/projects/falconex-site`, `/ja/projects/falconex-site` |
 | `markdown-sharing` | `/en/projects/markdown-sharing`, `/ja/projects/markdown-sharing` |
 | `ongy-viewer` | `/en/projects/ongy-viewer`, `/ja/projects/ongy-viewer` |
+| `epicpull` | `/en/projects/epicpull`, `/ja/projects/epicpull` |
 
 ## Content placeholders
 
-All placeholders render as `TODO [stable-id]: localized request`. This inventory includes all 63 stable IDs; each request has English and Japanese wording. The corresponding PDF placeholder appears on its language-matched resume.
+All placeholders render as `TODO [stable-id]: localized request`. This inventory includes all 68 stable IDs; each request has English and Japanese wording. The corresponding PDF placeholder appears on its language-matched resume.
 
 | Stable ID | Material or confirmation requested |
 | --- | --- |
@@ -96,3 +97,8 @@ All placeholders render as `TODO [stable-id]: localized request`. This inventory
 | `ongy-viewer-artifacts` | Supply approved screenshots or synthetic examples, a recording, public artifact/code links and required credits. |
 | `ongy-viewer-evidence` | Supply attributable measurements, current use/release records and any permitted collaborator quote; include period, scope and method. Supply an authoritative original stack record. |
 | `ongy-viewer-reflection` | Choose the next improvement and explain how to assess it. |
+| `epicpull-context` | Describe the team responsibilities and one concrete account, payment or migration problem to explain. |
+| `epicpull-decisions` | Explain the constraints and alternatives behind the staged migration and mobile compatibility work. |
+| `epicpull-artifacts` | Supply approved screenshots, a recording or synthetic workflow examples, with any required credits. |
+| `epicpull-evidence` | Supply attributable release records or measurements for the implemented workflows, including scope and period. |
+| `epicpull-reflection` | Describe the next improvement and how to assess it. |

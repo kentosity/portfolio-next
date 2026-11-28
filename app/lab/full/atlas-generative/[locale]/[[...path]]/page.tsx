@@ -5,6 +5,7 @@ import { isLocale } from "@/app/content/model";
 import { corePages, isArea, siteContent } from "@/lib/content";
 import { basePath } from "../../_components/routing";
 import { projects } from "../../_components/content";
+import { isProblemType } from "../../_components/problems";
 import {
   PortfolioAbout,
   PortfolioCaseStudy,
@@ -18,7 +19,7 @@ import {
 
 type PageProps = {
   params: Promise<{ locale: string; path?: string[] }>;
-  searchParams: Promise<{ area?: string; project?: string }>;
+  searchParams: Promise<{ area?: string; problem?: string; project?: string }>;
 };
 
 export const dynamicParams = false;
@@ -53,7 +54,7 @@ export async function generateMetadata({
       ? "work"
       : (page.currentPath as "projects" | "about" | "contact" | "resume");
   const pageTitle =
-    page.project?.title[page.locale] ??
+    page.project?.framing.heading[page.locale] ??
     (page.currentPath
       ? copy[page.locale][titleKey]
       : page.locale === "ja"
@@ -61,7 +62,7 @@ export async function generateMetadata({
         : "Systems, in good order.");
   const title = `${pageTitle} — ${siteContent.identity.name[page.locale]}`;
   const description =
-    page.project?.summary[page.locale] ??
+    page.project?.problem[0][page.locale] ??
     pageDescriptions[page.currentPath]?.[page.locale] ??
     siteContent.introduction[page.locale];
   const suffix = page.currentPath ? `/${page.currentPath}` : "";
@@ -99,6 +100,7 @@ export default async function PortfolioPage({
   const page = resolvePage(locale, path);
   const query = await searchParams;
   const area = isArea(query.area) ? query.area : undefined;
+  const problem = isProblemType(query.problem) ? query.problem : undefined;
   let content;
 
   if (page.project)
@@ -107,10 +109,13 @@ export default async function PortfolioPage({
         project={page.project}
         locale={page.locale}
         area={area}
+        problem={problem}
       />
     );
   else if (page.currentPath === "projects")
-    content = <PortfolioCollection locale={page.locale} area={area} />;
+    content = (
+      <PortfolioCollection locale={page.locale} area={area} problem={problem} />
+    );
   else if (page.currentPath === "about")
     content = <PortfolioAbout locale={page.locale} />;
   else if (page.currentPath === "resume")
@@ -128,6 +133,7 @@ export default async function PortfolioPage({
       locale={page.locale}
       path={page.currentPath ? `/${page.currentPath}` : ""}
       area={area}
+      problem={problem}
     >
       {content}
     </PortfolioShell>

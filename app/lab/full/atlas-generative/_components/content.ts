@@ -4,6 +4,7 @@ import {
   featuredProjects as sharedFeaturedProjects,
   siteContent,
 } from "@/lib/content";
+import { problemFraming } from "./problems";
 
 export type { Area, Locale, Localized } from "@/app/content/model";
 export const areas = sharedAreas.map((area) => area.id);
@@ -21,6 +22,7 @@ const roomNames: Record<string, Localized> = {
 export const projects = siteContent.projects
   .map((project) => ({
     ...project,
+    framing: problemFraming[project.slug],
     role: project.contribution,
     roomName: roomNames[project.slug] ?? areaLabels[project.area],
     problem: [project.problem],
@@ -66,8 +68,8 @@ export const projects = siteContent.projects
   );
 
 export type PortfolioProject = (typeof projects)[number];
-export const featuredProjects = sharedFeaturedProjects.map((project) =>
-  projects.find((item) => item.slug === project.slug)!,
+export const featuredProjects = sharedFeaturedProjects.map(
+  (project) => projects.find((item) => item.slug === project.slug)!,
 );
 
 export const profile = {
@@ -80,6 +82,7 @@ export const profile = {
     ja: siteContent.about.ja[index],
   })),
   experience: siteContent.experience.map((item) => ({
+    id: item.id,
     company: item.company,
     period: item.period,
     role: item.title,

@@ -37,7 +37,12 @@ export type Project = {
 };
 
 export type SiteContent = {
-  source: { repository: string; revision: string; reviewedOn: string };
+  source: {
+    repository: string;
+    revision: string;
+    reviewedOn: string;
+    amendments?: { file: string; reviewedOn: string };
+  };
   identity: {
     name: Localized;
     location: Localized;
@@ -50,7 +55,7 @@ export type SiteContent = {
   about: Localized<string[]>;
   experience: {
     id: string;
-    company: string;
+    company: Localized;
     title: Localized;
     period: Localized;
     summary: Localized;
