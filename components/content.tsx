@@ -1,16 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { copy } from "@/app/content/copy";
-import type { ContentTodo, Locale, Project } from "@/app/content/model";
+import type { Locale, Project } from "@/app/content/model";
 import { siteContent } from "@/lib/content";
-
-export function Todo({ item, locale }: { item: ContentTodo; locale: Locale }) {
-  return (
-    <aside className="content-todo" data-todo={item.id}>
-      <strong>TODO [{item.id}]:</strong> {item.text[locale]}
-    </aside>
-  );
-}
 
 export function PageIntro({
   title,

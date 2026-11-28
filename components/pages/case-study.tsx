@@ -9,7 +9,6 @@ import {
   JsonLd,
   ProjectCard,
   Section,
-  Todo,
   Workflow,
 } from "../content";
 
@@ -27,9 +26,7 @@ export function CaseStudyPage({
     "built",
     "decisions",
     "results",
-    "artifacts",
     "stack",
-    "reflection",
     "related",
   ] as const;
   return (
@@ -76,7 +73,6 @@ export function CaseStudyPage({
           <p>
             {project.association[locale]} · {project.contribution[locale]}
           </p>
-          <Todo item={project.todos.context} locale={locale} />
         </Section>
         <Section id="built" title={text.built}>
           <Workflow project={project} locale={locale} />
@@ -86,17 +82,9 @@ export function CaseStudyPage({
           {project.decisions[locale].map((decision) => (
             <p key={decision}>{decision}</p>
           ))}
-          <Todo item={project.todos.decisions} locale={locale} />
         </Section>
         <Section id="results" title={text.results}>
           <p>{project.results[locale]}</p>
-          {project.slug === "subsidy-search-pilot" && (
-            <h3 id="evaluation">{text.evaluation}</h3>
-          )}
-          <Todo item={project.todos.evidence} locale={locale} />
-        </Section>
-        <Section id="artifacts" title={text.artifacts}>
-          <Todo item={project.todos.artifacts} locale={locale} />
         </Section>
         <Section id="stack" title={text.stack}>
           <dl className="stack-list">
@@ -107,9 +95,6 @@ export function CaseStudyPage({
               </div>
             ))}
           </dl>
-        </Section>
-        <Section id="reflection" title={text.reflection}>
-          <Todo item={project.todos.reflection} locale={locale} />
         </Section>
       </div>
       <Section id="related" title={text.related}>

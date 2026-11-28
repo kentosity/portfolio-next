@@ -30,19 +30,19 @@ python3 scripts/generate-content.py --profile /path/to/resume/profile.json
 python3 scripts/generate-content.py --profile /path/to/resume/profile.json --check
 ```
 
-The projection records its source revision and profile review date. The contact address comes from the existing public contact record and carries an explicit approval TODO. All content gaps use `TODO [stable-id]: localized request`. The route and placeholder inventories are in [docs/site-structure.md](docs/site-structure.md).
+The projection records its source revision and profile review date. The contact address comes from the existing public contact record. Public pages do not render review placeholders; the private record of removed TODOs is kept in the canonical resume repository.
 
 ## Routes and migration
 
 English is the default: `/` permanently redirects to `/en`. Both `/en` and `/ja` have Home, Projects, About, Resume, Work together, Contact, and the same 12 case slugs. Project areas use `?area=ai-tools`, `?area=data-systems`, or `?area=products-websites`; the clean collection URL shows all 12.
 
-`/portfolio` redirects to `/ja` and the Japanese home retains the historical section anchors. Both old project URL families redirect selected canonical names and their five aliases through the shared project records. The 17 earlier pages retain their original content at `/projects/[slug]`, carry a review notice and `noindex`, and use one canonical URL. Unknown slugs return 404. The complete 33-file inventory is checked against the explicit publication selection.
+`/portfolio` redirects to `/ja` and the Japanese home retains the historical section anchors. Both old project URL families redirect selected canonical names and their five aliases through the shared project records. The 17 earlier pages retain their original content at `/projects/[slug]`, remain `noindex`, and use one canonical URL. Unknown slugs return 404. The complete 33-file inventory is checked against the explicit publication selection.
 
 ## SEO and review policy
 
 `lib/site-policy.ts` supplies the canonical origin and indexing policy. Metadata uses the existing portfolio origin until `NEXT_PUBLIC_SITE_URL` is confirmed. Each reviewed page has a localized title/description, self-canonical, reciprocal EN/JA and x-default alternates, Person data, and a localized social cover. Cases include CreativeWork and breadcrumb data. Filter variants canonicalize to the collection. The sitemap includes the 36 reviewed bilingual pages and omits guessed modification dates.
 
-Indexing remains disabled by default in HTML, HTTP headers and robots. A later authorized production launch can set `SITE_INDEXABLE=true` together with `VERCEL_ENV=production`. Preview environments remain excluded even if the indexing flag is set. Existing analytics run only in Vercel production. PDF exports and case recordings/screenshots remain visible content TODOs until approved files are supplied.
+Indexing remains disabled by default in HTML, HTTP headers and robots. A later authorized production launch can set `SITE_INDEXABLE=true` together with `VERCEL_ENV=production`. Preview environments remain excluded even if the indexing flag is set. Existing analytics run only in Vercel production. PDF exports and case recordings/screenshots are omitted from public pages until approved files are supplied.
 
 The social cover embeds a 133 KB static subset of [Noto Sans JP](https://github.com/google/fonts/tree/main/ofl/notosansjp), licensed under [OFL](assets/OFL.txt). When adding Japanese cover text, regenerate `assets/social-font.ttf` with `fonttools` installed and the original font downloaded from that directory:
 

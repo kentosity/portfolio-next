@@ -51,7 +51,6 @@ export const copy = {
     summary: "Engineering summary",
     updated: "Profile reviewed",
     pdf: "Resume PDF",
-    pdfPending: "PDF export awaiting review",
     print: "Print this resume",
     interests: "Personal interests",
     practical: "Practical details",
@@ -73,9 +72,6 @@ export const copy = {
     aboutIntro:
       "I enjoy organizing code and systems so people can understand and improve them.",
     portrait: "Portrait and personal story",
-    legacy: "Earlier work — factual review pending",
-    legacyIntro:
-      "This historical page is retained for existing links. Its original account is awaiting reconciliation with the current profile.",
     notFound: "Page not found",
     notFoundText: "Explore the project collection or return home.",
   },
@@ -129,7 +125,6 @@ export const copy = {
     summary: "経歴の概要",
     updated: "プロフィール確認日",
     pdf: "経歴のPDF",
-    pdfPending: "PDFは内容の確認待ちです",
     print: "この経歴を印刷する",
     interests: "関心のあること",
     practical: "働き方について",
@@ -151,9 +146,6 @@ export const copy = {
     aboutIntro:
       "コードや仕組みを整理し、理解して改善しやすい形にすることが好きです。",
     portrait: "写真と個人のエピソード",
-    legacy: "過去の制作 — 記載内容の確認待ち",
-    legacyIntro:
-      "既存のリンクから参照できるよう、過去のページを残しています。記載内容は最新のプロフィールとの照合を予定しています。",
     notFound: "ページが見つかりません",
     notFoundText: "プロジェクト一覧かホームをご覧ください。",
   },

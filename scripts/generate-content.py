@@ -14,10 +14,6 @@ def bilingual(en, ja):
     return {"en": en, "ja": ja}
 
 
-def todo(identifier, en, ja):
-    return {"id": identifier, "text": bilingual(en, ja)}
-
-
 PROJECTS = {
     "local-speech": {
         "area": "ai-tools", "order": 1, "home": 1,
@@ -240,13 +236,6 @@ def project_projection(source):
         "collectionOrder": editorial["order"], "homeOrder": editorial.get("home"),
         **{key: editorial[key] for key in ["stage", "problem", "workflow", "decisions", "results", "related"]},
         "stack": [{"name": name, "responsibility": bilingual(*stack_roles.get(slug, {}).get(name, RESPONSIBILITIES[name]))} for name in source["stack"]],
-        "todos": {
-            "context": todo(f"{slug}-context", "Confirm the project period, collaborators' responsibilities and one concrete problem or failure to explain.", "プロジェクトの期間、協力者の担当範囲、説明できる具体的な問題か失敗例を確認してください。"),
-            "decisions": todo(f"{slug}-decisions", "Add two personal decisions with constraints, alternatives considered and the consequences of the choice.", "本人が判断した2点について、制約、検討した選択肢、選択によって起きたことを追記してください。"),
-            "artifacts": todo(f"{slug}-artifacts", artifact_en, artifact_ja),
-            "evidence": todo(f"{slug}-evidence", evidence_en, evidence_ja),
-            "reflection": todo(f"{slug}-reflection", "Choose the next improvement and explain how to assess it.", "次に改善する点と、その効果を確かめる方法を選んでください。"),
-        },
     }
     # Public pages do not include infrastructure cost-reduction figures.
     return project
@@ -271,16 +260,6 @@ def project_profile(profile, revision):
         "experience": [{"id": item["id"], "company": item["company"], "title": item["title"], "period": item["display_period"], "summary": item["summary"], "bullets": item["bullets"]} for item in profile["experience"]],
         "skills": [{"title": bilingual(item["group"], item["group_ja"]), "items": bilingual(item["items"], [profile["technical_labels_ja"].get(name, name) for name in item["items"]])} for item in profile["skills"]],
         "education": [{"school": bilingual(item["school"], item["school_ja"]), "description": item["public_description"]} for item in profile["education"]],
-        "todos": {
-            "hiring": todo("hiring-preferences", "Confirm hiring focus, location/remote arrangements, relocation/travel preferences and public availability wording.", "採用で希望する分野、勤務地・リモート条件、転居・出張の希望、公開する稼働状況を確認してください。"),
-            "languages": todo("working-languages", "Confirm the public wording of working-language proficiency.", "業務で使う言語と習熟度の公開表現を確認してください。"),
-            "identity": todo("public-identity", "Confirm this name presentation, public contact email and professional links.", "氏名の表記、公開する連絡先メールアドレス、仕事用リンクを確認してください。"),
-            "domain": todo("production-domain", "Confirm the final production domain; metadata currently uses the existing portfolio origin.", "最終的な公開ドメインを確認してください。メタデータには既存のポートフォリオURLを使用しています。"),
-            "engagement": todo("client-engagement", "Confirm the contracting party, work offered, actual availability, engagement sequence, deliverables and any pricing or response-time wording.", "契約主体、提供できる業務、稼働状況、進め方、成果物、料金や返信時期の表現を確認してください。"),
-            "portrait": todo("portrait-and-interests", "Supply an approved portrait/name treatment, a personal story about organizing systems and any interests or sketches to share.", "掲載する写真・氏名の見せ方、仕組みを整理することにまつわるエピソード、公開したい関心やスケッチを用意してください。"),
-            "resume-en": todo("resume-pdf-en", "Review a new public-safe English PDF export from the canonical profile, including contact details and project links.", "正本プロフィールから英語PDFを作成し、連絡先と公開可能なプロジェクトリンクを確認してください。"),
-            "resume-ja": todo("resume-pdf-ja", "Review a new public-safe Japanese PDF export from the canonical profile, including contact details and project links.", "正本プロフィールから日本語PDFを作成し、連絡先と公開可能なプロジェクトリンクを確認してください。"),
-        },
         "projects": [project_projection(project) for project in selected],
     }
     return apply_approved_career_updates(content)

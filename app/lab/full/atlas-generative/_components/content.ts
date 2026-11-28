@@ -53,8 +53,6 @@ export const projects = siteContent.projects
     },
     relatedSlugs: project.related,
     costMetric: project.metric,
-    evidenceGap: project.todos.evidence,
-    artifactGap: project.todos.artifacts,
     artifacts: [] as {
       title: Localized;
       description: Localized;
@@ -106,5 +104,4 @@ export const profile = {
   email: siteContent.identity.email,
   github: siteContent.links.find((link) => link.label === "GitHub")?.url,
   linkedin: siteContent.links.find((link) => link.label === "LinkedIn")?.url,
-  todos: siteContent.todos,
 };

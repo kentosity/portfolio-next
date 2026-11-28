@@ -266,44 +266,7 @@
       "related": [
         "event-platform",
         "snap-photobooth"
-      ],
-      "todos": {
-        "context": {
-          "id": "epicpull-context",
-          "text": {
-            "en": "Describe the team responsibilities and one concrete account, payment or migration problem to explain.",
-            "ja": "チーム内の担当範囲と、認証・決済・移行で直面した具体的な課題を追記してください。"
-          }
-        },
-        "decisions": {
-          "id": "epicpull-decisions",
-          "text": {
-            "en": "Explain the constraints and alternatives behind the staged migration and mobile compatibility work.",
-            "ja": "段階的な移行やモバイル向けの互換性維持について、制約と検討した選択肢を追記してください。"
-          }
-        },
-        "artifacts": {
-          "id": "epicpull-artifacts",
-          "text": {
-            "en": "Supply approved screenshots, a recording or synthetic workflow examples, with any required credits.",
-            "ja": "掲載許可のある画面、録画、合成データによる処理例と、必要なクレジットを用意してください。"
-          }
-        },
-        "evidence": {
-          "id": "epicpull-evidence",
-          "text": {
-            "en": "Supply attributable release records or measurements for the implemented workflows, including scope and period.",
-            "ja": "実装した機能について、対象と期間が分かる公開・利用の記録や測定結果を用意してください。"
-          }
-        },
-        "reflection": {
-          "id": "epicpull-reflection",
-          "text": {
-            "en": "Describe the next improvement and how to assess it.",
-            "ja": "次に改善する点と、その効果を確かめる方法を追記してください。"
-          }
-        }
-      }
+      ]
     }
   ]
 }
