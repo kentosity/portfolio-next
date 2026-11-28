@@ -8,6 +8,26 @@ const nextConfig: NextConfig = {
     return [
       { source: "/", destination: "/en", permanent: true },
       { source: "/portfolio", destination: "/ja", permanent: true },
+      {
+        source: "/lab/full/atlas-generative",
+        destination: "/en",
+        permanent: true,
+      },
+      {
+        source: "/lab/full/atlas-generative/prints/:slug",
+        destination: "/prints/:slug",
+        permanent: true,
+      },
+      {
+        source: "/lab/full/atlas-generative/:locale(en|ja)",
+        destination: "/:locale",
+        permanent: true,
+      },
+      {
+        source: "/lab/full/atlas-generative/:locale(en|ja)/:path*",
+        destination: "/:locale/:path*",
+        permanent: true,
+      },
       ...siteContent.projects.flatMap((project) =>
         [project.slug, ...project.legacySlugs].flatMap((slug) => [
           {

@@ -84,7 +84,7 @@ PROJECTS = {
             "予約とチェックインを機能ごとに分離しました。イベント設定とバリデーションを共通化し、繰り返し使う業務に共通の構成を与えています。",
             "AWS LambdaとDynamoDBを使う構成へ再設計し、アプリにはNuxtとTypeScriptを利用しました。分析用のデータ連携も整備しています。",
         ]),
-        "results": bilingual("Annual event-platform infrastructure cost fell from about $200,000 to about $10,000, approximately 95%. This is the owner-confirmed approximate annual infrastructure-cost comparison for the Generosity platform.", "イベント基盤の年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。Generosityの基盤について本人が確認した、年間インフラ費の概算比較です。"),
+        "results": bilingual("The reworked platform lowered annual infrastructure cost while making reservation and check-in features reusable across events.", "再設計した基盤により、年間インフラ費を削減し、予約とチェックインの機能をイベント間で再利用できるようにしました。"),
         "related": ["event-ticketing", "salon-data-platform"],
     },
     "salon-data-platform": {
@@ -248,9 +248,7 @@ def project_projection(source):
             "reflection": todo(f"{slug}-reflection", "Choose the next improvement and explain how to assess it.", "次に改善する点と、その効果を確かめる方法を選んでください。"),
         },
     }
-    if "cost_reduction" in source:
-        cost = source["cost_reduction"]
-        project["metric"] = {"currency": cost["currency"], "period": cost["period"], "before": cost["before_approx"], "after": cost["after_approx"], "percent": cost["percent_approx"]}
+    # Public pages do not include infrastructure cost-reduction figures.
     return project
 
 

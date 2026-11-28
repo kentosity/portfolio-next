@@ -42,7 +42,8 @@ class PublicProjectionTests(unittest.TestCase):
         featured = sorted((project for project in projects if project["homeOrder"]), key=lambda project: project["homeOrder"])
         self.assertEqual([project["slug"] for project in featured], ["local-speech", "event-platform", "salon-data-platform", "subsidy-search-pilot"])
         event = next(project for project in projects if project["slug"] == "event-platform")
-        self.assertEqual(event["metric"], {"currency": "USD", "period": "annual", "before": 200000, "after": 10000, "percent": 95})
+        self.assertNotIn("metric", event)
+        self.assertNotRegex(json.dumps(content, ensure_ascii=False), r"\\$200k|\\$10k|200,000|20万ドル|95%")
         self.assertEqual(next(project["stack"] for project in projects if project["slug"] == "ongy-viewer")[0]["name"], "AWS")
 
     def test_approved_career_updates_keep_service_and_company_distinct_and_are_idempotent(self):

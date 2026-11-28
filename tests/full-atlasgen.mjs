@@ -9,7 +9,7 @@ const capturePrefix = process.env.CAPTURE_PREFIX ?? "full-atlasgen";
 const captureSuffix = process.env.CAPTURE_PASS
   ? `-${process.env.CAPTURE_PASS}`
   : "";
-const root = "/lab/full/atlas-generative";
+const root = "";
 const projectSlugs = siteContent.projects.map((project) => project.slug);
 const routes = [
   "",
@@ -308,6 +308,10 @@ try {
     .locator('main article[data-project="agent-coordination"]')
     .getByRole("link", { name: "Read the case study", exact: true });
   await coordinationLink.scrollIntoViewIfNeeded();
+  await page.locator("main img").evaluateAll(async (images) => {
+    for (const image of images) image.loading = "eager";
+    await Promise.all(images.map((image) => image.decode().catch(() => {})));
+  });
   const savedScroll = await page.evaluate(() => window.scrollY);
   await coordinationLink.click();
   await page.waitForURL("**/projects/agent-coordination?area=ai-tools");
@@ -330,9 +334,16 @@ try {
     .getByRole("link", { name: "Projects", exact: true })
     .click();
   await page.waitForURL("**/en/projects?area=ai-tools");
+  const storedScroll = await page.evaluate(() => {
+    const href = `${window.location.pathname}${window.location.search}`;
+    return Number(
+      sessionStorage.getItem(`atlas-generative:collection:en:${href}`),
+    );
+  });
+  assert.equal(Number.isFinite(storedScroll), true, "collection scroll was saved");
   await page.waitForFunction(
     (expected) => Math.abs(window.scrollY - expected) < 90,
-    savedScroll,
+    storedScroll,
   );
   checks.push(
     "Collection filter survives language change, browser Back and case-study return through page and header links with scroll restoration",
@@ -504,11 +515,11 @@ try {
     0,
   );
   await open(page, `${root}/en/projects/event-platform`);
-  assert.match(await page.locator("#results").innerText(), /200,?000|200k/);
-  assert.match(await page.locator("#results").innerText(), /10,?000|10k/);
-  assert.match(await page.locator("#results").innerText(), /95%/);
+  const eventResults = await page.locator("#results").innerText();
+  assert.match(eventResults, /infrastructure cost|インフラ費/);
+  assert.doesNotMatch(eventResults, /200,?000|200k|10,?000|\$10k|95%|20万ドル|1万ドル/);
   checks.push(
-    "Reduced-motion state changes have no running animation; event case shows the supported annual cost comparison",
+    "Reduced-motion state changes have no running animation; event case describes the cost reduction without a dollar figure",
   );
 
   const missingCase = await page.goto(

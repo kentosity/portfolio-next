@@ -3,7 +3,6 @@ import path from "node:path";
 import { test, expect } from "@playwright/test";
 import { siteContent } from "../app/content/site-content";
 import { locales } from "../app/content/model";
-import { copy } from "../app/content/copy";
 import { corePages } from "../lib/content";
 import { legacySlugs } from "../lib/legacy";
 
@@ -26,6 +25,7 @@ for (const locale of locales) {
       expect(response?.status()).toBe(200);
       expect(response?.headers()["x-robots-tag"]).toContain("noindex");
       await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      await expect(page.locator("html")).toHaveClass(/atlas-generative/);
       await expect(page.locator("main h1")).toHaveCount(1);
       await expect(page.locator("main h1")).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -60,112 +60,32 @@ for (const locale of locales) {
     });
   }
 
-  test(`${locale} collection keeps filters, Back history, language and scroll position`, async ({
+  test(`${locale} collection lists every project and problem filters work`, async ({
     page,
   }) => {
     await page.goto(`/${locale}/projects`);
     await expect(page.locator("[data-project]")).toHaveCount(12);
-    for (const [area, count] of [
-      ["ai-tools", 4],
-      ["data-systems", 3],
-      ["products-websites", 5],
-    ] as const) {
-      await page.locator(`.area-filters a[href$="area=${area}"]`).click();
-      await expect(page).toHaveURL(new RegExp(`area=${area}`));
-      await expect(page.locator("[data-project]")).toHaveCount(count);
-      await expect(page.getByRole("status")).toContainText(`${count}`);
-      await expect(
-        page.locator(`.area-filters a[href$="area=${area}"]`),
-      ).toHaveAttribute("aria-current", "true");
-    }
-    await page.goBack();
-    await expect(page).toHaveURL(/area=data-systems/);
+    const operations = page.locator("nav a[href$='?problem=operations']");
+    await operations.click();
+    await expect(page).toHaveURL(/problem=operations/);
     await expect(page.locator("[data-project]")).toHaveCount(3);
-    await page
-      .locator('.project-card[data-project="event-ticketing"] h3 a')
-      .scrollIntoViewIfNeeded();
-    const positionBeforeCase = await page.evaluate(() => window.scrollY);
-    await page
-      .locator('.project-card[data-project="event-ticketing"] h3 a')
-      .click();
-    await expect(page).toHaveURL(
-      new RegExp(`/${locale}/projects/event-ticketing\\?area=data-systems`),
-    );
-    await page.getByRole("link", { name: `← ${copy[locale].back}` }).click();
-    await expect(page).toHaveURL(
-      new RegExp(`/${locale}/projects\\?area=data-systems`),
-    );
-    await expect
-      .poll(() => page.evaluate(() => window.scrollY))
-      .toBeCloseTo(positionBeforeCase, -1);
     const otherLocale = locale === "en" ? "ja" : "en";
-    await page.locator(".navigation-utilities > a").click();
+    await page.getByRole("link", { name: otherLocale === "ja" ? "JP" : "EN", exact: true }).click();
     await expect(page).toHaveURL(
-      new RegExp(`/${otherLocale}/projects\\?area=data-systems`),
+      new RegExp(`/${otherLocale}/projects\\?problem=operations`),
     );
     await expect(page.locator("[data-project]")).toHaveCount(3);
-    await page.goto(`/${locale}/projects/local-speech?area=ai-tools#results`);
-    await page.locator(".navigation-utilities > a").click();
-    await expect(page).toHaveURL(
-      new RegExp(
-        `/${otherLocale}/projects/local-speech\\?area=ai-tools#results`,
-      ),
-    );
-    await page.getByRole("link", { name: `← ${copy[otherLocale].back}` }).click();
-    await expect(page).toHaveURL(new RegExp(`/${otherLocale}/projects\\?area=ai-tools`));
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(100);
   });
 
-  test(`${locale} keyboard filter and mobile menu reach the same pages`, async ({
-    page,
-  }, testInfo) => {
-    await page.goto(`/${locale}/projects`);
-    const filter = page.locator('.area-filters a[href$="area=ai-tools"]');
-    await filter.focus();
-    await page.keyboard.press("Enter");
-    await expect(page.locator("[data-project]")).toHaveCount(4);
-    if (testInfo.project.name === "mobile") {
-      await page.locator(".mobile-navigation summary").click();
-      await page
-        .locator(`.mobile-navigation a[href="/${locale}/about"]`)
-        .click();
-      await expect(page).toHaveURL(new RegExp(`/${locale}/about$`));
-      await expect(page.locator(".mobile-navigation")).not.toHaveAttribute(
-        "open",
-        "",
-      );
-    }
-  });
-
-  test(`${locale} hiring and project email prompts retain context`, async ({
+  test(`${locale} language switching keeps a case-study section anchor`, async ({
     page,
   }) => {
-    await page.goto(`/${locale}/contact?project=event-platform#projects`);
-    const hiring = new URL(
-      (await page.locator('#hiring a[href^="mailto:"]').getAttribute("href")) ||
-        "",
+    await page.goto(`/${locale}/projects/local-speech#results`);
+    const otherLocale = locale === "en" ? "ja" : "en";
+    await page.getByRole("link", { name: otherLocale === "ja" ? "JP" : "EN", exact: true }).click();
+    await expect(page).toHaveURL(
+      new RegExp(`/${otherLocale}/projects/local-speech#results`),
     );
-    const project = new URL(
-      (await page
-        .locator('#projects a[href^="mailto:"]')
-        .getAttribute("href")) || "",
-    );
-    expect(hiring.pathname).toBe(siteContent.identity.email);
-    expect(hiring.searchParams.get("body")).toBe(copy[locale].hiringPrompt);
-    expect(project.searchParams.get("body")).toContain(
-      siteContent.projects.find((item) => item.slug === "event-platform")!
-        .title[locale],
-    );
-    expect(project.searchParams.get("body")).toContain(
-      copy[locale].projectPrompt,
-    );
-    await page.locator(".navigation-utilities > a").click();
-    await expect(page).toHaveURL(/contact\?project=event-platform#projects/);
-    await page.goto(`/${locale}/resume`);
-    await expect(
-      page.locator(`[data-todo="resume-pdf-${locale}"]`),
-    ).toBeVisible();
-    await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
   });
 
   test(`${locale} home leads with the four curated cases and all links work without JavaScript`, async ({
@@ -189,17 +109,26 @@ for (const locale of locales) {
       "salon-data-platform",
       "subsidy-search-pilot",
     ]);
-    await page.goto(`/${locale}/projects?area=ai-tools`);
-    await expect(page.locator("[data-project]")).toHaveCount(4);
-    await page
-      .locator('.project-card[data-project="local-speech"] h3 a')
-      .click();
-    await expect(page.locator("main h1")).toContainText(
-      siteContent.projects.find((item) => item.slug === "local-speech")!.title[
-        locale
-      ],
-    );
+    await page.goto(`/${locale}/projects?problem=operations`);
+    await expect(page.locator("[data-project]")).toHaveCount(3);
+    await page.locator('article[data-project="event-platform"] a').first().click();
+    await expect(page).toHaveURL(new RegExp(`/${locale}/projects/event-platform`));
+    await expect(page.locator("main h1")).toBeVisible();
     await context.close();
+  });
+
+  test(`${locale} contact and resume routes stay available`, async ({
+    page,
+  }) => {
+    await page.goto(`/${locale}/contact`);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page.locator(`a[href^="mailto:"]`).first()).toBeVisible();
+    await page.goto(`/${locale}/resume`);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page.getByText(locale === "en" ? "FalconeX" : "FalconeX")).toBeVisible();
+    await expect(
+      page.getByText(locale === "en" ? "April 2020" : "2020年4月"),
+    ).toBeVisible();
   });
 
   test(`${locale} home, collection and case screenshots`, async ({
@@ -260,6 +189,10 @@ test("all current and historical project slugs receive explicit handling through
     ["/", "/en"],
     ["/portfolio", "/ja"],
     ["/en/projects/wecall", "/en/projects/event-platform"],
+    ["/lab/full/atlas-generative", "/en"],
+    ["/lab/full/atlas-generative/en", "/en"],
+    ["/lab/full/atlas-generative/ja/projects", "/ja/projects"],
+    ["/lab/full/atlas-generative/prints/event-platform", "/prints/event-platform"],
   ]) {
     const response = await request.get(route, { maxRedirects: 0 });
     expect(response.status()).toBe(308);

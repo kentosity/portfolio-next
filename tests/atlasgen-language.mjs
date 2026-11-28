@@ -6,7 +6,7 @@ import { siteContent } from "../app/content/site-content.ts";
 const baseUrl = process.env.BASE_URL ?? "http://127.0.0.1:3163";
 const screenshotDirectory = process.env.SHOT_DIR ?? "/tmp/aide-proto/shots";
 const prefix = process.env.CAPTURE_PREFIX ?? "atlasgen-language";
-const root = "/lab/full/atlas-generative";
+const root = "";
 const routes = ["", "/projects", "/about", "/resume", "/work-together", "/contact",
   ...siteContent.projects.map(project => `/projects/${project.slug}`)];
 const results = [];
