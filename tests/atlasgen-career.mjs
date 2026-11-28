@@ -35,7 +35,7 @@ try {
       const entry = page.locator('article[data-project="epicpull"]');
       assert.equal(await entry.count(), 1);
       assert.equal(await page.locator('article[data-project="zencard"]').count(), 0);
-      assert.match(await entry.innerText(), locale === "en" ? /ZenCard/ : /株式会社ZenCard/);
+      assert.match(await entry.innerText(), locale === "en" ? /ZenCard Inc./ : /株式会社ZenCard/);
       assert.deepEqual(await entry.locator("dt").allTextContents(), locale === "en" ? ["Built", "Result"] : ["つくったもの", "結果"]);
       await entry.screenshot({ path: `${screenshotDirectory}/${prefix}-${device}-${locale}-entry.png` });
       await open(page, `${root}/${locale}/projects?problem=coordination`);
@@ -61,8 +61,8 @@ try {
       for (const route of ["", "/about", "/resume"]) {
         await open(page, `${root}/${locale}${route}`);
         const job = page.locator('[data-experience="zencard"]');
-        assert.equal(await job.count(), 1, `${locale}${route}: single ZenCard role`);
-        assert.equal(await job.locator("h3").innerText(), locale === "en" ? "ZenCard" : "株式会社ZenCard");
+        assert.equal(await job.count(), 1, `${locale}${route}: single ZenCard Inc. role`);
+        assert.equal(await job.locator("h3").innerText(), locale === "en" ? "ZenCard Inc." : "株式会社ZenCard");
         assert.match(await job.innerText(), locale === "en" ? /February 2026 – August 2026/ : /2026年2月 – 2026年8月/);
         assert.match(await job.innerText(), locale === "en" ? /Contract/ : /業務委託/);
         const introduction = await page.locator('[data-experience="introduction"]').innerText();
@@ -114,7 +114,7 @@ try {
         style: "li { outline: 1px solid #ffdb91; outline-offset: -1px; }",
       });
       results.push({ device, locale, items });
-      console.log(`${device} ${locale}: one EpicPull project, one ZenCard role, CTO dates, localized case and aligned skills pass`);
+      console.log(`${device} ${locale}: one EpicPull project, one ZenCard Inc. role, CTO dates, localized case and aligned skills pass`);
     }
     await page.close();
   }

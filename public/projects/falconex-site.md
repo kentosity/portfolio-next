@@ -1,6 +1,6 @@
-# FalconeXコーポレートサイト
+# FalconeX Inc.コーポレートサイト
 
-**所属・関係:** FalconeX
+**所属・関係:** FalconeX Inc.
 
 **担当領域:** Webサイト開発・保守
 
@@ -10,9 +10,9 @@
 
 ## Overview
 
-FalconeX corporate website
+FalconeX Inc. corporate website
 
-**Context:** FalconeX
+**Context:** FalconeX Inc.
 
 **Role:** Website development and maintenance
 

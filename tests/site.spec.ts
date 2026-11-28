@@ -125,7 +125,7 @@ for (const locale of locales) {
     await expect(page.locator(`a[href^="mailto:"]`).first()).toBeVisible();
     await page.goto(`/${locale}/resume`);
     await expect(page.locator("main h1")).toBeVisible();
-    await expect(page.getByText(locale === "en" ? "FalconeX" : "FalconeX")).toBeVisible();
+    await expect(page.getByText(locale === "en" ? "FalconeX Inc." : "FalconeX Inc.")).toBeVisible();
     await expect(
       page.getByText(locale === "en" ? "April 2020" : "2020年4月"),
     ).toBeVisible();

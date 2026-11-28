@@ -90,7 +90,7 @@ PROJECTS = {
     "salon-data-platform": {
         "area": "data-systems", "order": 2, "home": 3,
         "summary": bilingual("A data pipeline connects salon POS exports to validated reports and a dashboard.", "美容室のPOS帳票を取り込み、検証付きの集計とダッシュボードにつなぐ仕組みです。"),
-        "stage": bilingual("Client development through FalconeX", "FalconeXでのクライアント向け開発"),
+        "stage": bilingual("Client development through FalconeX Inc.", "FalconeX Inc.でのクライアント向け開発"),
         "problem": bilingual("A salon chain needed to connect POS exports to analytical reporting, including complete and date-window imports and checks for missing or duplicate inputs.", "美容室チェーンのPOSデータを分析につなぐため、全件・期間指定の取り込みと、入力の欠落・重複の検証が必要でした。"),
         "workflow": bilingual(["Windows POS export", "Parquet staging → BigQuery", "Validated report + dashboard"], ["Windows POSから帳票出力", "Parquet → BigQuery", "検証付き集計・画面表示"]),
         "decisions": bilingual([
@@ -100,7 +100,7 @@ PROJECTS = {
             "抽出・取り込み・実行管理の役割を分けています。全件と期間指定の取り込みは、Parquet形式での受け渡しとBigQueryへの読み込みを使います。",
             "集計処理で入力の欠落・重複を検証します。Windows上の定期出力には失敗時の処理を組み込み、React／Fastifyでレポートを表示するアプリを開発しました。",
         ]),
-        "results": bilingual("The developed capabilities include full and date-window ingestion, Parquet staging, validated reporting, a React/Fastify dashboard and scheduled Windows exports with failure handling. The work is attributed to Kento through FalconeX for an anonymous salon-chain client.", "全件・期間指定の取り込み、Parquetでの受け渡し、検証付きの集計、React／Fastifyの画面、失敗時の処理を含むWindowsの定期出力を開発しました。FalconeXで、美容室チェーン向けに担当した業務です。"),
+        "results": bilingual("The developed capabilities include full and date-window ingestion, Parquet staging, validated reporting, a React/Fastify dashboard and scheduled Windows exports with failure handling. The work is attributed to Kento through FalconeX Inc. for an anonymous salon-chain client.", "全件・期間指定の取り込み、Parquetでの受け渡し、検証付きの集計、React／Fastifyの画面、失敗時の処理を含むWindowsの定期出力を開発しました。FalconeX Inc.で、美容室チェーン向けに担当した業務です。"),
         "related": ["event-platform", "event-ticketing"],
     },
     "event-ticketing": {
@@ -136,7 +136,7 @@ PROJECTS = {
     "falconex-site": {
         "area": "products-websites", "order": 3,
         "summary": bilingual("A corporate website turns Markdown content into validated company pages and inquiry forms.", "Markdownの内容から会社ページを生成し、ページ情報と問い合わせ入力を検証するサイトです。"),
-        "stage": bilingual("Website development at FalconeX", "FalconeXでのWebサイト開発"),
+        "stage": bilingual("Website development at FalconeX Inc.", "FalconeX Inc.でのWebサイト開発"),
         "problem": bilingual("Company pages and inquiry interactions need a maintainable shared content structure and clear validation.", "会社情報と問い合わせを共通の構成で管理し、入力やページ情報を検証する必要がありました。"),
         "workflow": bilingual(["Markdown content", "Metadata validation + PHP theme", "Company pages + inquiries"], ["Markdownの内容", "メタデータ検証・PHPテーマ", "会社ページ・問い合わせ"]),
         "decisions": bilingual(["The theme validates invalid or duplicate metadata before page generation. JavaScript form errors move focus to inquiry fields that need correction."], ["ページ生成時に不正・重複するメタデータを検出します。問い合わせフォームはJavaScriptでエラーを表示し、修正が必要な項目へフォーカスを移します。"]),
