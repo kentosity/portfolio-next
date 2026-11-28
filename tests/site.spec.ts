@@ -7,7 +7,18 @@ import { corePages } from "../lib/content";
 import { legacySlugs } from "../lib/legacy";
 
 const canonicalOrigin =
-  process.env.NEXT_PUBLIC_SITE_URL || siteContent.identity.origin;
+  process.env.NEXT_PUBLIC_SITE_URL &&
+  !process.env.NEXT_PUBLIC_SITE_URL.includes("murex-nine")
+    ? process.env.NEXT_PUBLIC_SITE_URL
+    : siteContent.identity.origin;
+
+async function publicPagesAreIndexable(request: {
+  get: (url: string) => Promise<{ text: () => Promise<string> }>;
+}) {
+  const robots = await (await request.get("/robots.txt")).text();
+  return /^\s*Allow:\s*\/\s*$/m.test(robots);
+}
+
 const allPaths = [
   ...corePages,
   ...siteContent.projects.map((project) => `projects/${project.slug}`),
@@ -17,13 +28,40 @@ for (const locale of locales) {
   for (const route of allPaths) {
     test(`${locale}/${route || "home"} renders with localized metadata and usable layout`, async ({
       page,
+      request,
     }) => {
       const errors: string[] = [];
       page.on("pageerror", (error) => errors.push(error.message));
       const suffix = route ? `/${route}` : "";
       const response = await page.goto(`/${locale}${suffix}`);
       expect(response?.status()).toBe(200);
-      expect(response?.headers()["x-robots-tag"]).toContain("noindex");
+      const indexable = await publicPagesAreIndexable(request);
+      if (indexable) {
+        expect(response?.headers()["x-robots-tag"] ?? "").not.toContain(
+          "noindex",
+        );
+        await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+          "content",
+          /noindex/,
+        );
+      } else {
+        expect(response?.headers()["x-robots-tag"]).toContain("noindex");
+      }
+      const imagePath = route.startsWith("projects/")
+        ? `/${locale}/${route}/opengraph-image`
+        : `/${locale}/opengraph-image`;
+      await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+        "content",
+        /.+/,
+      );
+      await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+        "content",
+        /.+/,
+      );
+      await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute(
+        "content",
+        `${canonicalOrigin}${imagePath}`,
+      );
       await expect(page.locator("html")).toHaveAttribute("lang", locale);
       await expect(page.locator("html")).toHaveClass(/atlas-generative/);
       await expect(page.locator("main h1")).toHaveCount(1);
@@ -216,11 +254,20 @@ test("unknown routes return 404 and SEO artifacts contain only reviewed canonica
   expect(sitemap.status()).toBe(200);
   const xml = await sitemap.text();
   expect((xml.match(/<loc>/g) || []).length).toBe(36);
+  expect(xml).toContain(`${canonicalOrigin}/en</loc>`);
+  expect(xml).toContain(`${canonicalOrigin}/ja/projects/event-platform</loc>`);
+  expect(xml).not.toContain("murex-nine");
   expect(xml).not.toContain("?area=");
   expect(xml).not.toContain("/projects/wecall");
-  expect(await (await request.get("/robots.txt")).text()).toContain(
-    "Disallow: /",
-  );
+  const robots = await (await request.get("/robots.txt")).text();
+  expect(robots).toContain(`Sitemap: ${canonicalOrigin}/sitemap.xml`);
+  expect(robots).not.toContain("murex-nine");
+  if (await publicPagesAreIndexable(request)) {
+    expect(robots).toMatch(/^\s*Allow:\s*\/\s*$/m);
+    expect(robots).not.toMatch(/^\s*Disallow:\s*\/\s*$/m);
+  } else {
+    expect(robots).toContain("Disallow: /");
+  }
 });
 
 test("localized home and all case covers are actual 1200 by 630 PNG images", async ({
@@ -263,5 +310,33 @@ test("public routes do not render TODO or placeholder markers", async ({
     const response = await request.get(route);
     expect(response.ok(), route).toBe(true);
     expect(await response.text(), route).not.toMatch(banned);
+  }
+});
+
+test("LinkedInBot receives Open Graph title, description and image", async ({
+  request,
+}) => {
+  const routes = [
+    "/en",
+    "/ja",
+    "/en/projects/event-platform",
+  ];
+  for (const route of routes) {
+    const response = await request.get(route, {
+      headers: { "User-Agent": "LinkedInBot/1.0" },
+    });
+    expect(response.status(), route).toBe(200);
+    const body = await response.text();
+    expect(body, route).toMatch(/property=["']og:title["']/);
+    expect(body, route).toMatch(/property=["']og:description["']/);
+    expect(body, route).toMatch(/property=["']og:image["']/);
+    const imageUrl = `${canonicalOrigin}${route}/opengraph-image`;
+    expect(body, route).toContain(imageUrl);
+    expect(body, route).not.toContain("murex-nine");
+    const image = await request.get(imageUrl, {
+      headers: { "User-Agent": "LinkedInBot/1.0" },
+    });
+    expect(image.status(), imageUrl).toBe(200);
+    expect(image.headers()["content-type"], imageUrl).toContain("image/png");
   }
 });
