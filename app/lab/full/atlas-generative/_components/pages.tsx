@@ -183,13 +183,7 @@ function ProjectEntry({
           </div>
           <div>
             <dt>{text(locale, "Result", "結果")}</dt>
-            <dd>
-              {project.costMetric ? (
-                <CostResult project={project} locale={locale} />
-              ) : (
-                project.results[0][locale]
-              )}
-            </dd>
+            <dd>{project.results[0][locale]}</dd>
           </div>
         </dl>
         <p className={styles.projectStage}>{project.stage[locale]}</p>
@@ -198,41 +192,6 @@ function ProjectEntry({
         </Link>
       </div>
     </article>
-  );
-}
-
-function CostResult({
-  project,
-  locale,
-}: {
-  project: PortfolioProject;
-  locale: Locale;
-}) {
-  const metric = project.costMetric;
-  if (!metric) return null;
-  const formatCost = (cost: number) =>
-    locale === "ja"
-      ? `約${cost / 10000}万ドル`
-      : `about $${cost.toLocaleString("en-US")}`;
-  return (
-    <span className={styles.costResult}>
-      <strong>
-        <span className={styles.costValue}>
-          {formatCost(metric.before)} <span aria-hidden="true">↘</span>
-        </span>
-        <span className={styles.visuallyHidden}>
-          {text(locale, "to", "から")}
-        </span>
-        <span className={styles.costValue}>{formatCost(metric.after)}</span>
-      </strong>
-      <span>
-        {text(
-          locale,
-          `Annual infrastructure cost, approximately ${metric.percent}% lower.`,
-          `年間インフラ費を約${metric.percent}%削減。`,
-        )}
-      </span>
-    </span>
   );
 }
 
@@ -595,11 +554,7 @@ export function PortfolioCaseStudy({
         <p className={styles.caseSummary}>{project.summary[locale]}</p>
         <div className={styles.caseOutcome}>
           <span>{text(locale, "Result", "結果")}</span>
-          {project.costMetric ? (
-            <CostResult project={project} locale={locale} />
-          ) : (
-            <p>{project.results[0][locale]}</p>
-          )}
+          <p>{project.results[0][locale]}</p>
         </div>
       </header>
       <dl className={styles.caseContext}>
@@ -710,53 +665,6 @@ export function PortfolioCaseStudy({
         <section className={styles.caseSection} id="results">
           <h2>{text(locale, "Results and evidence", "結果と根拠")}</h2>
           <div className={styles.prose}>
-            {project.costMetric && (
-              <div className={styles.metricSheet}>
-                <div className={styles.metricValues}>
-                  <div>
-                    <strong>
-                      ${project.costMetric.before.toLocaleString("en-US")}
-                    </strong>
-                    <span>
-                      {text(
-                        locale,
-                        "Before · approx. USD / year",
-                        "改善前 · 概算米ドル／年",
-                      )}
-                    </span>
-                    <div className={styles.costBar}>
-                      <i style={{ width: "100%" }} />
-                    </div>
-                  </div>
-                  <div>
-                    <strong>
-                      ${project.costMetric.after.toLocaleString("en-US")}
-                    </strong>
-                    <span>
-                      {text(
-                        locale,
-                        "After · approx. USD / year",
-                        "改善後 · 概算米ドル／年",
-                      )}
-                    </span>
-                    <div className={styles.costBar}>
-                      <i
-                        style={{
-                          width: `${(project.costMetric.after / project.costMetric.before) * 100}%`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <p>
-                  {text(
-                    locale,
-                    `Annual event-platform infrastructure cost fell by approximately ${project.costMetric.percent}%. The approximate annual comparison is confirmed by the project owner.`,
-                    `イベント基盤の年間インフラ費を約${project.costMetric.percent}%削減。この年間費用の概算は本人確認済みです。`,
-                  )}
-                </p>
-              </div>
-            )}
             <Paragraphs values={project.results} locale={locale} />
             {project.slug === "subsidy-search-pilot" && (
               <h3 id="evaluation">{text(locale, "Evaluation", "評価")}</h3>

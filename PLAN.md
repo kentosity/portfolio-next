@@ -72,7 +72,7 @@
     129 (green) — for metrics that show improvement;
   ```
 - **Use color semantically:**
-  - Green for positive metrics (~95% cost reduction, zero downtime)
+  - Green for positive metrics (cost reduction, zero downtime)
   - Purple for creative/design projects (meiso, iplusi)
   - Blue for technical/infrastructure projects (WeCALL, WeNo)
 - **Increase contrast on tags:** Current `bg-slate-100 text-slate-800` is too subtle. Use `bg-slate-200 text-slate-900` or add subtle borders

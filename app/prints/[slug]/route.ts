@@ -1,6 +1,6 @@
 import { findProject, siteContent } from "@/lib/content";
-import { createPrint } from "../../_components/art";
-import { printSource } from "../../_components/routing";
+import { createPrint } from "@/app/lab/full/atlas-generative/_components/art";
+import { printSource } from "@/app/lab/full/atlas-generative/_components/routing";
 
 export const dynamic = "force-static";
 

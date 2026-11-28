@@ -4,7 +4,7 @@ A complete English/Japanese portfolio at `/lab/full/atlas-generative`, stacked o
 
 Atlas supplies the cobalt surround, light surfaces, large type, floating sheets, spatial workflow drawings and readable case-study layouts. Generative supplies the seeded computational drawings, construction view, variations and SVG exports. All drawing colors derive from the Atlas palette in `_components/palette.ts`, including construction mode and downloads.
 
-The home sheets stack, lift and select individual projects. Collection cards carry the same seeded drawings into the cases. Each case pairs an artistic interpretation with an inspectable workflow, then explains the problem, contribution, decisions, supported results, artifacts and technology responsibilities. The event-platform case derives its approximate $200k to $10k annual cost comparison (~95%) from the shared record.
+The home sheets stack, lift and select individual projects. Collection cards carry the same seeded drawings into the cases. Each case pairs an artistic interpretation with an inspectable workflow, then explains the problem, contribution, decisions, supported results, artifacts and technology responsibilities. Event-platform results describe the infrastructure-cost reduction without a public dollar figure.
 
 Project facts, chronology, translations, relationships and TODOs are derived from the existing typed public projection of the canonical resume in `app/content/site-content.ts`; the generator also applies the user-approved career amendments in `app/content/approved-career-updates.json`. Missing approved media, measurements, personal tradeoffs and reviewed PDF exports retain the structure's `TODO [stable-id]` treatment. The artwork is described as an interpretation; the workflow drawing is described as a conceptual reconstruction. The existing placeholder inventory remains in [site-structure.md](site-structure.md#content-placeholders).
 
@@ -57,7 +57,7 @@ Validation completed locally: ESLint, TypeScript and production build passed; al
 
 ## Problem-led polish
 
-The collection, home sheets, featured entries and case-study headers lead with the problem. Entries show what was built and the supported result; case headers repeat that framing. The event-platform comparison derives its approximate $200,000 to $10,000 annual cost and 95% reduction from the shared metric. All other results and implementation descriptions reuse the existing public project records, including their prototype and personal-installation stages. Existing evidence TODOs remain in the case studies.
+The collection, home sheets, featured entries and case-study headers lead with the problem. Entries show what was built and the supported result; case headers repeat that framing. Event-platform results describe the infrastructure-cost reduction without a public dollar figure. All other results and implementation descriptions reuse the existing public project records, including their prototype and personal-installation stages. Existing evidence TODOs remain in the case studies.
 
 Four colored filing tabs group the work by repeatable operations, coordination, finding/sharing information and website updates. The theme-local editorial headings and group assignments live in `_components/problems.ts`; project facts remain in the shared content. `?problem=operations|coordination|information|publishing` provides native-link filtering with or without JavaScript. Filters persist through cases, language switching and collection return. Legacy `?area=` links still work; an unknown problem filter shows the full collection.
 
@@ -71,7 +71,7 @@ BASE_URL=http://127.0.0.1:3159 CAPTURE_PREFIX=polish CAPTURE_PASS=final \
 
 The extended theme suite verifies problem/built/result entries, every problem filter in EN/JA, matching case headings, locale and return continuity, invalid-filter handling and JavaScript-free filtering. It also captures the event case and individual sheets alongside home, work and speech cases. Screenshots are saved as `/tmp/aide-proto/shots/polish-{home,work,case,event}-{desktop,mobile}-{en,ja}-final*.png` and `polish-{entry,featured}-{desktop,mobile}-final.png`.
 
-Polish validation: ESLint, TypeScript, production build, all 34 themed routes on desktop/mobile, 30 additional responsive layouts, the interaction checks above, 94 inherited Playwright tests and three public-projection tests passed. EN/JA desktop/mobile screenshots were inspected in two design passes; the final pass tightens mobile collection headings, aligns featured artwork and keeps each cost value together on small screens.
+Polish validation: ESLint, TypeScript, production build, all 34 themed routes on desktop/mobile, 30 additional responsive layouts, the interaction checks above, 94 inherited Playwright tests and three public-projection tests passed. EN/JA desktop/mobile screenshots were inspected in two design passes; the final pass tightens mobile collection headings, aligns featured artwork.
 
 ## Root background and Safari tint
 

@@ -53,7 +53,7 @@ export const siteContent: SiteContent = {
       "I build web products, data pipelines and tools that make business workflows easier to run. My work spans problem discovery, interface design, full-stack development and operations.",
       "Since February 2026, I have worked as an AI Engineer at FalconeX. For a hair salon chain client, I develop POS data integration, reporting applications and Windows report automation. For a retail client, I prepare security-product evaluations and AI/data advisory materials. I use AI-assisted development while keeping validation and failure handling explicit.",
       "From February to August 2026, I worked as a contract Full Stack Software Engineer for ZenCard on EpicPull, its online trading-card pack service. I developed authentication, payments, USDC wallet and card-buyback workflows, storefront features for the US and Hong Kong markets, and support for a staged Laravel-to-Next.js migration. The engagement ended when ZenCard shut down.",
-      "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB reduced annual infrastructure cost from about $200k to about $10k (~95%).",
+      "At Generosity (May 2024–January 2026), I worked on LINE-connected reservation, ticketing and order-management systems. Reworking an event platform with AWS Lambda and DynamoDB lowered annual infrastructure cost.",
       "I served as full-time CTO at Introduction from April 2020 to April 2024. I built SNAP’s event administration, guest albums and venue displays there, alongside product design and customer-facing work.",
       "My core stack includes TypeScript, React/Next.js, Vue/Nuxt, Node.js/NestJS and AWS, with recent work in Python, BigQuery and Google Cloud. I also build personal developer tools, including local speech and macOS playback tooling for my own development setup.",
       "I welcome conversations about engineering roles and client projects in web products, data integration and AI-assisted business automation. I enjoy understanding the workflow, building the solution and improving it with the people using it."
@@ -62,7 +62,7 @@ export const siteContent: SiteContent = {
       "FalconeXのAIエンジニアです。Webプロダクト、データ連携、業務自動化を中心に、課題整理、UI設計、フルスタック開発、運用改善に取り組んでいます。",
       "2026年2月からFalconeXに勤務しています。美容室チェーン向けにPOSデータの分析基盤への連携、レポートアプリ、Windows上の帳票取得の自動化を開発。小売業のクライアント向けには、セキュリティ製品の比較検討やAI・データ活用の説明資料を作成しています。AI支援開発を活用しながら、入力の検証や失敗時の処理も設計しています。",
       "2026年2月から8月まで、株式会社ZenCardの業務委託として「エピックプル」を開発しました。認証、決済、USDCを扱うウォレット、カード買取機能に加え、米国・香港向けの利用者向け画面と、LaravelからNext.jsへの段階的な移行を担当しました。会社の閉鎖に伴い、契約を終了しました。",
-      "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。",
+      "Generosityには2024年5月から2026年1月まで在籍し、LINE連携の予約・整理券・注文管理システムを開発しました。イベント基盤をAWS LambdaとDynamoDBの構成へ再設計し、年間インフラ費を削減しました。",
       "Introductionでは、2020年4月から2024年4月まで正社員のCTOを担当しました。SNAPのイベント管理、ゲスト向けアルバム、会場表示を開発し、プロダクトデザインや顧客対応にも携わりました。",
       "主な技術はTypeScript、React / Next.js、Vue / Nuxt、Node.js / NestJS、AWS。最近はPython、BigQuery、Google Cloudを使った開発や、個人環境に導入するローカル音声合成・macOS再生ツールにも取り組んでいます。",
       "エンジニア採用のお話と、Web開発・データ連携・AIを活用した業務改善のご相談をお待ちしています。使う人の業務を理解し、必要な仕組みをつくり、運用しながら改善する仕事に関心があります。"
@@ -155,12 +155,12 @@ export const siteContent: SiteContent = {
       },
       "bullets": {
         "en": [
-          "Reworked an event reservation platform toward modular features and a serverless AWS Lambda / DynamoDB architecture. Reduced annual infrastructure cost from about $200k to about $10k (~95%).",
+          "Reworked an event reservation platform toward modular features and a serverless AWS Lambda / DynamoDB architecture, lowering annual infrastructure cost.",
           "Rebuilt ticketing flows and introduced BullMQ queueing to address concurrent ticket issuance.",
           "Developed LINE-connected reservation and order-management features, including staff workflows and real-time updates."
         ],
         "ja": [
-          "イベント予約基盤の機能を分離し、AWS Lambda / DynamoDBによるサーバーレス構成への再設計を担当。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減。",
+          "イベント予約基盤の機能を分離し、AWS Lambda / DynamoDBによるサーバーレス構成への再設計を担当。年間インフラ費を削減。",
           "チケット発券処理を再構築し、同時発券の競合に対応するBullMQのキュー制御を導入。",
           "LINEと連携する予約・注文管理や、スタッフ向けの操作画面とリアルタイム更新を開発。"
         ]
@@ -708,8 +708,8 @@ export const siteContent: SiteContent = {
         "ja": "LINE連携の予約とチェックインを、再利用しやすい構成で処理するイベント基盤です。"
       },
       "description": {
-        "en": "Rearchitected a LINE-connected reservation platform to make event configurations reusable and reduce infrastructure cost. Built modular reservation and check-in features with Nuxt, TypeScript, AWS Lambda and DynamoDB, alongside shared validation and an analytics pipeline. Annual infrastructure cost fell from about $200k to about $10k, approximately 95%.",
-        "ja": "イベントごとに再利用できる構成とインフラ費の削減を目指し、LINE連携の予約基盤を再設計。Nuxt、TypeScript、AWS Lambda、DynamoDBで予約・チェックイン機能を分離し、共通バリデーションと分析用データ連携を整備しました。年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。"
+        "en": "Rearchitected a LINE-connected reservation platform to make event configurations reusable and reduce infrastructure cost. Built modular reservation and check-in features with Nuxt, TypeScript, AWS Lambda and DynamoDB, alongside shared validation and an analytics pipeline.",
+        "ja": "イベントごとに再利用できる構成とインフラ費の削減を目指し、LINE連携の予約基盤を再設計。Nuxt、TypeScript、AWS Lambda、DynamoDBで予約・チェックイン機能を分離し、共通バリデーションと分析用データ連携を整備しました。"
       },
       "association": {
         "en": "Generosity Inc.",
@@ -753,8 +753,8 @@ export const siteContent: SiteContent = {
         ]
       },
       "results": {
-        "en": "Annual event-platform infrastructure cost fell from about $200,000 to about $10,000, approximately 95%. This is the owner-confirmed approximate annual infrastructure-cost comparison for the Generosity platform.",
-        "ja": "イベント基盤の年間インフラ費を約20万ドルから約1万ドルへ、約95%削減しました。Generosityの基盤について本人が確認した、年間インフラ費の概算比較です。"
+        "en": "The reworked platform lowered annual infrastructure cost while making reservation and check-in features reusable across events.",
+        "ja": "再設計した基盤により、年間インフラ費を削減し、予約とチェックインの機能をイベント間で再利用できるようにしました。"
       },
       "related": [
         "event-ticketing",
@@ -840,13 +840,6 @@ export const siteContent: SiteContent = {
             "ja": "次に改善する点と、その効果を確かめる方法を選んでください。"
           }
         }
-      },
-      "metric": {
-        "currency": "USD",
-        "period": "annual",
-        "before": 200000,
-        "after": 10000,
-        "percent": 95
       }
     },
     {

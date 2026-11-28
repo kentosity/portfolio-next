@@ -54,11 +54,7 @@ export function CaseStudyPage({
         </p>
         <p>
           <a className="result-link" href="#results">
-            {project.metric
-              ? locale === "en"
-                ? "About $200k → $10k in annual infrastructure cost (~95%)"
-                : "年間インフラ費を約20万ドル → 約1万ドルへ（約95%削減）"
-              : text.results}{" "}
+            {text.results}{" "}
             ↓
           </a>
         </p>

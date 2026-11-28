@@ -1,16 +1,42 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { copy } from "@/app/content/copy";
+import { useParams } from "next/navigation";
+import styles from "@/app/lab/full/atlas-generative/_components/portfolio.module.css";
+import { paletteVariables } from "@/app/lab/full/atlas-generative/_components/palette";
+import { route } from "@/app/lab/full/atlas-generative/_components/routing";
+import { PortfolioLanguageSwitch } from "@/app/lab/full/atlas-generative/_components/language-switch";
 
-export default function NotFound() {
-  const locale = usePathname().startsWith("/ja") ? "ja" : "en";
+export default function PortfolioNotFound() {
+  const params = useParams();
+  const locale = params.locale === "ja" ? "ja" : "en";
+  const path = Array.isArray(params.path) ? params.path.join("/") : params.path;
+
   return (
-    <div className="page-intro">
-      <h1>{copy[locale].notFound}</h1>
-      <p>{copy[locale].notFoundText}</p>
-      <Link href={`/${locale}/projects`}>{copy[locale].projects} →</Link>
+    <div className={styles.page} style={paletteVariables} lang={locale}>
+      <header className={styles.header}>
+        <Link className={styles.homeLink} href={route(locale)}>
+          {locale === "en" ? "Home" : "ホーム"}
+        </Link>
+        <PortfolioLanguageSwitch locale={locale} path={path} />
+      </header>
+      <main id="main" className={styles.pageHeading}>
+        <h1>
+          {locale === "en"
+            ? "Project not found."
+            : "プロジェクトが見つかりません。"}
+        </h1>
+        <p>
+          {locale === "en"
+            ? "Explore the project collection to find a case study."
+            : "プロジェクト一覧から、事例をご覧ください。"}
+        </p>
+        <div className={styles.heroLinks}>
+          <Link className={styles.solidButton} href={route(locale, "projects")}>
+            {locale === "en" ? "Explore projects" : "プロジェクトを見る"}
+          </Link>
+        </div>
+      </main>
     </div>
   );
 }

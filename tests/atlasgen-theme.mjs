@@ -6,7 +6,7 @@ import { siteContent } from "../app/content/site-content.ts";
 const baseUrl = process.env.BASE_URL ?? "http://127.0.0.1:3163";
 const screenshotDirectory = process.env.SHOT_DIR ?? "/tmp/aide-proto/shots";
 const capturePrefix = process.env.CAPTURE_PREFIX ?? "atlasgen-theme";
-const root = "/lab/full/atlas-generative";
+const root = "";
 const blue = "rgb(22, 73, 203)";
 const routes = [
   "",
@@ -153,7 +153,7 @@ try {
         ["[class*='caseOutcome']", "#f1f4ff"],
         ["#system-plan > div", "#f1f4ff"],
         ["#built", "#f1f4ff"],
-        ["#results [class*='metricSheet']", "#e7ecdb"],
+        ["#results", "#f1f4ff"],
       ]) {
         await page.locator(selector).first().evaluate((element) => {
           const sectionTop = window.scrollY + element.getBoundingClientRect().top;
@@ -195,12 +195,11 @@ try {
     assert.equal(new URL(page.url()).pathname, `${root}/en`);
     await assertTheme(page);
     await open(page, "/en");
-    assert.equal(await page.locator("html.atlas-generative").count(), 0);
-    assert.notEqual(
-      await page.evaluate(() => getComputedStyle(document.body).backgroundColor),
-      blue,
-    );
-    assert.equal(await page.locator('meta[name="theme-color"]').count(), 0);
+    assert.equal(await page.locator("html.atlas-generative").count(), 1);
+    await assertTheme(page);
+    await open(page, "/lab/full/atlas-generative/en");
+    assert.equal(new URL(page.url()).pathname, "/en");
+    await assertTheme(page);
     await context.close();
   }
 

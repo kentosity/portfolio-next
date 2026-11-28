@@ -7,7 +7,7 @@ import styles from "./portfolio.module.css";
 import { Artwork } from "./artwork";
 import type { PrintSource } from "./art";
 import { palette } from "./palette";
-import { basePath } from "./routing";
+import { route } from "./routing";
 
 import type { Locale } from "@/app/content/model";
 
@@ -136,7 +136,7 @@ export function PortfolioCollectionMemory({
         const target = event.target instanceof Element ? event.target : null;
         const anchor = target?.closest<HTMLAnchorElement>("a");
         const opensCaseStudy = anchor?.pathname.startsWith(
-          `${basePath}/${locale}/projects/`,
+          `${route(locale, "/projects")}/`,
         );
         if (!opensCaseStudy) return;
         const href = `${window.location.pathname}${window.location.search}`;

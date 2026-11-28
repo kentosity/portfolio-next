@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { copy, pageDescriptions } from "@/app/content/copy";
 import { isLocale } from "@/app/content/model";
 import { corePages, isArea, siteContent } from "@/lib/content";
-import { basePath } from "../../_components/routing";
-import { projects } from "../../_components/content";
-import { isProblemType } from "../../_components/problems";
+import { shouldIndex } from "@/lib/site-policy";
+import { projects } from "@/app/lab/full/atlas-generative/_components/content";
+import { isProblemType } from "@/app/lab/full/atlas-generative/_components/problems";
 import {
   PortfolioAbout,
   PortfolioCaseStudy,
@@ -15,7 +15,7 @@ import {
   PortfolioResume,
   PortfolioShell,
   PortfolioWorkTogether,
-} from "../../_components/pages";
+} from "@/app/lab/full/atlas-generative/_components/pages";
 
 type PageProps = {
   params: Promise<{ locale: string; path?: string[] }>;
@@ -67,19 +67,21 @@ export async function generateMetadata({
     siteContent.introduction[page.locale];
   const suffix = page.currentPath ? `/${page.currentPath}` : "";
   const origin = siteContent.identity.origin;
-  const pageUrl = `${origin}${basePath}/${page.locale}${suffix}`;
+  const pageUrl = `${origin}/${page.locale}${suffix}`;
 
   return {
     metadataBase: new URL(origin),
     title,
     description,
-    robots: { index: false, follow: false },
+    robots: shouldIndex
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
     alternates: {
       canonical: pageUrl,
       languages: {
-        en: `${origin}${basePath}/en${suffix}`,
-        ja: `${origin}${basePath}/ja${suffix}`,
-        "x-default": `${origin}${basePath}/en${suffix}`,
+        en: `${origin}/en${suffix}`,
+        ja: `${origin}/ja${suffix}`,
+        "x-default": `${origin}/en${suffix}`,
       },
     },
     openGraph: {
@@ -88,6 +90,11 @@ export async function generateMetadata({
       url: pageUrl,
       locale: page.locale === "en" ? "en_US" : "ja_JP",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
   };
 }

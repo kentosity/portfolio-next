@@ -5,7 +5,7 @@ import { webkit } from "@playwright/test";
 const baseUrl = process.env.BASE_URL ?? "http://127.0.0.1:3163";
 const screenshotDirectory = process.env.SHOT_DIR ?? "/tmp/aide-proto/shots";
 const prefix = process.env.CAPTURE_PREFIX ?? "atlasgen-career";
-const root = "/lab/full/atlas-generative";
+const root = "";
 const results = [];
 const browser = await webkit.launch();
 await mkdir(screenshotDirectory, { recursive: true });

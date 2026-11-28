@@ -11,11 +11,12 @@ export function collectionQuery({ area, problem }: CollectionFilter) {
   return query.size ? `?${query}` : "";
 }
 
-export const basePath = "/lab/full/atlas-generative";
+export const basePath = "";
+export const printsPath = "/prints";
 
 export function route(locale: Locale, path = "") {
   const suffix = path.replace(/^\//, "");
-  return `${basePath}/${locale}${suffix ? `/${suffix}` : ""}`;
+  return `/${locale}${suffix ? `/${suffix}` : ""}`;
 }
 
 export function printSource(
